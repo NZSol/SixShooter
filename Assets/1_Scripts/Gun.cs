@@ -13,10 +13,12 @@ public class Gun : MonoBehaviour
     //Fire Timer
     float timeToFire;
     bool canFire = true;
+    bool reloading = false;
+    bool startReload = false;
 
     //Ammo
     int ammoCount = 6;
-
+    float timeToReload = 6;
 
     //Other
     [SerializeField] GameObject testOBJ;
@@ -47,19 +49,31 @@ public class Gun : MonoBehaviour
             ammoCount--;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && ammoCount <= 0)
-        {
-            Reload();
-        }
 
+        //Check Ammo and timer before firing again
         ShootTimer();
-
-        print(canFire);
-
-
         CheckAmmo();
 
+        //Declare if able to fire or not based upon timer and ammo
+        if (ammoCount > 0 && timeToFire == 1.5f)
+        {
+            canFire = true;
+        }
+        else
+        {
+            canFire = false;
+        }
 
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && ammoCount <= 0 && startReload == false|| Input.GetKeyDown(KeyCode.R) && ammoCount < 6 && startReload == false)
+        {
+            startReload = true;
+            reloading = true;
+        }
+        if (reloading == true)
+        {
+            StartCoroutine(Reload());
+        }
 
     }
 
@@ -104,17 +118,32 @@ public class Gun : MonoBehaviour
         }
     }
 
-    void Reload()
+
+    IEnumerator Reload()
     {
         //animate reload
+        yield return new WaitForEndOfFrame();
+        reloading = true;
+        timeToReload -= Time.deltaTime;
 
+        print(timeToReload);
+
+        if (timeToReload <= 0)
+        {
+            ammoCount = 6;
+            timeToReload = 6;
+
+        }
     }
 
 
 
 
 
-
+    void EndReload()
+    {
+        StopCoroutine(Reload());
+    }
 
 
     void AccesoryFunction()
