@@ -21,7 +21,8 @@ public class Gun : MonoBehaviour
     float timeToReload = 6;
 
     //Other
-    [SerializeField] GameObject testOBJ;
+    [SerializeField] GameObject aimPoint;
+    [SerializeField] Light muzzFlash;
 
 
 
@@ -65,7 +66,7 @@ public class Gun : MonoBehaviour
         }
         
 
-
+        //Reload if bool = true
         if (startReload == true)
         {
             StartCoroutine(Reload());
@@ -74,9 +75,9 @@ public class Gun : MonoBehaviour
         {
             StopCoroutine(Reload());
         }
+        
 
-        print(startReload);
-
+        //Manual Reload
         if (ammoCount < 6 && Input.GetKeyDown(KeyCode.R))
         {
             ammoCount = 0;
@@ -85,6 +86,10 @@ public class Gun : MonoBehaviour
 
     }
 
+
+
+    //when ammo above 0, shoot ray, if hit target print hit and siplay blue line
+    //If ammo below 0, start reload
     void Shoot()
     {
         RaycastHit hit;
@@ -97,6 +102,7 @@ public class Gun : MonoBehaviour
             }
             else
             {
+                Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.red);
                 print("missed");
             }
         }
@@ -106,7 +112,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-
+    //Timer before shooting again
     void ShootTimer()
     {
         if (timeToFire < 1.5f)
@@ -120,7 +126,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-
+    //Ammo check
     void CheckAmmo()
     {
         if (ammoCount <= 0)
@@ -133,7 +139,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-
+    //Countdown to reload over, assign values
     IEnumerator Reload()
     {
         //animate reload
@@ -158,10 +164,10 @@ public class Gun : MonoBehaviour
 
 
 
-
+    //gameStart functions
     void AccesoryFunction()
     {
-        testOBJ.transform.position = endPoint;
+        aimPoint.transform.position = endPoint;
         endPoint = myCam.transform.forward * 50;
     }
 
