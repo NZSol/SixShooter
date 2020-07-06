@@ -40,7 +40,7 @@ public class Gun : MonoBehaviour
         AccesoryFunction();
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && canFire == true)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && timeToFire >= 1.5f)
         {
             Shoot();
             timeToFire = 0;
@@ -63,16 +63,24 @@ public class Gun : MonoBehaviour
         {
             canFire = false;
         }
+        
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && ammoCount <= 0 && startReload == false|| Input.GetKeyDown(KeyCode.R) && ammoCount < 6 && startReload == false)
-        {
-            startReload = true;
-            reloading = true;
-        }
-        if (reloading == true)
+        if (startReload == true)
         {
             StartCoroutine(Reload());
+        }
+        else
+        {
+            StopCoroutine(Reload());
+        }
+
+        print(startReload);
+
+        if (ammoCount < 6 && Input.GetKeyDown(KeyCode.R))
+        {
+            ammoCount = 0;
+            startReload = true;
         }
 
     }
@@ -80,14 +88,21 @@ public class Gun : MonoBehaviour
     void Shoot()
     {
         RaycastHit hit;
-        if (Physics.Raycast(myCam.transform.position, endPoint, out hit, range, 1 << 9))
+        if (ammoCount > 0)
         {
-            Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.blue);
-            print("hit");
+            if (Physics.Raycast(myCam.transform.position, endPoint, out hit, range, 1 << 9))
+            {
+                Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.blue);
+                print("hit");
+            }
+            else
+            {
+                print("missed");
+            }
         }
         else
         {
-            print("missed");
+            startReload = true;
         }
     }
 
@@ -123,10 +138,8 @@ public class Gun : MonoBehaviour
     {
         //animate reload
         yield return new WaitForEndOfFrame();
-        reloading = true;
         timeToReload -= Time.deltaTime;
-
-        print(timeToReload);
+        
 
         if (timeToReload <= 0)
         {
@@ -134,16 +147,16 @@ public class Gun : MonoBehaviour
             timeToReload = 6;
 
         }
+        if (ammoCount == 6 && timeToReload == 6)
+        {
+            startReload = false;
+        }
     }
+    
 
 
 
 
-
-    void EndReload()
-    {
-        StopCoroutine(Reload());
-    }
 
 
     void AccesoryFunction()
