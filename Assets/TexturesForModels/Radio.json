@@ -6,15 +6,15 @@
         "Main shader": {
             "parameters": {
                 "Common Parameters": {
-                    "ao_intensity": 0.75,
-                    "emissive_intensity": 1,
+                    "ao_intensity": 0.6100000143051147,
+                    "emissive_intensity": 2.5999999046325684,
                     "horizonFade": 1.2999999523162842,
                     "nbSamples": 16
                 },
                 "Parallax Occlusion Mapping": {
                     "maxPOMSamples": 16,
                     "minPOMSamples": 4,
-                    "pomStrength": 1,
+                    "pomStrength": 1.7799999713897705,
                     "usePOM": false
                 },
                 "Subsurface Scattering Parameters": {
