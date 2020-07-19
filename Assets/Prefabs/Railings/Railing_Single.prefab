@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2789026904237128134}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 1227986830603500503}
   - {fileID: 7246215989396717039}
@@ -49,11 +49,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 483214216667936599}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d9f7e3abc6af86243a647060324a3615,
-        type: 3}
-      propertyPath: m_Name
-      value: WalkwayBars_Corner (1)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d9f7e3abc6af86243a647060324a3615,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -108,6 +103,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d9f7e3abc6af86243a647060324a3615,
+        type: 3}
+      propertyPath: m_Name
+      value: WalkwayBars_Corner (1)
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: d9f7e3abc6af86243a647060324a3615,
         type: 3}
@@ -209,11 +209,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 483214216667936599}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 25391ee758597de48a5949b95f77f505,
-        type: 3}
-      propertyPath: m_Name
-      value: WalkwayBars_Straight_Short (3)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 25391ee758597de48a5949b95f77f505,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -273,6 +268,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.86761755
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 25391ee758597de48a5949b95f77f505,
+        type: 3}
+      propertyPath: m_Name
+      value: WalkwayBars_Straight_Short (3)
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 25391ee758597de48a5949b95f77f505,
         type: 3}
@@ -374,11 +374,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 483214216667936599}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d9f7e3abc6af86243a647060324a3615,
-        type: 3}
-      propertyPath: m_Name
-      value: WalkwayBars_Corner (4)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d9f7e3abc6af86243a647060324a3615,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -434,6 +429,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d9f7e3abc6af86243a647060324a3615,
+        type: 3}
+      propertyPath: m_Name
+      value: WalkwayBars_Corner (4)
+      objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: d9f7e3abc6af86243a647060324a3615,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -454,11 +454,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 483214216667936599}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 25391ee758597de48a5949b95f77f505,
-        type: 3}
-      propertyPath: m_Name
-      value: WalkwayBars_Straight_Short (4)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 25391ee758597de48a5949b95f77f505,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -514,6 +509,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 89.99999
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 25391ee758597de48a5949b95f77f505,
+        type: 3}
+      propertyPath: m_Name
+      value: WalkwayBars_Straight_Short (4)
+      objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 25391ee758597de48a5949b95f77f505,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -534,11 +534,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 483214216667936599}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 25391ee758597de48a5949b95f77f505,
-        type: 3}
-      propertyPath: m_Name
-      value: WalkwayBars_Straight_Short (1)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 25391ee758597de48a5949b95f77f505,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -594,6 +589,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 89.99999
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 25391ee758597de48a5949b95f77f505,
+        type: 3}
+      propertyPath: m_Name
+      value: WalkwayBars_Straight_Short (1)
+      objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 25391ee758597de48a5949b95f77f505,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -614,11 +614,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 483214216667936599}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d9f7e3abc6af86243a647060324a3615,
-        type: 3}
-      propertyPath: m_Name
-      value: WalkwayBars_Corner (3)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d9f7e3abc6af86243a647060324a3615,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -674,6 +669,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d9f7e3abc6af86243a647060324a3615,
+        type: 3}
+      propertyPath: m_Name
+      value: WalkwayBars_Corner (3)
+      objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: d9f7e3abc6af86243a647060324a3615,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -694,11 +694,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 483214216667936599}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d9f7e3abc6af86243a647060324a3615,
-        type: 3}
-      propertyPath: m_Name
-      value: WalkwayBars_Corner (2)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d9f7e3abc6af86243a647060324a3615,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -754,6 +749,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d9f7e3abc6af86243a647060324a3615,
+        type: 3}
+      propertyPath: m_Name
+      value: WalkwayBars_Corner (2)
+      objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: d9f7e3abc6af86243a647060324a3615,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -774,11 +774,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 483214216667936599}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 25391ee758597de48a5949b95f77f505,
-        type: 3}
-      propertyPath: m_Name
-      value: WalkwayBars_Straight_Short (2)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 25391ee758597de48a5949b95f77f505,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -839,6 +834,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.90565
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 25391ee758597de48a5949b95f77f505,
+        type: 3}
+      propertyPath: m_Name
+      value: WalkwayBars_Straight_Short (2)
+      objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 25391ee758597de48a5949b95f77f505,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -859,11 +859,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 483214216667936599}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 25391ee758597de48a5949b95f77f505,
-        type: 3}
-      propertyPath: m_Name
-      value: WalkwayBars_Straight_Short
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 25391ee758597de48a5949b95f77f505,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -919,6 +914,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.000015258789
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 25391ee758597de48a5949b95f77f505,
+        type: 3}
+      propertyPath: m_Name
+      value: WalkwayBars_Straight_Short
+      objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 25391ee758597de48a5949b95f77f505,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -939,11 +939,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 483214216667936599}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 25391ee758597de48a5949b95f77f505,
-        type: 3}
-      propertyPath: m_Name
-      value: WalkwayBars_Straight_Short (5)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 25391ee758597de48a5949b95f77f505,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1003,6 +998,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.90565
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 25391ee758597de48a5949b95f77f505,
+        type: 3}
+      propertyPath: m_Name
+      value: WalkwayBars_Straight_Short (5)
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 25391ee758597de48a5949b95f77f505,
         type: 3}
