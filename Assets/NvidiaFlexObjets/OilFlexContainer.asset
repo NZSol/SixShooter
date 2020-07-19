@@ -13,33 +13,33 @@ MonoBehaviour:
   m_Name: OilFlexContainer
   m_EditorClassIdentifier: 
   m_simpleMode: 1
-  m_simpleMaxParticles: 9431
+  m_simpleMaxParticles: 5000
   m_simpleSubstepCount: 1
   m_simpleIterationCount: 1
-  m_simpleGravity: {x: 0, y: -5, z: 0}
+  m_simpleGravity: {x: 0, y: -2, z: 0}
   m_simpleParticleSize: 0.1
   m_simpleParticleFriction: 0.1
   m_simpleParticleRestitution: 0
   m_simpleParticleAdhesion: 0
-  m_simpleParticleDamping: 0
+  m_simpleParticleDamping: 0.5
   m_simpleClothWind: {x: 0, y: 0, z: 0}
   m_simpleClothDrag: 0
   m_simpleClothLift: 0
-  m_simpleFluidCohesion: 0.3
+  m_simpleFluidCohesion: 0.1
   m_simpleFluidTension: 1
   m_simpleFluidViscosity: 1
   m_simpleFluidVorticity: 3
   m_simpleFluidAnisotropy: 2
   m_simpleFluidMinScale: 0.2
-  m_simpleFluidMaxScale: 1
-  m_maxParticles: 9431
+  m_simpleFluidMaxScale: 0.75
+  m_maxParticles: 5000
   m_maxDiffuse: 0
   m_maxNeighbors: 200
   m_maxContacts: 6
   m_recreateSolver: 0
   m_substepCount: 1
   m_iterationCount: 1
-  m_gravity: {x: 0, y: -5, z: 0}
+  m_gravity: {x: 0, y: -2, z: 0}
   m_radius: 0.15
   m_solidRest: 0.1
   m_fluidRest: 0.095
@@ -53,18 +53,18 @@ MonoBehaviour:
   m_maxAcceleration: 3.4028235e+38
   m_shockPropagation: 0
   m_dissipation: 0
-  m_damping: 0
+  m_damping: 0.5
   m_wind: {x: 0, y: 0, z: 0}
   m_drag: 0
   m_lift: 0
   m_fluid: 1
-  m_cohesion: 0.3
+  m_cohesion: 0.1
   m_surfaceTension: 1
   m_viscosity: 1
   m_vorticityConfinement: 3
   m_anisotropyScale: 2
   m_anisotropyMin: 0.2
-  m_anisotropyMax: 1
+  m_anisotropyMax: 0.75
   m_smoothing: 0
   m_solidPressure: 0
   m_freeSurfaceDrag: 0
