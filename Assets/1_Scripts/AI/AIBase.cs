@@ -7,19 +7,16 @@ public class AIBase : MonoBehaviour
 {
 
     GameObject player;
-    Animator animCtrl;
+    public static Animator animCtrl;
 
     //Line of Sight
     float playerDist;
     float minDetectRange = 5;
     [SerializeField] float fovRange = 75;
-
-    //Pathing
-    [SerializeField] float radius = 20;
-    float curTime;
-    [SerializeField] float timer;
-    NavMeshAgent agent;
+    bool brokenLos;
     
+
+
     bool CanSeePlayer()
     {
         RaycastHit hit;
@@ -29,6 +26,7 @@ public class AIBase : MonoBehaviour
             if ((hit.transform.tag == "Player") && (playerDist <= minDetectRange))
             {
                 Debug.DrawRay(transform.position, rayDir, Color.yellow);
+                animCtrl.SetInteger("ActState", 2);
                 return true;
             }
         }
@@ -39,11 +37,14 @@ public class AIBase : MonoBehaviour
                 if (hit.transform.tag == "Player")
                 {
                     Debug.DrawRay(transform.position, rayDir, Color.green);
+                    animCtrl.SetInteger("ActState", 2);
                     return true;
                 }
                 else
                 {
                     Debug.DrawRay(transform.position, rayDir, Color.red);
+                    animCtrl.SetInteger("ActState", 3);
+
                     return false;
                 }
             }
@@ -52,43 +53,23 @@ public class AIBase : MonoBehaviour
         return false;
     }
 
-    Vector3 RandomNavSphere(Vector3 origin, float dist, int layerMask)
-    {
-        Vector3 randDir = Random.insideUnitSphere * dist;
-        randDir += origin;
-
-        NavMeshHit navHit;
-        NavMesh.SamplePosition(randDir, out navHit, dist, layerMask);
-
-        return navHit.position;
-    }
 
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
-        agent = GetComponent<NavMeshAgent>();
-        curTime = timer;
+        animCtrl = GetComponent<Animator>();
     }
 
     private void Update()
     {
         playerDist = Vector3.Distance(player.transform.position, transform.position);
-        Path();
 
         CanSeePlayer();
+
+
+        print(animCtrl.GetInteger("ActState"));
     }
 
 
-    void Path()
-    {
-        curTime += Time.deltaTime;
-        if (curTime >= timer)
-        {
-            Vector3 newPos = RandomNavSphere(transform.position, radius, -1);
-            print("hit");
-            agent.SetDestination(newPos);
-            curTime -= timer;
-        }
-    }
 
 }
