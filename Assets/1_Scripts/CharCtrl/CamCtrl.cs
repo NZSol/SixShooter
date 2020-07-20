@@ -68,13 +68,13 @@ public class CamCtrl : MonoBehaviour
 
         if(MoveCtrl.forwardMovement == Vector3.zero && MoveCtrl.rightMovement == Vector3.zero)
         {
-            headbob(idleCounter, 0.025f, 0.025f);
+            headbob(idleCounter, 0.075f, 0.075f);
             idleCounter += Time.deltaTime;
             
         }
         else
         {
-            headbob(movementCounter, 0.1f, 0.1f);
+            headbob(movementCounter, 0.12f, 0.12f);
             movementCounter += Time.deltaTime * speedMult;
             
         }

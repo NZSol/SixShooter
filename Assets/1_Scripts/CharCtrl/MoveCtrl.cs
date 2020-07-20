@@ -10,6 +10,12 @@ public class MoveCtrl : MonoBehaviour
 
     CharacterController charCtrl;
 
+    bool isJumping;
+    [SerializeField] private AnimationCurve jumpFalloff;
+    [SerializeField] float jumpMultiplier;
+    [SerializeField] KeyCode jumpKey;
+     
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +26,7 @@ public class MoveCtrl : MonoBehaviour
     void Update()
     {
         playerMove();
+        JumpInput();
     }
 
     public static Vector3 forwardMovement, rightMovement;
@@ -34,5 +41,32 @@ public class MoveCtrl : MonoBehaviour
 
         charCtrl.SimpleMove((rightMovement + forwardMovement) * moveSpeed);
 
+    }
+
+    void JumpInput()
+    {
+        if (Input.GetKey(jumpKey) && !isJumping)
+        {
+            isJumping = true;
+            StartCoroutine(Jump());
+        }
+    }
+
+    IEnumerator Jump()
+    {
+        charCtrl.slopeLimit = 90;
+        float timeInAir = 0;
+        do
+        {
+            float jumpForce = jumpFalloff.Evaluate(timeInAir);
+            charCtrl.Move(Vector3.up * jumpForce * jumpMultiplier * Time.deltaTime);
+            timeInAir += Time.deltaTime;
+
+            yield return null;
+        }
+        while (!charCtrl.isGrounded && charCtrl.collisionFlags != CollisionFlags.Above);
+
+        isJumping = false;
+        charCtrl.slopeLimit = 45;
     }
 }
