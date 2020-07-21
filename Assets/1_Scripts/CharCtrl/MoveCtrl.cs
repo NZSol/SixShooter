@@ -4,22 +4,37 @@ using UnityEngine;
 
 public class MoveCtrl : MonoBehaviour
 {
+    //movement
     [SerializeField] string horizontalInputName;
     [SerializeField] string verticalInputName;
     [SerializeField] float moveSpeed;
 
+    float crouchSpeed = 1.25f;
+    float standSpeed = 2.5f;
+
     CharacterController charCtrl;
 
+
+    //jumping
     bool isJumping;
     [SerializeField] private AnimationCurve jumpFalloff;
     [SerializeField] float jumpMultiplier;
     [SerializeField] KeyCode jumpKey;
+
+    //Crouching
+    bool ctrlToggle;
+
+    [SerializeField] KeyCode crouchKey;
+    Vector3 scaleAdjust, baseScale;
+    bool scaleBool;
      
 
     // Start is called before the first frame update
     void Start()
     {
         charCtrl = GetComponent<CharacterController>();
+        scaleAdjust = new Vector3(transform.localScale.x, 1.5f, transform.localScale.z);
+        baseScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
     // Update is called once per frame
@@ -27,6 +42,18 @@ public class MoveCtrl : MonoBehaviour
     {
         playerMove();
         JumpInput();
+        if (ctrlToggle == true)
+        {
+            CrouchHold();
+        }
+        else
+        {
+            CrouchToggle();
+        }
+        if (Input.GetKey(KeyCode.T))
+        {
+            ctrlToggle = !ctrlToggle;
+        }
     }
 
     public static Vector3 forwardMovement, rightMovement;
@@ -51,6 +78,40 @@ public class MoveCtrl : MonoBehaviour
             StartCoroutine(Jump());
         }
     }
+
+    void CrouchToggle()
+    {
+        if (Input.GetKeyDown(crouchKey))
+        {
+            scaleBool = !scaleBool;
+        }
+
+        if (scaleBool == true)
+        {
+            transform.localScale = scaleAdjust;
+            moveSpeed = crouchSpeed;
+        }
+        else
+        {
+            transform.localScale = baseScale;
+            moveSpeed = standSpeed;
+        }
+    }
+
+    void CrouchHold()
+    {
+        if (Input.GetKey(crouchKey))
+        {
+            transform.localScale = scaleAdjust;
+            moveSpeed = crouchSpeed;
+        }
+        else
+        {
+            transform.localScale = baseScale;
+            moveSpeed = standSpeed;
+        }
+    }
+
 
     IEnumerator Jump()
     {
