@@ -9,9 +9,6 @@ public class MoveCtrl : MonoBehaviour
     [SerializeField] string verticalInputName;
     [SerializeField] float moveSpeed;
 
-    float crouchSpeed = 1.25f;
-    float standSpeed = 2.5f;
-
     CharacterController charCtrl;
 
 
@@ -21,38 +18,82 @@ public class MoveCtrl : MonoBehaviour
     [SerializeField] float jumpMultiplier;
     [SerializeField] KeyCode jumpKey;
 
-    //Crouching
-    bool ctrlToggle;
-
+    //crouching
+    public static bool toggleCrouchMode = true;
     [SerializeField] KeyCode crouchKey;
-    Vector3 scaleAdjust, baseScale;
-    bool scaleBool;
-     
+    bool crouching;
+    Vector3 baseScale, adjustScale;
+    [SerializeField] GameObject viewManager;
+    float crouchSpeed = 1.25f;
+    float standSpeed = 2.5f;
 
     // Start is called before the first frame update
     void Start()
     {
         charCtrl = GetComponent<CharacterController>();
-        scaleAdjust = new Vector3(transform.localScale.x, 1.5f, transform.localScale.z);
-        baseScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        baseScale = transform.localScale;
+        adjustScale = new Vector3(transform.localScale.x, 1.5f, transform.localScale.z);
     }
 
     // Update is called once per frame
     void Update()
     {
+        print(toggleCrouchMode);
         playerMove();
         JumpInput();
-        if (ctrlToggle == true)
+
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            CrouchHold();
+            toggleCrouchMode = !toggleCrouchMode;
+        }
+
+        if (toggleCrouchMode == true)
+        {
+            CrouchTogg();
         }
         else
         {
-            CrouchToggle();
+            CrouchHold();
         }
-        if (Input.GetKey(KeyCode.T))
+    }
+
+    void CrouchTogg()
+    {
+        if (Input.GetKeyDown(crouchKey))
         {
-            ctrlToggle = !ctrlToggle;
+            crouching = !crouching;
+        }
+
+        if (crouching == true)
+        {
+            charCtrl.height = 1.5f;
+            charCtrl.center = new Vector3(0, -0.25f, 0);
+            viewManager.transform.position = new Vector3 (transform.position.x, transform.position.y - 0.4f, transform.position.z);
+            moveSpeed = crouchSpeed;
+        }
+        else
+        {
+            charCtrl.height = 2;
+            charCtrl.center = Vector3.zero;
+            viewManager.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            moveSpeed = standSpeed;
+        }
+    }
+    void CrouchHold()
+    {
+        if (Input.GetKey(crouchKey))
+        {
+            charCtrl.height = 1.5f;
+            charCtrl.center = new Vector3(0, -0.25f, 0);
+            viewManager.transform.position = new Vector3(transform.position.x, transform.position.y - 0.4f, transform.position.z);
+            moveSpeed = crouchSpeed;
+        }
+        else
+        {
+            charCtrl.height = 2;
+            charCtrl.center = Vector3.zero;
+            viewManager.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            moveSpeed = standSpeed;
         }
     }
 
@@ -79,38 +120,6 @@ public class MoveCtrl : MonoBehaviour
         }
     }
 
-    void CrouchToggle()
-    {
-        if (Input.GetKeyDown(crouchKey))
-        {
-            scaleBool = !scaleBool;
-        }
-
-        if (scaleBool == true)
-        {
-            transform.localScale = scaleAdjust;
-            moveSpeed = crouchSpeed;
-        }
-        else
-        {
-            transform.localScale = baseScale;
-            moveSpeed = standSpeed;
-        }
-    }
-
-    void CrouchHold()
-    {
-        if (Input.GetKey(crouchKey))
-        {
-            transform.localScale = scaleAdjust;
-            moveSpeed = crouchSpeed;
-        }
-        else
-        {
-            transform.localScale = baseScale;
-            moveSpeed = standSpeed;
-        }
-    }
 
 
     IEnumerator Jump()
