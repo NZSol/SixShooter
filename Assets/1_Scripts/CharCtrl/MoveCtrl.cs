@@ -39,7 +39,7 @@ public class MoveCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(toggleCrouchMode);
+
         playerMove();
         JumpInput();
 
