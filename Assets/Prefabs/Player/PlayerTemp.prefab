@@ -143,7 +143,7 @@ Transform:
   m_GameObject: {fileID: 3476518271141552116}
   m_LocalRotation: {x: 0, y: -0.6175989, z: 0, w: 0.78649324}
   m_LocalPosition: {x: 0.99854267, y: 0.7323108, z: 0}
-  m_LocalScale: {x: 1.4912261, y: 2, z: 1.4912261}
+  m_LocalScale: {x: 0.8526063, y: 1.143497, z: 0.8526063}
   m_Children:
   - {fileID: 4303446875904110946}
   m_Father: {fileID: 0}
@@ -251,6 +251,7 @@ MonoBehaviour:
   jumpKey: 32
   crouchKey: 306
   viewManager: {fileID: 6091601272684678137}
+  height: 1.5
 --- !u!143 &3476518271141552078
 CharacterController:
   m_ObjectHideFlags: 0
