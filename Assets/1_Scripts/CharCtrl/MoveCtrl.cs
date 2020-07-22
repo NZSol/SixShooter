@@ -26,6 +26,7 @@ public class MoveCtrl : MonoBehaviour
     [SerializeField] GameObject viewManager;
     float crouchSpeed = 1.25f;
     float standSpeed = 2.5f;
+    [SerializeField] float height;
 
     // Start is called before the first frame update
     void Start()
@@ -66,7 +67,7 @@ public class MoveCtrl : MonoBehaviour
 
         if (crouching == true)
         {
-            charCtrl.height = 1.5f;
+            charCtrl.height = height;
             charCtrl.center = new Vector3(0, -0.25f, 0);
             viewManager.transform.position = new Vector3 (transform.position.x, transform.position.y - 0.4f, transform.position.z);
             moveSpeed = crouchSpeed;
@@ -83,7 +84,7 @@ public class MoveCtrl : MonoBehaviour
     {
         if (Input.GetKey(crouchKey))
         {
-            charCtrl.height = 1.5f;
+            charCtrl.height = height;
             charCtrl.center = new Vector3(0, -0.25f, 0);
             viewManager.transform.position = new Vector3(transform.position.x, transform.position.y - 0.4f, transform.position.z);
             moveSpeed = crouchSpeed;
