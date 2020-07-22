@@ -552,8 +552,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0033777975
-      value: 0.30060437
+      time: 0.00083086325
+      value: 0.30025798
       inSlope: -0.05063469
       outSlope: -0.05063469
       tangentMode: 0
@@ -563,15 +563,16 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: -0.0010876656
-      inSlope: -0.7038082
-      outSlope: -0.7038082
+      inSlope: -0.74921894
+      outSlope: -0.74921894
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.06416023
+      inWeight: 0.01528657
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  openInOut: 1
 --- !u!54 &1039315636
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -597,6 +598,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1218007621}
+  - component: {fileID: 1218007622}
   m_Layer: 0
   m_Name: timeManager
   m_TagString: Untagged
@@ -618,6 +620,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1218007622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218007620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0d84eb9e78fa7429e96c0ec11c8392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1436000110
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,7 +928,7 @@ PrefabInstance:
     - target: {fileID: 3476518271141552112, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7323108
+      value: -0.204
       objectReference: {fileID: 0}
     - target: {fileID: 3476518271141552112, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
@@ -966,6 +980,21 @@ PrefabInstance:
       propertyPath: aimPoint
       value: 
       objectReference: {fileID: 1883825100}
+    - target: {fileID: 3476518272083696416, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: timeManager
+      value: 
+      objectReference: {fileID: 1218007622}
+    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: height
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4303446875904110946, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.376
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
 --- !u!1 &2048759961

@@ -27,7 +27,9 @@ public class MoveCtrl : MonoBehaviour
     float crouchSpeed = 1.25f;
     float standSpeed = 2.5f;
     [SerializeField] float height;
-    Vector3 HeightManSet;
+    float heightY;
+
+    float offset;
 
     // Start is called before the first frame update
     void Start()
@@ -35,12 +37,15 @@ public class MoveCtrl : MonoBehaviour
         charCtrl = GetComponent<CharacterController>();
         baseScale = transform.localScale;
         adjustScale = new Vector3(transform.localScale.x, 1.5f, transform.localScale.z);
-        HeightManSet = viewManager.transform.position;
+        heightY = viewManager.transform.position.y;
+        offset = viewManager.transform.position.y - transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
+        heightY = transform.position.y + offset;
+        print(offset);
 
         playerMove();
         JumpInput();
@@ -71,14 +76,14 @@ public class MoveCtrl : MonoBehaviour
         {
             charCtrl.height = height;
             charCtrl.center = new Vector3(0, -0.25f, 0);
-            viewManager.transform.position = new Vector3 (HeightManSet.x, HeightManSet.y - 0.4f, HeightManSet.z);
+            viewManager.transform.position = new Vector3 (transform.position.x, heightY - 0.4f, transform.position.z);
             moveSpeed = crouchSpeed;
         }
         else
         {
             charCtrl.height = 2;
             charCtrl.center = Vector3.zero;
-            viewManager.transform.position = new Vector3(HeightManSet.x, HeightManSet.y, HeightManSet.z);
+            viewManager.transform.position = new Vector3(transform.position.x, heightY, transform.position.z);
             moveSpeed = standSpeed;
         }
     }
@@ -88,14 +93,14 @@ public class MoveCtrl : MonoBehaviour
         {
             charCtrl.height = height;
             charCtrl.center = new Vector3(0, -0.25f, 0);
-            viewManager.transform.position = new Vector3(HeightManSet.x, HeightManSet.y - 0.4f, HeightManSet.z);
+            viewManager.transform.position = new Vector3(transform.position.x, heightY - 0.4f, transform.position.z);
             moveSpeed = crouchSpeed;
         }
         else
         {
             charCtrl.height = 2;
             charCtrl.center = Vector3.zero;
-            viewManager.transform.position = new Vector3(HeightManSet.x, HeightManSet.y, HeightManSet.z);
+            viewManager.transform.position = new Vector3(transform.position.x, heightY, transform.position.z);;
             moveSpeed = standSpeed;
         }
     }
