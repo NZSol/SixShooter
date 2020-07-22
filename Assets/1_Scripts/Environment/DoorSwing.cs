@@ -7,6 +7,7 @@ public class DoorSwing : MonoBehaviour
 
     public static bool triggered;
     [SerializeField] AnimationCurve falloffMult;
+    [SerializeField] bool openInOut;
     Vector3 targetOpen;
     Vector3 targetClose;
     float falloff;
@@ -14,7 +15,14 @@ public class DoorSwing : MonoBehaviour
 
     void Start()
     {
-        targetOpen = new Vector3(transform.rotation.x, transform.rotation.y - 90, transform.rotation.z);
+        if (openInOut == true)
+        {
+            targetOpen = new Vector3(transform.rotation.x, transform.rotation.y - 90, transform.rotation.z);
+        }
+        else
+        {
+            targetOpen = new Vector3(transform.rotation.x, transform.rotation.y + 90, transform.rotation.z);
+        }
         targetClose = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
         swingForce = falloffMult.Evaluate(falloff);
     }
