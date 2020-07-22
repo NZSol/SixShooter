@@ -14,8 +14,8 @@ public class DoorSwing : MonoBehaviour
 
     void Start()
     {
-        targetOpen = new Vector3(0, -130, 0);
-        targetClose = Vector3.zero;
+        targetOpen = new Vector3(transform.rotation.x, transform.rotation.y - 90, transform.rotation.z);
+        targetClose = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
         swingForce = falloffMult.Evaluate(falloff);
     }
 

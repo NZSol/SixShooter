@@ -25,14 +25,20 @@ public class Gun : MonoBehaviour
     [SerializeField] Light muzzFlash;
 
 
-
-
+    //ADS
+    [SerializeField] TimeManager timeManager;
+    bool aiming;
+    bool canAim;
+    float adsTimer;
+    float adsBaseTime = 5;
 
     // Start is called before the first frame update
     void Start()
     {
         gun = this.gameObject;
         timeToFire = 1.5f;
+        adsTimer = 0;
+        canAim = true;
     }
 
     // Update is called once per frame
@@ -46,6 +52,7 @@ public class Gun : MonoBehaviour
             Shoot();
             timeToFire = 0;
             canFire = false;
+            canAim = false;
 
             ammoCount--;
         }
@@ -54,7 +61,11 @@ public class Gun : MonoBehaviour
         //Check Ammo and timer before firing again
         ShootTimer();
         CheckAmmo();
-
+        if(canAim == false)
+        {
+            ADSCool();
+        }
+        
         //Declare if able to fire or not based upon timer and ammo
         if (ammoCount > 0 && timeToFire == 1.5f)
         {
@@ -66,7 +77,8 @@ public class Gun : MonoBehaviour
         }
         
 
-        //Reload if bool = true
+        //Reload Functions
+        //if bool = true
         if (startReload == true)
         {
             StartCoroutine(Reload());
@@ -75,13 +87,35 @@ public class Gun : MonoBehaviour
         {
             StopCoroutine(Reload());
         }
-        
-
-        //Manual Reload
+        //Manual
         if (ammoCount < 6 && Input.GetKeyDown(KeyCode.R))
         {
             ammoCount = 0;
             startReload = true;
+        }
+
+        print(canAim);
+        print(canFire);
+
+        if (Input.GetKeyDown(KeyCode.Mouse1) && canFire == true)
+        {
+            if (canAim == true)
+            {
+                aiming = true;
+            }
+            else
+            {
+                aiming = false;
+            }
+        }
+
+        if (aiming == true)
+        {
+            timeManager.DoSlowmo();
+        }
+        else
+        {
+            timeManager.ReduceSlowmo();
         }
 
     }
@@ -159,7 +193,15 @@ public class Gun : MonoBehaviour
         }
     }
     
-
+    void ADSCool()
+    {
+        adsTimer -= Time.deltaTime;
+        if(adsTimer <= 0)
+        {
+            adsTimer += adsBaseTime;
+            canAim = true;
+        }
+    }
 
 
 
