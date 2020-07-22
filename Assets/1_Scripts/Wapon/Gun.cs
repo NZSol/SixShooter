@@ -96,8 +96,8 @@ public class Gun : MonoBehaviour
 
         print(canAim);
         print(canFire);
-
-        if (Input.GetKeyDown(KeyCode.Mouse1) && canFire == true)
+        print(adsTimer);
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             if (canAim == true)
             {
@@ -195,7 +195,7 @@ public class Gun : MonoBehaviour
     
     void ADSCool()
     {
-        adsTimer -= Time.deltaTime;
+        adsTimer -= (Time.deltaTime * 20);
         if(adsTimer <= 0)
         {
             adsTimer += adsBaseTime;
