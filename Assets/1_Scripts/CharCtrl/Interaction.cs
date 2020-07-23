@@ -24,8 +24,8 @@ public class Interaction : MonoBehaviour
             print("hitting");
             if (Input.GetKeyDown(Interact))
             {
-                //hit.transform.gameObject.GetComponent<DoorSwing>().triggered
-                DoorSwing.triggered = !DoorSwing.triggered;
+                hit.transform.gameObject.GetComponent<DoorSwing>().triggered = !hit.transform.gameObject.GetComponent<DoorSwing>().triggered;
+                //DoorSwing.triggered = !DoorSwing.triggered;
             }
         }
     }
