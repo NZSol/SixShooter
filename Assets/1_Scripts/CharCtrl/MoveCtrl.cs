@@ -28,6 +28,7 @@ public class MoveCtrl : MonoBehaviour
     float standSpeed = 2.5f;
     [SerializeField] float height;
     float heightY;
+    [SerializeField] float crouchOffset;
 
     float offset;
 
@@ -76,7 +77,7 @@ public class MoveCtrl : MonoBehaviour
         {
             charCtrl.height = height;
             charCtrl.center = new Vector3(0, -0.25f, 0);
-            viewManager.transform.position = new Vector3 (transform.position.x, heightY - 0.4f, transform.position.z);
+            viewManager.transform.position = new Vector3 (transform.position.x, heightY - crouchOffset, transform.position.z);
             moveSpeed = crouchSpeed;
         }
         else
@@ -93,7 +94,7 @@ public class MoveCtrl : MonoBehaviour
         {
             charCtrl.height = height;
             charCtrl.center = new Vector3(0, -0.25f, 0);
-            viewManager.transform.position = new Vector3(transform.position.x, heightY - 0.4f, transform.position.z);
+            viewManager.transform.position = new Vector3(transform.position.x, heightY - crouchOffset, transform.position.z);
             moveSpeed = crouchSpeed;
         }
         else
