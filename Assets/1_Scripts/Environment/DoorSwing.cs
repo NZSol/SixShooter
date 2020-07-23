@@ -66,7 +66,7 @@ public class DoorSwing : MonoBehaviour
     //}
     public void OpenDoor()
     {
-        triggered = true;
+        triggered = !triggered;
     }
 
 }
