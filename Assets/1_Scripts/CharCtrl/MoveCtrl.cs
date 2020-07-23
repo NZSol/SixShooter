@@ -7,7 +7,7 @@ public class MoveCtrl : MonoBehaviour
     //movement
     [SerializeField] string horizontalInputName;
     [SerializeField] string verticalInputName;
-    [SerializeField] float moveSpeed;
+    float moveSpeed;
 
     CharacterController charCtrl;
 
@@ -22,10 +22,9 @@ public class MoveCtrl : MonoBehaviour
     public static bool toggleCrouchMode = true;
     [SerializeField] KeyCode crouchKey;
     bool crouching;
-    Vector3 baseScale, adjustScale;
     [SerializeField] GameObject viewManager;
-    float crouchSpeed = 1.25f;
-    float standSpeed = 2.5f;
+    [SerializeField] float crouchSpeed = 1.25f;
+    [SerializeField] float standSpeed = 2.5f;
     [SerializeField] float height;
     float heightY;
     [SerializeField] float crouchOffset;
@@ -36,8 +35,6 @@ public class MoveCtrl : MonoBehaviour
     void Start()
     {
         charCtrl = GetComponent<CharacterController>();
-        baseScale = transform.localScale;
-        adjustScale = new Vector3(transform.localScale.x, 1.5f, transform.localScale.z);
         heightY = viewManager.transform.position.y;
         offset = viewManager.transform.position.y - transform.position.y;
     }
@@ -46,7 +43,6 @@ public class MoveCtrl : MonoBehaviour
     void Update()
     {
         heightY = transform.position.y + offset;
-        print(offset);
 
         playerMove();
         JumpInput();

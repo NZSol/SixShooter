@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.04864941, g: 0.039772723, b: 0.02341371, a: 1}
+  m_IndirectSpecularColor: {r: 0.048649628, g: 0.039772827, b: 0.023413721, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -441,6 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26225ce7413f6c3488650b586fbf9b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggered: 0
   falloffMult:
     serializedVersion: 2
     m_Curve:
@@ -542,6 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26225ce7413f6c3488650b586fbf9b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggered: 0
   falloffMult:
     serializedVersion: 2
     m_Curve:
@@ -1011,6 +1013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26225ce7413f6c3488650b586fbf9b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggered: 0
   falloffMult:
     serializedVersion: 2
     m_Curve:
@@ -1112,6 +1115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26225ce7413f6c3488650b586fbf9b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggered: 0
   falloffMult:
     serializedVersion: 2
     m_Curve:
@@ -1213,6 +1217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26225ce7413f6c3488650b586fbf9b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggered: 0
   falloffMult:
     serializedVersion: 2
     m_Curve:
@@ -1329,6 +1334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26225ce7413f6c3488650b586fbf9b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggered: 0
   falloffMult:
     serializedVersion: 2
     m_Curve:
@@ -1826,6 +1832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26225ce7413f6c3488650b586fbf9b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggered: 0
   falloffMult:
     serializedVersion: 2
     m_Curve:
@@ -2019,6 +2026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26225ce7413f6c3488650b586fbf9b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggered: 0
   falloffMult:
     serializedVersion: 2
     m_Curve:
@@ -2347,6 +2355,76 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.376
       objectReference: {fileID: 0}
+    - target: {fileID: 3476518270706910874, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476518270706910874, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476518270706910874, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476518270706910874, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476518270706910874, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476518272083696417, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476518272083696417, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476518272083696417, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476518272083696417, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476518272083696417, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476518272083696417, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 8.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476518270706910873, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: normCam
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656929964021877462, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: timeManager
+      value: 
+      objectReference: {fileID: 1218007622}
+    - target: {fileID: 6656929964021877462, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: aimPoint
+      value: 
+      objectReference: {fileID: 1883825100}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
 --- !u!1 &2048759961
@@ -2485,6 +2563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26225ce7413f6c3488650b586fbf9b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggered: 0
   falloffMult:
     serializedVersion: 2
     m_Curve:
