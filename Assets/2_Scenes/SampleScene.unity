@@ -2410,6 +2410,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 8.8
       objectReference: {fileID: 0}
+    - target: {fileID: 3476518270706910873, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: normCam
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656929964021877462, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: timeManager
+      value: 
+      objectReference: {fileID: 1218007622}
+    - target: {fileID: 6656929964021877462, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: aimPoint
+      value: 
+      objectReference: {fileID: 1883825100}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
 --- !u!1 &2048759961

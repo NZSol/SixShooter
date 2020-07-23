@@ -34,6 +34,8 @@ public class Gun : MonoBehaviour
     Vector3 ADSPos;
     Vector3 scale;
     Vector3 ADSScale;
+    Quaternion rot;
+    Quaternion ADSRot;
 
 
     // Start is called before the first frame update
@@ -43,7 +45,12 @@ public class Gun : MonoBehaviour
         timeToFire = 1.5f;
         canAim = true;
         pos = gameObject.transform.position;
+        rot = transform.rotation;
         scale = gameObject.transform.localScale;
+        ADSPos = new Vector3(6.9f, -0.66f, 14.2f);
+        ADSScale = new Vector3(25, 32, 32);
+        ADSRot = Quaternion.Euler(-0.8f, 91, 2);
+
     }
 
     // Update is called once per frame
@@ -186,12 +193,13 @@ public class Gun : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse1) && canAim == true)
         {
             aiming = true;
-
+            lerpFuncIn();
         }
         else
         {
             aiming = false;
             timeSwitch = false;
+            lerpFuncOut();
         }
 
         if (aiming == true && Input.GetKeyDown(KeyCode.LeftShift))
@@ -212,7 +220,35 @@ public class Gun : MonoBehaviour
 
     }
 
+    void lerpFuncIn()
+    {
+        //lerpTimerFunc();
+        //transform.position = Vector3.Lerp(pos, ADSPos, lerpTime);
+        //transform.localScale = Vector3.Lerp(scale, ADSScale, lerpTime);
+        //transform.localRotation =  Quaternion.Lerp(rot, ADSRot, lerpTime);
+    }
+    void lerpFuncOut()
+    {
+        //lerpTimerFunc();
+        //transform.position = Vector3.Lerp(pos, ADSPos, lerpTime);
+        //transform.localScale = Vector3.Lerp(scale, ADSScale, lerpTime);
+        //transform.localRotation = Quaternion.Lerp(rot, ADSRot, lerpTime);
+    }
 
+    float lerpTime;
+    void lerpTimerFunc()
+    {
+        Mathf.Clamp(lerpTime, 0, 1);
+
+        if (aiming == true)
+        {
+            lerpTime += Time.deltaTime;
+        }
+        else
+        {
+            lerpTime -= Time.unscaledDeltaTime;
+        }
+    }
 
 
     //gameStart functions
