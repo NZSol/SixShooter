@@ -30,13 +30,9 @@ public class Gun : MonoBehaviour
     bool aiming;
     bool canAim;
     bool timeSwitch = false;
-    Vector3 pos;
-    Vector3 ADSPos;
-    Vector3 scale;
-    Vector3 ADSScale;
-    Quaternion rot;
-    Quaternion ADSRot;
 
+    [SerializeField] Transform GunPosBase;
+    [SerializeField] Transform gunPosADS;
 
     // Start is called before the first frame update
     void Start()
@@ -44,13 +40,10 @@ public class Gun : MonoBehaviour
         gun = this.gameObject;
         timeToFire = 1.5f;
         canAim = true;
-        pos = gameObject.transform.position;
-        rot = transform.rotation;
-        scale = gameObject.transform.localScale;
-        ADSPos = new Vector3(6.9f, -0.66f, 14.2f);
-        ADSScale = new Vector3(25, 32, 32);
-        ADSRot = Quaternion.Euler(-0.8f, 91, 2);
 
+        transform.position = GunPosBase.position;
+        transform.localScale = GunPosBase.localScale;
+        transform.localRotation = GunPosBase.localRotation;
     }
 
     // Update is called once per frame
@@ -107,10 +100,6 @@ public class Gun : MonoBehaviour
             startReload = true;
         }
 
-        print(canFire + "CanShoot");
-        print(canAim + "CanAim");
-        print(timeSwitch + "Switch");
-        print(aiming + "Aiming");
     }
 
 
@@ -222,17 +211,17 @@ public class Gun : MonoBehaviour
 
     void lerpFuncIn()
     {
-        //lerpTimerFunc();
-        //transform.position = Vector3.Lerp(pos, ADSPos, lerpTime);
-        //transform.localScale = Vector3.Lerp(scale, ADSScale, lerpTime);
-        //transform.localRotation =  Quaternion.Lerp(rot, ADSRot, lerpTime);
+        lerpTimerFunc();
+        transform.position = Vector3.Lerp(gunPosADS.position, GunPosBase.position, lerpTime);
+        transform.localScale = Vector3.Lerp(gunPosADS.localScale, GunPosBase.localScale, lerpTime);
+        transform.localRotation = Quaternion.Lerp(gunPosADS.localRotation, GunPosBase.localRotation, lerpTime);
     }
     void lerpFuncOut()
     {
-        //lerpTimerFunc();
-        //transform.position = Vector3.Lerp(pos, ADSPos, lerpTime);
-        //transform.localScale = Vector3.Lerp(scale, ADSScale, lerpTime);
-        //transform.localRotation = Quaternion.Lerp(rot, ADSRot, lerpTime);
+        lerpTimerFunc();
+        transform.position = Vector3.Lerp(GunPosBase.position, gunPosADS.position, lerpTime);
+        transform.localScale = Vector3.Lerp(GunPosBase.localScale, gunPosADS.localScale, lerpTime);
+        transform.localRotation = Quaternion.Lerp(GunPosBase.localRotation, gunPosADS.localRotation, lerpTime);
     }
 
     float lerpTime;
