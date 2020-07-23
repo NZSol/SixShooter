@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorSwing : MonoBehaviour
 {
 
-    public static bool triggered;
+    public bool triggered;
     [SerializeField] AnimationCurve falloffMult;
     [SerializeField] bool openInOut;
     Vector3 targetOpen;
@@ -34,12 +34,10 @@ public class DoorSwing : MonoBehaviour
         if(triggered == true)
         {
             DoorOpen();
-            //falloff += (Time.deltaTime * 0.5f);
         }
         else
         {
             DoorClose();
-            //falloff += (Time.deltaTime * 0.5f);
         }
     }
 
@@ -55,15 +53,20 @@ public class DoorSwing : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, target, swingForce * (Time.deltaTime * multiplier));
     }
 
-    private void OnTriggerStay(Collider col)
+    //private void OnTriggerStay(Collider col)
+    //{
+    //    if (col.tag == "Player")
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.E))
+    //        {
+    //            triggered = !triggered;
+    //            print(triggered);
+    //        }
+    //    }
+    //}
+    public void OpenDoor()
     {
-        if (col.tag == "Player")
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                triggered = !triggered;
-                print(triggered);
-            }
-        }
+        triggered = !triggered;
     }
+
 }
