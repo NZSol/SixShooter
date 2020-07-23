@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5240123829559423497}
   - component: {fileID: 5240123829559423496}
   - component: {fileID: 5240123829559423991}
-  - component: {fileID: 5240123829559423990}
   m_Layer: 9
   m_Name: CafeteriaDoorObject
   m_TagString: Untagged
@@ -303,20 +302,6 @@ MonoBehaviour:
   - a: 3
     b: 2
   m_SelectedVertices: 00000000010000000200000003000000
---- !u!64 &5240123829559423990
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5240123829559423989}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 0}
 --- !u!1 &5240123830610114227
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +329,7 @@ Transform:
   m_GameObject: {fileID: 5240123830610114227}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -9.1, y: 9.6, z: -19.7}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.71, y: 1, z: 1}
   m_Children:
   - {fileID: 5240123829559423498}
   m_Father: {fileID: 0}
@@ -362,6 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26225ce7413f6c3488650b586fbf9b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggered: 0
   falloffMult:
     serializedVersion: 2
     m_Curve:
@@ -387,6 +373,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   openInOut: 0
+  multiplier: 8.5
 --- !u!65 &5240123830610114228
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -398,5 +385,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5052304, y: 3.00835, z: 0.07734972}
-  m_Center: {x: -1.2459977, y: -1.4776742, z: 0.086484104}
+  m_Size: {x: 2.5052304, y: 3.00835, z: 0.15}
+  m_Center: {x: -1.2459977, y: -1.4776742, z: 0.05}
