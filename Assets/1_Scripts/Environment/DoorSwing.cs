@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorSwing : MonoBehaviour
 {
 
-    public bool triggered;
+    public bool triggered = false;
     [SerializeField] AnimationCurve falloffMult;
     [SerializeField] bool openInOut;
     Vector3 targetOpen;

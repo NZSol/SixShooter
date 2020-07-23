@@ -27,13 +27,11 @@ public class TimeManager : MonoBehaviour
     {
         Time.timeScale = slowFactor;
         Time.fixedDeltaTime = Time.timeScale * 0.2f;
-        print("slowing");
     }
 
     public void ReduceSlowmo()
     {
         Time.timeScale += (1f / slowDuration) * Time.unscaledDeltaTime;
         Time.timeScale = Mathf.Clamp(Time.timeScale, 0, 1);
-        print("speed");
     }
 }

@@ -46,7 +46,6 @@ public class MoveCtrl : MonoBehaviour
     void Update()
     {
         heightY = transform.position.y + offset;
-        print(offset);
 
         playerMove();
         JumpInput();
