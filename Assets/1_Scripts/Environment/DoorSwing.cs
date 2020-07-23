@@ -12,6 +12,7 @@ public class DoorSwing : MonoBehaviour
     Vector3 targetClose;
     float falloff;
     float swingForce;
+    [SerializeField] float multiplier;
 
     void Start()
     {
@@ -33,25 +34,25 @@ public class DoorSwing : MonoBehaviour
         if(triggered == true)
         {
             DoorOpen();
-            falloff += Time.deltaTime;
+            //falloff += (Time.deltaTime * 0.5f);
         }
         else
         {
             DoorClose();
-            falloff += Time.deltaTime;
+            //falloff += (Time.deltaTime * 0.5f);
         }
     }
 
     void DoorOpen()
     {
         Quaternion target = Quaternion.Euler(targetOpen);
-        transform.rotation = Quaternion.Slerp(transform.rotation, target, swingForce);
+        transform.rotation = Quaternion.Slerp(transform.rotation, target, swingForce * (Time.deltaTime * multiplier));
     }
 
     void DoorClose()
     {
         Quaternion target = Quaternion.Euler(targetClose);
-        transform.rotation = Quaternion.Slerp(transform.rotation, target, swingForce);
+        transform.rotation = Quaternion.Slerp(transform.rotation, target, swingForce * (Time.deltaTime * multiplier));
     }
 
     private void OnTriggerStay(Collider col)
@@ -63,7 +64,6 @@ public class DoorSwing : MonoBehaviour
                 triggered = !triggered;
                 print(triggered);
             }
-            print("in area");
         }
     }
 }
