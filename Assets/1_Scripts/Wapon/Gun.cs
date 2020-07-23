@@ -29,16 +29,21 @@ public class Gun : MonoBehaviour
     [SerializeField] TimeManager timeManager;
     bool aiming;
     bool canAim;
-    float adsTimer;
-    float adsBaseTime = 5;
+    bool timeSwitch = false;
+    Vector3 pos;
+    Vector3 ADSPos;
+    Vector3 scale;
+    Vector3 ADSScale;
+
 
     // Start is called before the first frame update
     void Start()
     {
         gun = this.gameObject;
         timeToFire = 1.5f;
-        adsTimer = 0;
         canAim = true;
+        pos = gameObject.transform.position;
+        scale = gameObject.transform.localScale;
     }
 
     // Update is called once per frame
@@ -61,10 +66,11 @@ public class Gun : MonoBehaviour
         //Check Ammo and timer before firing again
         ShootTimer();
         CheckAmmo();
-        if(canAim == false)
-        {
-            ADSCool();
-        }
+        ADSCheck();
+        //if(canAim == false)
+        //{
+        //    ADSCool();
+        //}
         
         //Declare if able to fire or not based upon timer and ammo
         if (ammoCount > 0 && timeToFire == 1.5f)
@@ -94,30 +100,10 @@ public class Gun : MonoBehaviour
             startReload = true;
         }
 
-        print(canAim);
-        print(canFire);
-        print(adsTimer);
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            if (canAim == true)
-            {
-                aiming = true;
-            }
-            else
-            {
-                aiming = false;
-            }
-        }
-
-        if (aiming == true)
-        {
-            timeManager.DoSlowmo();
-        }
-        else
-        {
-            timeManager.ReduceSlowmo();
-        }
-
+        print(canFire + "CanShoot");
+        print(canAim + "CanAim");
+        print(timeSwitch + "Switch");
+        print(aiming + "Aiming");
     }
 
 
@@ -129,6 +115,7 @@ public class Gun : MonoBehaviour
         RaycastHit hit;
         if (ammoCount > 0)
         {
+            canAim = true;
             if (Physics.Raycast(myCam.transform.position, endPoint, out hit, range, 1 << 9))
             {
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.blue);
@@ -193,14 +180,36 @@ public class Gun : MonoBehaviour
         }
     }
     
-    void ADSCool()
+
+    void ADSCheck()
     {
-        adsTimer -= (Time.deltaTime * 20);
-        if(adsTimer <= 0)
+        if (Input.GetKey(KeyCode.Mouse1) && canAim == true)
         {
-            adsTimer += adsBaseTime;
-            canAim = true;
+            aiming = true;
+
         }
+        else
+        {
+            aiming = false;
+            timeSwitch = false;
+        }
+
+        if (aiming == true && Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            timeSwitch = !timeSwitch;
+        }
+
+        if(timeSwitch == true)
+        {
+            timeManager.DoSlowmo();
+            print("Hitting Slow");
+        }
+        else
+        {
+            timeManager.ReduceSlowmo();
+            print("hittingSpeed");
+        }
+
     }
 
 

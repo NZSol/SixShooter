@@ -44,8 +44,8 @@ public class CamCtrl : MonoBehaviour
 
     void CameraRotation()
     {
-        float mouseX = Input.GetAxis(mouseXInputName) * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis(mouseYInputName) * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis(mouseXInputName) * mouseSensitivity * Time.unscaledDeltaTime;
+        float mouseY = Input.GetAxis(mouseYInputName) * mouseSensitivity * Time.unscaledDeltaTime;
 
         xAxisClamp += mouseY;
 
@@ -69,16 +69,16 @@ public class CamCtrl : MonoBehaviour
         if(MoveCtrl.forwardMovement == Vector3.zero && MoveCtrl.rightMovement == Vector3.zero)
         {
             headbob(idleCounter, 0.075f, 0.075f);
-            idleCounter += Time.deltaTime;
+            idleCounter += Time.unscaledDeltaTime;
             
         }
         else
         {
             headbob(movementCounter, 0.12f, 0.12f);
-            movementCounter += Time.deltaTime * speedMult;
+            movementCounter += Time.unscaledDeltaTime * speedMult;
             
         }
-        normCam.localPosition = Vector3.Lerp(normCam.localPosition, BobPos, Time.deltaTime * 1);
+        normCam.localPosition = Vector3.Lerp(normCam.localPosition, BobPos, Time.unscaledDeltaTime * 1);
     }
 
     void ClampXRotToVal(float value)

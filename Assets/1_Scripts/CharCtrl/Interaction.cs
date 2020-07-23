@@ -21,7 +21,6 @@ public class Interaction : MonoBehaviour
         Debug.DrawRay(transform.position, forward * 3, Color.cyan);
         if (Physics.Raycast(transform.position, forward, out hit, 3, 1 << 9))
         {
-            print("hitting");
             if (Input.GetKeyDown(Interact))
             {
                 hit.transform.gameObject.GetComponent<DoorSwing>().triggered = !hit.transform.gameObject.GetComponent<DoorSwing>().triggered;
