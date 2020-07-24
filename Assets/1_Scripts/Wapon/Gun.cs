@@ -5,10 +5,11 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     //raycast Variables
-    float range = 50;
+    [SerializeField] float range = 50;
     GameObject gun;
     [SerializeField] Camera myCam;
     Vector3 endPoint;
+    Ray ray;
 
     //Fire Timer
     float timeToFire;
@@ -22,7 +23,8 @@ public class Gun : MonoBehaviour
 
     //Other
     [SerializeField] GameObject aimPoint;
-    [SerializeField] Light muzzFlash;
+    [SerializeField] GameObject muzzFlash;
+    [SerializeField] ParticleSystem hitParticle;
 
 
     //ADS
@@ -40,10 +42,7 @@ public class Gun : MonoBehaviour
         gun = this.gameObject;
         timeToFire = 1.5f;
         canAim = true;
-
-        transform.position = GunPosBase.position;
-        transform.localScale = GunPosBase.localScale;
-        transform.localRotation = GunPosBase.localRotation;
+        muzzFlash.SetActive(false);
     }
 
     // Update is called once per frame
@@ -67,6 +66,7 @@ public class Gun : MonoBehaviour
         ShootTimer();
         CheckAmmo();
         ADSCheck();
+        
         //if(canAim == false)
         //{
         //    ADSCool();
@@ -103,7 +103,6 @@ public class Gun : MonoBehaviour
     }
 
 
-
     //when ammo above 0, shoot ray, if hit target print hit and siplay blue line
     //If ammo below 0, start reload
     void Shoot()
@@ -111,22 +110,33 @@ public class Gun : MonoBehaviour
         RaycastHit hit;
         if (ammoCount > 0)
         {
+            StartCoroutine(MuzzleFlash());
             canAim = true;
-            if (Physics.Raycast(myCam.transform.position, endPoint, out hit, range, 1 << 9))
+            if (Physics.Raycast(ray, out hit, range, 1 << 9))
             {
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.blue);
-                print("hit");
+                print("hit" + hit.transform.name);
+                Instantiate(hitParticle, hit.point, transform.rotation);
             }
-            else
+            else if (Physics.Raycast(ray, out hit, range))
             {
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.red);
                 print("missed");
+                Instantiate(hitParticle, hit.point, transform.rotation);
             }
         }
         else
         {
             startReload = true;
         }
+    }
+
+    IEnumerator MuzzleFlash()
+    {
+        muzzFlash.SetActive(true);
+        yield return new WaitForSeconds(0.05f);
+        muzzFlash.SetActive(false);
+        StopCoroutine(MuzzleFlash());
     }
 
     //Timer before shooting again
@@ -191,7 +201,7 @@ public class Gun : MonoBehaviour
             lerpFuncOut();
         }
 
-        if (aiming == true && Input.GetKeyDown(KeyCode.LeftShift))
+        if (aiming == true && Input.GetKeyDown(KeyCode.LeftShift) && lerpTime >= 1)
         {
             timeSwitch = !timeSwitch;
         }
@@ -199,22 +209,25 @@ public class Gun : MonoBehaviour
         if(timeSwitch == true)
         {
             timeManager.DoSlowmo();
-            print("Hitting Slow");
         }
         else
         {
             timeManager.ReduceSlowmo();
-            print("hittingSpeed");
         }
 
     }
 
+    float FOVHip = 60;
+    float FOVAim = 50;
+    float camFOV;
+
     void lerpFuncIn()
     {
         lerpTimerFunc();
-        transform.position = Vector3.Lerp(gunPosADS.position, GunPosBase.position, lerpTime);
-        transform.localScale = Vector3.Lerp(gunPosADS.localScale, GunPosBase.localScale, lerpTime);
-        transform.localRotation = Quaternion.Lerp(gunPosADS.localRotation, GunPosBase.localRotation, lerpTime);
+        transform.position = Vector3.Lerp(GunPosBase.position, gunPosADS.position, lerpTime);
+        transform.localScale = Vector3.Lerp(GunPosBase.localScale, gunPosADS.localScale, lerpTime);
+        transform.localRotation = Quaternion.Lerp(GunPosBase.localRotation, gunPosADS.localRotation, lerpTime);
+        camFOV = Mathf.Lerp(FOVHip, FOVAim, lerpTime);
     }
     void lerpFuncOut()
     {
@@ -222,20 +235,22 @@ public class Gun : MonoBehaviour
         transform.position = Vector3.Lerp(GunPosBase.position, gunPosADS.position, lerpTime);
         transform.localScale = Vector3.Lerp(GunPosBase.localScale, gunPosADS.localScale, lerpTime);
         transform.localRotation = Quaternion.Lerp(GunPosBase.localRotation, gunPosADS.localRotation, lerpTime);
+        camFOV = Mathf.Lerp(FOVHip, FOVAim, lerpTime);
     }
 
     float lerpTime;
+    [SerializeField] float multiplier;
     void lerpTimerFunc()
     {
-        Mathf.Clamp(lerpTime, 0, 1);
+        lerpTime = Mathf.Clamp(lerpTime, 0, 1);
 
-        if (aiming == true)
+        if (aiming == true && lerpTime < 1)
         {
-            lerpTime += Time.deltaTime;
+            lerpTime += Time.deltaTime * multiplier;
         }
-        else
+        else if (aiming == false && lerpTime > 0)
         {
-            lerpTime -= Time.unscaledDeltaTime;
+            lerpTime -= Time.unscaledDeltaTime * multiplier;
         }
     }
 
@@ -243,8 +258,9 @@ public class Gun : MonoBehaviour
     //gameStart functions
     void AccesoryFunction()
     {
-        aimPoint.transform.position = endPoint;
         endPoint = myCam.transform.forward * 50;
+        myCam.fieldOfView = camFOV;
+        ray = myCam.ViewportPointToRay(new Vector2(0.5f, 0.5f));
     }
 
 }
