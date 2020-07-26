@@ -25,6 +25,7 @@ public class Gun : MonoBehaviour
     [SerializeField] GameObject aimPoint;
     [SerializeField] GameObject muzzFlash;
     [SerializeField] ParticleSystem hitParticle;
+    [SerializeField] ParticleSystem bloodParticle;
 
 
     //ADS
@@ -49,7 +50,7 @@ public class Gun : MonoBehaviour
     void Update()
     {
         AccesoryFunction();
-
+        muzzFlash.SetActive(false);
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && timeToFire >= 1.5f)
         {
@@ -112,17 +113,31 @@ public class Gun : MonoBehaviour
         {
             StartCoroutine(MuzzleFlash());
             canAim = true;
-            if (Physics.Raycast(ray, out hit, range, 1 << 9))
+            if (Physics.Raycast(ray, out hit, range, 1 << 10))
             {
-                Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.blue);
+                Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.green);
                 print("hit" + hit.transform.name);
-                Instantiate(hitParticle, hit.point, transform.rotation);
+                Instantiate(bloodParticle, hit.point, transform.rotation);
+                
+                if(hit.transform.tag == "critpint")
+                {
+                    hit.transform.GetComponent<AIBase>().CritDamage(5);
+                }
+                else
+                {
+                    hit.transform.GetComponent<AIBase>().RegDamage(3);
+                }
             }
             else if (Physics.Raycast(ray, out hit, range))
             {
-                Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.red);
+                Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.yellow);
                 print("missed");
                 Instantiate(hitParticle, hit.point, transform.rotation);
+            }
+            else
+            {
+                Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.red);
+                print("missed");
             }
         }
         else
