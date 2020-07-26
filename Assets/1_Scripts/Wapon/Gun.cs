@@ -25,6 +25,8 @@ public class Gun : MonoBehaviour
     [SerializeField] GameObject aimPoint;
     [SerializeField] GameObject muzzFlash;
     [SerializeField] ParticleSystem hitParticle;
+    [SerializeField] ParticleSystem bloodParticle;
+    [SerializeField] float speedModifier;
 
 
     //ADS
@@ -49,14 +51,21 @@ public class Gun : MonoBehaviour
     void Update()
     {
         AccesoryFunction();
-
+        muzzFlash.SetActive(false);
+        if (aiming == true)
+        {
+            MoveCtrl.aimSpeedModif = speedModifier;
+        }
+        else
+        {
+            MoveCtrl.aimSpeedModif = 1;
+        }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && timeToFire >= 1.5f)
         {
             Shoot();
             timeToFire = 0;
             canFire = false;
-            canAim = false;
 
             ammoCount--;
         }
@@ -111,18 +120,35 @@ public class Gun : MonoBehaviour
         if (ammoCount > 0)
         {
             StartCoroutine(MuzzleFlash());
-            canAim = true;
-            if (Physics.Raycast(ray, out hit, range, 1 << 9))
+            if (Physics.Raycast(ray, out hit, range, 1 << 10))
             {
-                Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.blue);
+                Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.green);
                 print("hit" + hit.transform.name);
-                Instantiate(hitParticle, hit.point, transform.rotation);
+                Instantiate(bloodParticle, hit.point, transform.rotation);
+                
+                if(hit.transform.tag == "critPoint")
+                {
+                    hit.transform.GetComponent<AIBase>().CritDamage(5);
+                }
+                else if (hit.transform.tag == "regDamage" )
+                {
+                    hit.transform.GetComponent<AIBase>().RegDamage(3);
+                }
             }
             else if (Physics.Raycast(ray, out hit, range))
             {
-                Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.red);
+                Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.yellow);
                 print("missed");
                 Instantiate(hitParticle, hit.point, transform.rotation);
+                if (hit.transform.tag == "destructible")
+                {
+                    Destroy(hit.transform.gameObject);
+                }
+            }
+            else
+            {
+                Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.red);
+                print("missed");
             }
         }
         else
@@ -172,13 +198,13 @@ public class Gun : MonoBehaviour
         //animate reload
         yield return new WaitForEndOfFrame();
         timeToReload -= Time.deltaTime;
-        
+        canAim = false;
 
         if (timeToReload <= 0)
         {
             ammoCount = 6;
             timeToReload = 6;
-
+            canAim = true;
         }
         if (ammoCount == 6 && timeToReload == 6)
         {

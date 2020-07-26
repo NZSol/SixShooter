@@ -14,7 +14,8 @@ public class AIBase : MonoBehaviour
     float minDetectRange = 5;
     [SerializeField] float fovRange = 75;
     bool brokenLos;
-    
+
+    int health;
 
 
     bool CanSeePlayer()
@@ -58,6 +59,7 @@ public class AIBase : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         animCtrl = GetComponent<Animator>();
+        health = 10;
     }
 
     private void Update()
@@ -65,11 +67,30 @@ public class AIBase : MonoBehaviour
         playerDist = Vector3.Distance(player.transform.position, transform.position);
 
         CanSeePlayer();
-
+        HealthCheck();
 
         print(animCtrl.GetInteger("ActState"));
     }
 
+    void HealthCheck()
+    {
+        if (health <= 0)
+        {
+            gameObject.GetComponent<AIBase>().enabled = false;
+            Destroy(gameObject);
+        }
+    }
 
+
+
+    public void RegDamage(int i)
+    {
+        health -= i;
+    }
+
+    public void CritDamage(int i)
+    {
+        health -= i;
+    }
 
 }

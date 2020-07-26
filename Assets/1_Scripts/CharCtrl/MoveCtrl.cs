@@ -25,6 +25,7 @@ public class MoveCtrl : MonoBehaviour
     [SerializeField] GameObject viewManager;
     [SerializeField] float crouchSpeed = 1.25f;
     [SerializeField] float standSpeed = 2.5f;
+    public static float aimSpeedModif = 1;
     [SerializeField] float height;
     float heightY;
     [SerializeField] float crouchOffset;
@@ -112,7 +113,7 @@ public class MoveCtrl : MonoBehaviour
         forwardMovement = transform.forward * vertInput;
         rightMovement = transform.right * horizInput;
 
-        charCtrl.SimpleMove((rightMovement + forwardMovement) * moveSpeed);
+        charCtrl.SimpleMove((rightMovement + forwardMovement) * (moveSpeed * aimSpeedModif));
 
     }
 
