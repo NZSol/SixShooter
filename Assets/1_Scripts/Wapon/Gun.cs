@@ -140,6 +140,10 @@ public class Gun : MonoBehaviour
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.yellow);
                 print("missed");
                 Instantiate(hitParticle, hit.point, transform.rotation);
+                if (hit.transform.tag == "destructible")
+                {
+                    Destroy(hit.transform.gameObject);
+                }
             }
             else
             {
