@@ -26,6 +26,7 @@ public class Gun : MonoBehaviour
     [SerializeField] GameObject muzzFlash;
     [SerializeField] ParticleSystem hitParticle;
     [SerializeField] ParticleSystem bloodParticle;
+    [SerializeField] float speedModifier;
 
 
     //ADS
@@ -51,6 +52,14 @@ public class Gun : MonoBehaviour
     {
         AccesoryFunction();
         muzzFlash.SetActive(false);
+        if (aiming == true)
+        {
+            MoveCtrl.aimSpeedModif = speedModifier;
+        }
+        else
+        {
+            MoveCtrl.aimSpeedModif = 1;
+        }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && timeToFire >= 1.5f)
         {

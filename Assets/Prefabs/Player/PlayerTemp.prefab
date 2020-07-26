@@ -651,6 +651,7 @@ MonoBehaviour:
     type: 3}
   bloodParticle: {fileID: 6972609128367167139, guid: 9d6e5f24e1a28ff46a537b579388b6a4,
     type: 3}
+  speedModifier: 0
   timeManager: {fileID: 0}
   GunPosBase: {fileID: 1813961187}
   gunPosADS: {fileID: 937495009}
