@@ -70,6 +70,7 @@ public class AIBase : MonoBehaviour
         HealthCheck();
 
         print(animCtrl.GetInteger("ActState"));
+        print(animCtrl.GetBool("Shot"));
     }
 
     void HealthCheck()
@@ -83,14 +84,9 @@ public class AIBase : MonoBehaviour
 
 
 
-    public void RegDamage(int i)
+    public void Damage(int i)
     {
         health -= i;
+        animCtrl.SetBool("Shot", true);
     }
-
-    public void CritDamage(int i)
-    {
-        health -= i;
-    }
-
 }
