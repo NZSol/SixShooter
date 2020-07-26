@@ -16,6 +16,7 @@ public class DoorSwing : MonoBehaviour
 
     void Start()
     {
+        triggered = false;
         if (openInOut == true)
         {
             targetOpen = new Vector3(transform.rotation.x, transform.rotation.y - 90, transform.rotation.z);

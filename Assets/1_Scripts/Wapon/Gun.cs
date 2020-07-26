@@ -57,7 +57,6 @@ public class Gun : MonoBehaviour
             Shoot();
             timeToFire = 0;
             canFire = false;
-            canAim = false;
 
             ammoCount--;
         }
@@ -112,7 +111,6 @@ public class Gun : MonoBehaviour
         if (ammoCount > 0)
         {
             StartCoroutine(MuzzleFlash());
-            canAim = true;
             if (Physics.Raycast(ray, out hit, range, 1 << 10))
             {
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.green);
@@ -187,13 +185,13 @@ public class Gun : MonoBehaviour
         //animate reload
         yield return new WaitForEndOfFrame();
         timeToReload -= Time.deltaTime;
-        
+        canAim = false;
 
         if (timeToReload <= 0)
         {
             ammoCount = 6;
             timeToReload = 6;
-
+            canAim = true;
         }
         if (ammoCount == 6 && timeToReload == 6)
         {
