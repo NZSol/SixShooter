@@ -126,11 +126,11 @@ public class Gun : MonoBehaviour
                 print("hit" + hit.transform.name);
                 Instantiate(bloodParticle, hit.point, transform.rotation);
                 
-                if(hit.transform.tag == "critpint")
+                if(hit.transform.tag == "critPoint")
                 {
                     hit.transform.GetComponent<AIBase>().CritDamage(5);
                 }
-                else
+                else if (hit.transform.tag == "regDamage" )
                 {
                     hit.transform.GetComponent<AIBase>().RegDamage(3);
                 }
