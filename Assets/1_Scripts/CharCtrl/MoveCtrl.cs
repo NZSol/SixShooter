@@ -115,7 +115,7 @@ public class MoveCtrl : MonoBehaviour
 
         moveState = new Vector3((rightMovement.x + forwardMovement.x) * (aimSpeedModif), (rightMovement.y + forwardMovement.y) * (aimSpeedModif), (rightMovement.z + forwardMovement.z) * (aimSpeedModif));
 
-        if (isJumping == false && !Input.GetKey(jumpKey))
+        if (isJumping == false && !Input.GetKeyDown(jumpKey))
         {
             charCtrl.SimpleMove(moveState);
         }

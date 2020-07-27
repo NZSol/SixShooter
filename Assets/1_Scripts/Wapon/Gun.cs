@@ -65,8 +65,8 @@ public class Gun : MonoBehaviour
         {
             timeToFire = 0;
             canFire = false;
-            ammoCount--;
             Shoot();
+            ammoCount--;
 
         }
 
@@ -235,10 +235,13 @@ public class Gun : MonoBehaviour
         if(timeSwitch == true)
         {
             timeManager.DoSlowmo();
+            hiltBrightnessLerp();
+            //GetComponent<Material>()
         }
         else
         {
             timeManager.ReduceSlowmo();
+            hiltBrightnessLerp();
         }
 
     }
@@ -262,6 +265,21 @@ public class Gun : MonoBehaviour
         transform.localScale = Vector3.Lerp(GunPosBase.localScale, gunPosADS.localScale, lerpTime);
         transform.localRotation = Quaternion.Lerp(GunPosBase.localRotation, gunPosADS.localRotation, lerpTime);
         camFOV = Mathf.Lerp(FOVHip, FOVAim, lerpTime);
+    }
+
+    float hiltLerpTimer;
+    float curHiltLerpTime;
+    void hiltBrightnessLerp()
+    {
+        curHiltLerpTime = Mathf.Clamp(curHiltLerpTime, 0, 1);
+        if (timeSwitch)
+        {
+            curHiltLerpTime += Time.unscaledDeltaTime / 2;
+        }
+        else
+        {
+            curHiltLerpTime -= Time.unscaledDeltaTime / 2;
+        }
     }
 
     float lerpTime;
