@@ -3,34 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
-public class FollowBase : StateMachineBehaviour
+public class shotBase : StateMachineBehaviour
 {
+
 
     GameObject player;
     Vector3 playerPos;
+    Vector3 targDest;
 
     NavMeshAgent agent;
+    Animator anim;
+
+    float timer;
+    float curTimer;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent = animator.GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+        agent = animator.GetComponent<NavMeshAgent>();
 
         playerPos = player.transform.position;
-        agent.SetDestination(playerPos);
+        anim = animator;
+        playerPos = player.transform.position;
+        targDest = playerPos;
     }
 
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        agent.SetDestination(targDest);
+        float Dist = Vector3.Distance(playerPos, anim.transform.position);
+        if (Dist <= 1f)
+        {
+            curTimer += Time.deltaTime;
+            if (curTimer >= timer)
+            {
+                curTimer -= timer;
+                anim.gameObject.GetComponent<Animator>().SetBool("Shot", false);
+            }
+        }
 
+    }
 
-
-    //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 

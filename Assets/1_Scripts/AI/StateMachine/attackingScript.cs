@@ -3,54 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class shotBase : StateMachineBehaviour
+public class attackingScript : StateMachineBehaviour
 {
 
-
     GameObject player;
-    Vector3 playerPos;
-    Vector3 targDest;
-
-    NavMeshAgent agent;
+    float dist;
     Animator anim;
-
-    float timer;
-    float curTimer;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player = GameObject.Find("PlayerTemp");
-        agent = animator.GetComponent<NavMeshAgent>();
-
-        playerPos = player.transform.position;
         anim = animator;
-        playerPos = player.transform.position;
-        targDest = playerPos;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(targDest);
-        float Dist = Vector3.Distance(playerPos, anim.transform.position);
-        if (Dist <= 1f)
-        {
-            curTimer += Time.deltaTime;
-            if (curTimer >= timer)
-            {
-                curTimer -= timer;
-                anim.gameObject.GetComponent<Animator>().SetBool("Shot", false);
-            }
-        }
+        dist = Vector3.Distance(player.transform.position, animator.transform.position);
 
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
-    }
+    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    
+    //}
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

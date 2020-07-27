@@ -8,6 +8,7 @@ public class MoveCtrl : MonoBehaviour
     [SerializeField] string horizontalInputName;
     [SerializeField] string verticalInputName;
     float moveSpeed;
+    Vector3 moveState;
 
     CharacterController charCtrl;
 
@@ -46,7 +47,6 @@ public class MoveCtrl : MonoBehaviour
         heightY = transform.position.y + offset;
 
         playerMove();
-        JumpInput();
 
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -113,12 +113,17 @@ public class MoveCtrl : MonoBehaviour
         forwardMovement = transform.forward * vertInput;
         rightMovement = transform.right * horizInput;
 
-        charCtrl.SimpleMove((rightMovement + forwardMovement) * (moveSpeed * aimSpeedModif));
+        moveState = new Vector3((rightMovement.x + forwardMovement.x) * (aimSpeedModif), (rightMovement.y + forwardMovement.y) * (aimSpeedModif), (rightMovement.z + forwardMovement.z) * (aimSpeedModif));
 
-    }
+        if (isJumping == false && !Input.GetKey(jumpKey))
+        {
+            charCtrl.SimpleMove(moveState);
+        }
+        else
+        {
+            charCtrl.SimpleMove(Vector3.zero);
+        }
 
-    void JumpInput()
-    {
         if (Input.GetKeyDown(jumpKey) && !isJumping)
         {
             isJumping = true;
@@ -126,21 +131,31 @@ public class MoveCtrl : MonoBehaviour
         }
     }
 
-
+    
 
     IEnumerator Jump()
     {
         charCtrl.slopeLimit = 90;
         float timeInAir = 0;
-        do
+
+        //do
+        //{
+        //}
+        //while (!charCtrl.isGrounded && charCtrl.collisionFlags != CollisionFlags.Above);
+        if (charCtrl.isGrounded)
+        {
+            charCtrl.Move(((Vector3.up * jumpMultiplier) * Time.deltaTime) + (moveState * Time.deltaTime));
+        }
+
+
+        while (!charCtrl.isGrounded && charCtrl.collisionFlags != CollisionFlags.Above)
         {
             float jumpForce = jumpFalloff.Evaluate(timeInAir);
-            charCtrl.Move(Vector3.up * jumpForce * jumpMultiplier * Time.deltaTime);
+            charCtrl.Move(((Vector3.up * jumpMultiplier) * jumpForce * Time.deltaTime) + (moveState * Time.deltaTime));
             timeInAir += Time.deltaTime;
 
             yield return null;
         }
-        while (!charCtrl.isGrounded && charCtrl.collisionFlags != CollisionFlags.Above);
 
         isJumping = false;
         charCtrl.slopeLimit = 45;

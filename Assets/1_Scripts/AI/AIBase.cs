@@ -11,7 +11,8 @@ public class AIBase : MonoBehaviour
 
     //Line of Sight
     float playerDist;
-    float minDetectRange = 5;
+    float minDetectRange = 10;
+    float attackRange = 3f;
     [SerializeField] float fovRange = 75;
     bool brokenLos;
 
@@ -24,10 +25,16 @@ public class AIBase : MonoBehaviour
         Vector3 rayDir = player.transform.position - transform.position;
         if (Physics.Raycast(transform.position, rayDir, out hit))
         {
-            if ((hit.transform.tag == "Player") && (playerDist <= minDetectRange))
+            if ((hit.transform.tag == "Player") && (playerDist <= minDetectRange && playerDist >= attackRange))
             {
                 Debug.DrawRay(transform.position, rayDir, Color.yellow);
                 animCtrl.SetInteger("ActState", 2);
+                return true;
+            }
+            else if ((hit.transform.tag == "Player") && (playerDist <= attackRange))
+            {
+                Debug.DrawRay(transform.position, rayDir, Color.blue);
+                animCtrl.SetBool("Attacking", true);
                 return true;
             }
         }
