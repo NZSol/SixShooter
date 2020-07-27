@@ -37,7 +37,7 @@ public class TrackBase : StateMachineBehaviour
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player = GameObject.Find("player");
+        player = GameObject.FindGameObjectWithTag("Player");
         agent = animator.GetComponent<NavMeshAgent>();
 
         tracking = true;

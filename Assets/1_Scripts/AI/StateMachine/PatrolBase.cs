@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class PatrolBase : StateMachineBehaviour
 {
 
+    
+
     [SerializeField] float timer;
     [SerializeField] float speed;
     [SerializeField] float radius;

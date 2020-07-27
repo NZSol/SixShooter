@@ -63,11 +63,11 @@ public class Gun : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && timeToFire >= 1.5f)
         {
-            Shoot();
             timeToFire = 0;
             canFire = false;
-
             ammoCount--;
+            Shoot();
+
         }
 
 
@@ -112,7 +112,7 @@ public class Gun : MonoBehaviour
     }
 
 
-    //when ammo above 0, shoot ray, if hit target print hit and siplay blue line
+    //when ammo above 0, shoot ray, if hit target, spawn particle effect on hit pos
     //If ammo below 0, start reload
     void Shoot()
     {
@@ -128,11 +128,11 @@ public class Gun : MonoBehaviour
                 
                 if(hit.transform.tag == "critPoint")
                 {
-                    hit.transform.GetComponent<AIBase>().CritDamage(5);
+                    hit.transform.gameObject.GetComponentInParent<AIBase>().Damage(i: 10);
                 }
-                else if (hit.transform.tag == "regDamage" )
+                else if (hit.transform.tag == "regDamage")
                 {
-                    hit.transform.GetComponent<AIBase>().RegDamage(3);
+                    hit.transform.gameObject.GetComponentInParent<AIBase>().Damage(i: 4);
                 }
             }
             else if (Physics.Raycast(ray, out hit, range))
