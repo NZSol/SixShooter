@@ -138,17 +138,7 @@ public class MoveCtrl : MonoBehaviour
         charCtrl.slopeLimit = 90;
         float timeInAir = 0;
 
-        //do
-        //{
-        //}
-        //while (!charCtrl.isGrounded && charCtrl.collisionFlags != CollisionFlags.Above);
-        if (charCtrl.isGrounded)
-        {
-            charCtrl.Move(((Vector3.up * jumpMultiplier) * Time.deltaTime) + (moveState * Time.deltaTime));
-        }
-
-
-        while (!charCtrl.isGrounded && charCtrl.collisionFlags != CollisionFlags.Above)
+        do
         {
             float jumpForce = jumpFalloff.Evaluate(timeInAir);
             charCtrl.Move(((Vector3.up * jumpMultiplier) * jumpForce * Time.deltaTime) + (moveState * Time.deltaTime));
@@ -156,6 +146,7 @@ public class MoveCtrl : MonoBehaviour
 
             yield return null;
         }
+        while (!charCtrl.isGrounded && charCtrl.collisionFlags != CollisionFlags.Above);
 
         isJumping = false;
         charCtrl.slopeLimit = 45;
