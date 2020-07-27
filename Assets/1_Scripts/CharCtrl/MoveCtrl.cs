@@ -119,7 +119,7 @@ public class MoveCtrl : MonoBehaviour
 
     void JumpInput()
     {
-        if (Input.GetKey(jumpKey) && !isJumping)
+        if (Input.GetKeyDown(jumpKey) && !isJumping)
         {
             isJumping = true;
             StartCoroutine(Jump());
