@@ -76,8 +76,6 @@ public class AIBase : MonoBehaviour
         CanSeePlayer();
         HealthCheck();
 
-        print(animCtrl.GetInteger("ActState"));
-        print(animCtrl.GetBool("Shot"));
     }
 
     void HealthCheck()

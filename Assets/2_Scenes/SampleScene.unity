@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.04864941, g: 0.039772723, b: 0.02341371, a: 1}
+  m_IndirectSpecularColor: {r: 0.048649628, g: 0.039772827, b: 0.023413721, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -740,7 +740,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  openInOut: 1
+  openInOut: 0
   multiplier: 2
 --- !u!54 &559899009
 Rigidbody:
@@ -1531,8 +1531,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  openInOut: 1
-  multiplier: 2
+  openInOut: 0
+  multiplier: 59.1
 --- !u!54 &1039315636
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2850,8 +2850,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  openInOut: 1
-  multiplier: 2
+  openInOut: 0
+  multiplier: 7.89
 --- !u!54 &2123367093
 Rigidbody:
   m_ObjectHideFlags: 0
