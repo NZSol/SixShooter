@@ -358,7 +358,7 @@ public class Gun : MonoBehaviour
         {
             canSlow = false;
         }
-        else if (slowTimer >= 1)
+        else if (slowTimer > 0)
         {
             canSlow = true;
         }
