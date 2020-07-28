@@ -45,6 +45,10 @@ public class Gun : MonoBehaviour
         timeToFire = 1.5f;
         canAim = true;
         muzzFlash.SetActive(false);
+        mat = gameObject.GetComponent<Material>();
+        Renderer render = GetComponent<Renderer>();
+        mat = render.material;
+        mat.SetColor("_EmissionColor", Color.white * 0.8f);
     }
 
     // Update is called once per frame
@@ -67,9 +71,11 @@ public class Gun : MonoBehaviour
             canFire = false;
             Shoot();
             ammoCount--;
+            timeSwitch = false;
 
         }
 
+        print(hiltLerpTimer + "LT");
 
         //Check Ammo and timer before firing again
         ShootTimer();
@@ -211,7 +217,12 @@ public class Gun : MonoBehaviour
             startReload = false;
         }
     }
-    
+
+
+    [SerializeField] Material mat;
+    float intensity;
+    float intenseMin = 0.8f;
+    float intenseMax = 2.4f;
 
     void ADSCheck()
     {
@@ -236,12 +247,13 @@ public class Gun : MonoBehaviour
         {
             timeManager.DoSlowmo();
             hiltBrightnessLerp();
-            //GetComponent<Material>()
+            intensity = Mathf.Lerp(intenseMin, intenseMax, hiltLerpTimer);
         }
-        else
+        else if (timeSwitch == false)
         {
-            timeManager.ReduceSlowmo();
             hiltBrightnessLerp();
+            intensity = Mathf.Lerp(intenseMin, intenseMax, hiltLerpTimer);
+            timeManager.ReduceSlowmo();
         }
 
     }
@@ -268,17 +280,16 @@ public class Gun : MonoBehaviour
     }
 
     float hiltLerpTimer;
-    float curHiltLerpTime;
     void hiltBrightnessLerp()
     {
-        curHiltLerpTime = Mathf.Clamp(curHiltLerpTime, 0, 1);
-        if (timeSwitch)
+        hiltLerpTimer = Mathf.Clamp(hiltLerpTimer, 0, 1);
+        if (timeSwitch == true && hiltLerpTimer < 1)
         {
-            curHiltLerpTime += Time.unscaledDeltaTime / 2;
+            hiltLerpTimer += Time.unscaledDeltaTime / 2;
         }
-        else
+        else if (timeSwitch == false && hiltLerpTimer > 0)
         {
-            curHiltLerpTime -= Time.unscaledDeltaTime / 2;
+            hiltLerpTimer -= Time.unscaledDeltaTime * 4;
         }
     }
 
@@ -305,6 +316,7 @@ public class Gun : MonoBehaviour
         endPoint = myCam.transform.forward * 50;
         myCam.fieldOfView = camFOV;
         ray = myCam.ViewportPointToRay(new Vector2(0.5f, 0.5f));
+        mat.SetColor("_EmissionColor", Color.white * intensity);
     }
 
 }
