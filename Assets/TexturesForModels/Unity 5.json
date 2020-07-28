@@ -33,10 +33,7 @@
         }
     },
     "texturesets": {
-        "OfficeCubicleSeperator_initialShadingGroup": {
-            "shader": "Main shader"
-        },
-        "blinn1SG": {
+        "initialShadingGroup": {
             "shader": "Main shader"
         }
     }
