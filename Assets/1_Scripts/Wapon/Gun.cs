@@ -345,7 +345,7 @@ public class Gun : MonoBehaviour
         if (timeSwitch == true && aiming == true)
         {
             slowTimer -= (Time.unscaledDeltaTime / 3);
-            print(slowTimer);
+
         }
         //increase timer when not slowTime
         else if (timeSwitch == false)
