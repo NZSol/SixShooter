@@ -23,8 +23,15 @@ public class Interaction : MonoBehaviour
         {
             if (Input.GetKeyDown(Interact))
             {
-                hit.transform.gameObject.GetComponent<DoorSwing>().triggered = !hit.transform.gameObject.GetComponent<DoorSwing>().triggered;
-                //DoorSwing.triggered = !DoorSwing.triggered;
+                if(hit.transform.tag == "door")
+                {
+                    hit.transform.gameObject.GetComponent<DoorSwing>().triggered = !hit.transform.gameObject.GetComponent<DoorSwing>().triggered;
+                }
+                
+                if(hit.transform.tag == "emit")
+                {
+                    hit.transform.gameObject.GetComponent<lightFlash>().check = !hit.transform.gameObject.GetComponent<lightFlash>().check;
+                }
             }
         }
     }
