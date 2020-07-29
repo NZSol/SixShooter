@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class TrackBase : StateMachineBehaviour
 {
     GameObject player;
+    private AIBase ScriptMaster;
     Vector3 playerPos;
     Vector3 targDest;
 
@@ -44,6 +45,7 @@ public class TrackBase : StateMachineBehaviour
         playerPos = player.transform.position;
         curTime = 0;
         anim = animator;
+        ScriptMaster = animator.GetComponent<AIBase>();
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -60,7 +62,7 @@ public class TrackBase : StateMachineBehaviour
         }
         if(searchCount == 3)
         {
-            AIBase.animCtrl.SetInteger("ActState", 1);
+            ScriptMaster.animCtrl.SetInteger("ActState", 1);
         }
     }
 

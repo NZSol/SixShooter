@@ -87,21 +87,9 @@ public class Gun : MonoBehaviour
         ShootTimer();
         CheckAmmo();
         ADSCheck();
-
-        //if (slowTimer >= 1)
-        //{
-        //    canSlow = true;
-        //}
-        //else if(slowTimer <= 0)
-        //{
-        //    canSlow = false;
-        //}
-        //if (canSlow == false)
-        //{
-        //    ADSCool();
-        //}
-
         ADSCool();
+
+
         //Declare if able to fire or not based upon timer and ammo
         if (ammoCount > 0 && timeToFire == 1.5f)
         {
@@ -161,11 +149,21 @@ public class Gun : MonoBehaviour
             else if (Physics.Raycast(ray, out hit, range))
             {
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.yellow);
-                print("missed");
                 Instantiate(hitParticle, hit.point, transform.rotation);
                 if (hit.transform.tag == "Destructible")
                 {
                     Destroy(hit.transform.gameObject);
+                    print("destoryObj");
+                }
+                else
+                {
+                    print("missed");
+                }
+
+                if (hit.transform.tag == "extendBridge")
+                {
+                    Animator anim = gameObject.GetComponentInChildren<Animator>();
+                    anim.SetBool("Extend", true);
                 }
             }
             else

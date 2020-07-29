@@ -6,6 +6,9 @@ using UnityEngine.AI;
 public class Spawning : MonoBehaviour
 {
     [SerializeField] GameObject AI;
+    public List<GameObject> aiCharList;
+    int aiCount = 0;
+    [SerializeField] int maxCount;
 
     Vector3 SpawnPos(Vector3 origin, float dist, int layerMask)
     {
@@ -21,16 +24,19 @@ public class Spawning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        aiCharList = new List<GameObject>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < 3; i++)
+        print(aiCharList.Count);
+        while (aiCharList.Count < maxCount)
         {
-            Instantiate(AI, SpawnPos(transform.position, 5, -1), transform.rotation);
+            GameObject newAI = Instantiate(AI, SpawnPos(new Vector3(transform.position.x, 0, transform.position.z), 5, 1 << 0), transform.rotation, gameObject.transform);
+            aiCharList.Add(newAI);
         }
+
     }
 
 }
