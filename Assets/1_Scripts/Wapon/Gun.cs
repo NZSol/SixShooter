@@ -162,7 +162,7 @@ public class Gun : MonoBehaviour
 
                 if (hit.transform.tag == "extendBridge")
                 {
-                    Animator anim = gameObject.GetComponentInChildren<Animator>();
+                    Animator anim = hit.transform.gameObject.GetComponentInChildren<Animator>();
                     anim.SetBool("Extend", true);
                 }
             }
