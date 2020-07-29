@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfec44a5060daa54e885095189d7e39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animCtrl: {fileID: 0}
   fovRange: 60
 --- !u!95 &8447029817958714749
 Animator:

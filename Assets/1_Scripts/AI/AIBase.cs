@@ -7,7 +7,7 @@ public class AIBase : MonoBehaviour
 {
 
     GameObject player;
-    public static Animator animCtrl;
+    public Animator animCtrl;
 
     //Line of Sight
     float playerDist;
@@ -15,6 +15,7 @@ public class AIBase : MonoBehaviour
     float attackRange = 3f;
     [SerializeField] float fovRange = 75;
     bool brokenLos;
+    Spawning spawnScript;
 
     int health;
 
@@ -67,6 +68,7 @@ public class AIBase : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         animCtrl = GetComponent<Animator>();
         health = 10;
+        spawnScript = GetComponentInParent<Spawning>();
     }
 
     private void Update()
@@ -76,15 +78,13 @@ public class AIBase : MonoBehaviour
         CanSeePlayer();
         HealthCheck();
 
-        print(animCtrl.GetInteger("ActState"));
-        print(animCtrl.GetBool("Shot"));
     }
 
     void HealthCheck()
     {
         if (health <= 0)
         {
-            gameObject.GetComponent<AIBase>().enabled = false;
+            spawnScript.aiCharList.Remove(gameObject);
             Destroy(gameObject);
         }
     }

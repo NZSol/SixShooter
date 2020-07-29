@@ -33,6 +33,7 @@ public class Gun : MonoBehaviour
     [SerializeField] TimeManager timeManager;
     bool aiming;
     bool canAim;
+    bool canSlow;
     bool timeSwitch = false;
 
     [SerializeField] Transform GunPosBase;
@@ -44,11 +45,12 @@ public class Gun : MonoBehaviour
         gun = this.gameObject;
         timeToFire = 1.5f;
         canAim = true;
+        canSlow = true;
         muzzFlash.SetActive(false);
         mat = gameObject.GetComponent<Material>();
         Renderer render = GetComponent<Renderer>();
         mat = render.material;
-        mat.SetColor("_EmissionColor", Color.white * 0.8f);
+        mat.SetColor("_EmissionColor", Color.white * intenseMax);
     }
 
     // Update is called once per frame
@@ -71,22 +73,23 @@ public class Gun : MonoBehaviour
             canFire = false;
             Shoot();
             ammoCount--;
+            if (timeSwitch == true)
+            {
+                slowTimer = 0;
+                canSlow = false;
+            }
             timeSwitch = false;
-
         }
 
-        print(hiltLerpTimer + "LT");
+
 
         //Check Ammo and timer before firing again
         ShootTimer();
         CheckAmmo();
         ADSCheck();
-        
-        //if(canAim == false)
-        //{
-        //    ADSCool();
-        //}
-        
+        ADSCool();
+
+
         //Declare if able to fire or not based upon timer and ammo
         if (ammoCount > 0 && timeToFire == 1.5f)
         {
@@ -115,6 +118,8 @@ public class Gun : MonoBehaviour
             startReload = true;
         }
 
+        print(canSlow + "slow" );
+        //print(slowTimer + "ST");
     }
 
 
@@ -144,11 +149,21 @@ public class Gun : MonoBehaviour
             else if (Physics.Raycast(ray, out hit, range))
             {
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.yellow);
-                print("missed");
                 Instantiate(hitParticle, hit.point, transform.rotation);
                 if (hit.transform.tag == "Destructible")
                 {
                     Destroy(hit.transform.gameObject);
+                    print("destoryObj");
+                }
+                else
+                {
+                    print("missed");
+                }
+
+                if (hit.transform.tag == "extendBridge")
+                {
+                    Animator anim = gameObject.GetComponentInChildren<Animator>();
+                    anim.SetBool("Extend", true);
                 }
             }
             else
@@ -238,24 +253,35 @@ public class Gun : MonoBehaviour
             lerpFuncOut();
         }
 
-        if (aiming == true && Input.GetKeyDown(KeyCode.LeftShift) && lerpTime >= 1)
+        if (aiming == true && Input.GetKeyDown(KeyCode.LeftShift) && lerpTime >= 1 && canSlow == true)
         {
-            timeSwitch = !timeSwitch;
+            timeSwitch = true;
+        }
+        else if (canSlow == false)
+        {
+            timeSwitch = false;
         }
 
         if(timeSwitch == true)
         {
             timeManager.DoSlowmo();
             hiltBrightnessLerp();
-            intensity = Mathf.Lerp(intenseMin, intenseMax, hiltLerpTimer);
         }
         else if (timeSwitch == false)
         {
             hiltBrightnessLerp();
-            intensity = Mathf.Lerp(intenseMin, intenseMax, hiltLerpTimer);
             timeManager.ReduceSlowmo();
         }
 
+        //intensity
+        if (canSlow == false)
+        {
+            intensity = Mathf.Lerp(intenseMin, intenseMax, slowTimer);
+        }
+        else if (canSlow == true)
+        {
+            intensity = Mathf.Lerp(intenseMin, intenseMax, slowTimer);
+        }
     }
 
     float FOVHip = 60;
@@ -309,6 +335,33 @@ public class Gun : MonoBehaviour
         }
     }
 
+    float slowTimer;
+    void ADSCool()
+    {
+        slowTimer = Mathf.Clamp(slowTimer, 0, 1);
+        //reduce float time when zoomed and can slow time
+        if (timeSwitch == true && aiming == true)
+        {
+            slowTimer -= (Time.unscaledDeltaTime / 3);
+
+        }
+        //increase timer when not slowTime
+        else if (timeSwitch == false)
+        {
+            slowTimer += (Time.deltaTime / 6);
+        }
+
+
+        if (slowTimer <= 0)
+        {
+            canSlow = false;
+        }
+        else if (slowTimer > 0)
+        {
+            canSlow = true;
+        }
+    }
+
 
     //gameStart functions
     void AccesoryFunction()
@@ -318,5 +371,18 @@ public class Gun : MonoBehaviour
         ray = myCam.ViewportPointToRay(new Vector2(0.5f, 0.5f));
         mat.SetColor("_EmissionColor", Color.white * intensity);
     }
+
+
+
+
+
+
+    void testing()
+    {
+    }
+
+
+
+
 
 }
