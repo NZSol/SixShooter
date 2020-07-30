@@ -155,15 +155,19 @@ public class Gun : MonoBehaviour
                     Destroy(hit.transform.gameObject);
                     print("destoryObj");
                 }
+                else if (hit.transform.tag == "extendBridge")
+                {
+                    Animator anim = gameObject.GetComponentInChildren<Animator>();
+                    anim.SetBool("Extend", true);
+                }
+                else if (hit.transform.tag == "endGame")
+                {
+                    //gameManager.EndGame();
+                    print("GAME ENDING");
+                }
                 else
                 {
                     print("missed");
-                }
-
-                if (hit.transform.tag == "extendBridge")
-                {
-                    Animator anim = hit.transform.gameObject.GetComponentInChildren<Animator>();
-                    anim.SetBool("Extend", true);
                 }
             }
             else

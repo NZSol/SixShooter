@@ -9,16 +9,32 @@ public class Spawning : MonoBehaviour
     public List<GameObject> aiCharList;
     int aiCount = 0;
     [SerializeField] int maxCount;
+    [SerializeField] int maxSpawnNumber;
 
-    Vector3 SpawnPos(Vector3 origin, float dist, int layerMask)
+    //Vector3 SpawnPos(Vector3 origin, float dist, int layerMask)
+    //{
+    //    Vector3 randDir = Random.insideUnitSphere * dist;
+    //    randDir += origin;
+
+    //    NavMeshHit navHit;
+    //    NavMesh.SamplePosition(randDir, out navHit, dist, layerMask);
+
+    //    return navHit.position;
+    //}
+
+    Vector3 RandomPoint(Vector3 center)
     {
-        Vector3 randDir = Random.insideUnitSphere * dist;
-        randDir += origin;
+        Vector3 result = center;
+        for (int i = 0; i < 30;)
+        {
+            Vector2 TargetPoint = Random.insideUnitCircle * Random.Range(1, 5);
+            Vector3 randomPoint = center + new Vector3(TargetPoint.x, 0, TargetPoint.y);
 
-        NavMeshHit navHit;
-        NavMesh.SamplePosition(randDir, out navHit, dist, layerMask);
+            return randomPoint;
+        }
 
-        return navHit.position;
+
+        return result;
     }
 
     // Start is called before the first frame update
@@ -30,11 +46,55 @@ public class Spawning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        spawnTimer();
         print(aiCharList.Count);
-        while (aiCharList.Count < maxCount)
+    }
+
+
+
+    [SerializeField] float timeToSpawn;
+    float timer;
+    bool canSpawn;
+
+    void spawnTimer()
+    {
+        timer -= Time.deltaTime;
+        if (timer <= 0)
         {
-            GameObject newAI = Instantiate(AI, SpawnPos(new Vector3(transform.position.x, 0, transform.position.z), 5, 1 << 0), transform.rotation, gameObject.transform);
+            timer += timeToSpawn;
+            canSpawn = true;
+            Spawn();
+        }
+    }
+
+    Vector3 target;
+
+    void Spawn()
+    {
+        target = RandomPoint(transform.position);
+        RandomRecast();
+        while (aiCharList.Count < maxCount && aiCount <= maxSpawnNumber && canSpawn)
+        {
+            GameObject newAI = Instantiate(AI, target, transform.rotation, gameObject.transform);
             aiCharList.Add(newAI);
+            aiCount++;
+            canSpawn = false;
+        }
+    }
+
+    void RandomRecast()
+    {
+        Vector3 RayFrom = new Vector3(target.x, target.y + 1000, target.z);
+        RaycastHit hit;
+
+        if (Physics.Raycast(RayFrom, Vector3.down * 2000, out hit, Mathf.Infinity, layerMask: 1 << 0))
+        {
+            target = new Vector3(hit.point.x, hit.point.y + 1.5f, hit.point.z);
+        }
+        else
+        {
+            target = RandomPoint(transform.position);
+            RandomRecast();
         }
 
     }
