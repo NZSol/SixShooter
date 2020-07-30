@@ -15,13 +15,14 @@ public class attackingScript : StateMachineBehaviour
     {
         anim = animator;
         player = GameObject.FindGameObjectWithTag("Player");
+        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         dist = Vector3.Distance(player.transform.position, animator.transform.position);
-
+        //DamagePlayer();
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -41,4 +42,5 @@ public class attackingScript : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
+    
 }
