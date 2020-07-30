@@ -8,6 +8,7 @@ TagManager:
   - critPoint
   - regDamage
   - extendBridge
+  - door
   layers:
   - Default
   - TransparentFX
