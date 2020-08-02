@@ -6,20 +6,22 @@ using UnityEngine.UI;
 public class HealthSystem : MonoBehaviour
 {
 
-    float health;
+    [SerializeField] int health;
 
     GameObject EndGameUI;
+
+    [SerializeField] Slider HealthMeter;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        UIUpdate();
     }
 
     public void healthReduce (int i)
@@ -35,5 +37,10 @@ public class HealthSystem : MonoBehaviour
     {
         EndGameUI.SetActive(true);
 
+    }
+
+    void UIUpdate()
+    {
+        HealthMeter.GetComponent<Slider>().value = health;
     }
 }
