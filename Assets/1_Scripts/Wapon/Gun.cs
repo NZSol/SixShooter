@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
@@ -39,6 +40,10 @@ public class Gun : MonoBehaviour
     [SerializeField] Transform GunPosBase;
     [SerializeField] Transform gunPosADS;
 
+    //Canvas
+    [SerializeField] Canvas CanvasUI;
+    [SerializeField] Text ammoCountTxt;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +61,7 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(ammoCount);
         AccesoryFunction();
         muzzFlash.SetActive(false);
         if (aiming == true)
@@ -67,7 +73,7 @@ public class Gun : MonoBehaviour
             MoveCtrl.aimSpeedModif = 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && timeToFire >= 1.5f)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && timeToFire >= 1.5f && ammoCount >= 0)
         {
             timeToFire = 0;
             canFire = false;
@@ -88,6 +94,7 @@ public class Gun : MonoBehaviour
         CheckAmmo();
         ADSCheck();
         ADSCool();
+        
 
 
         //Declare if able to fire or not based upon timer and ammo
@@ -157,7 +164,7 @@ public class Gun : MonoBehaviour
                 }
                 else if (hit.transform.tag == "extendBridge")
                 {
-                    Animator anim = gameObject.GetComponentInChildren<Animator>();
+                    Animator anim = hit.transform.gameObject.GetComponentInChildren<Animator>();
                     anim.SetBool("Extend", true);
                 }
                 else if (hit.transform.tag == "endGame")
@@ -210,11 +217,13 @@ public class Gun : MonoBehaviour
         if (ammoCount <= 0)
         {
             canFire = false;
+            ammoCount = 0;
         }
         else
         {
             canFire = true;
         }
+        ammoCountTxt.text = ammoCount + "/6";
     }
 
     //Countdown to reload over, assign values
