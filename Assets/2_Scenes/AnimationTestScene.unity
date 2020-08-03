@@ -169,7 +169,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.05
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -1116,6 +1116,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnim: {fileID: 9168416371355901619}
+  VertInput: Vertical
+  HorizInput: Horizontal
+  shoot: 323
+  ADS: 324
+  Reload: 114
 --- !u!1 &2892989162812790691
 GameObject:
   m_ObjectHideFlags: 0
