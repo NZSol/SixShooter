@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Spawning : MonoBehaviour
+public class TriggerSpawning : MonoBehaviour
 {
     [SerializeField] GameObject AI;
     public List<GameObject> aiCharList;
     int aiCount = 0;
     [SerializeField] int maxCount;
     [SerializeField] int maxSpawnNumber;
+    bool initSpawn;
+    bool spawnEnable;
+    bool initSpawned;
 
     //Vector3 SpawnPos(Vector3 origin, float dist, int layerMask)
     //{
@@ -46,7 +49,14 @@ public class Spawning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spawnTimer();
+        if (spawnEnable == true && initSpawned)
+        {
+            spawnTimer();
+        }
+        if(initSpawn == true)
+        {
+            DoSpawn();
+        }
     }
 
 
@@ -66,6 +76,14 @@ public class Spawning : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider col)
+    {
+        if(col.tag == "Player")
+        {
+            initSpawn = true;
+        }
+    }
+
     Vector3 target;
 
     void Spawn()
@@ -78,6 +96,24 @@ public class Spawning : MonoBehaviour
             aiCharList.Add(newAI);
             aiCount++;
             canSpawn = false;
+        }
+    }
+
+    void DoSpawn()
+    {
+        target = RandomPoint(transform.position);
+        RandomRecast();
+        do
+        {
+            GameObject newAI = Instantiate(AI, target, transform.rotation, gameObject.transform);
+            aiCharList.Add(newAI);
+            aiCount++;
+        }
+        while (aiCharList.Count < maxCount);
+        if(aiCharList.Count >= maxCount)
+        {
+            initSpawn = false;
+            initSpawned = true;
         }
     }
 

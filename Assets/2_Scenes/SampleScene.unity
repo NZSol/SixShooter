@@ -313,15 +313,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 209544526}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32b111b87fd5fbb4887aa9ef0b81bba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AI: {fileID: 8447029817958714630, guid: c9e0c5ef07527a143ab3ca2b3432dc97, type: 3}
   aiCharList: []
-  maxCount: 3
-  maxSpawnNumber: 10
+  maxCount: 1
+  maxSpawnNumber: 3
   timeToSpawn: 3
 --- !u!1 &240924270
 GameObject:
@@ -2566,12 +2566,12 @@ PrefabInstance:
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: slowFallOff.m_Curve.Array.data[0].inSlope
-      value: 0.94948405
+      value: 0.09199187
       objectReference: {fileID: 0}
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: slowFallOff.m_Curve.Array.data[0].outSlope
-      value: 0.94948405
+      value: 0.09199187
       objectReference: {fileID: 0}
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
@@ -2581,22 +2581,22 @@ PrefabInstance:
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: slowFallOff.m_Curve.Array.data[1].time
-      value: 1
+      value: 0.99993443
       objectReference: {fileID: 0}
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: slowFallOff.m_Curve.Array.data[1].value
-      value: 1
+      value: 0.0006374419
       objectReference: {fileID: 0}
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: slowFallOff.m_Curve.Array.data[1].inSlope
-      value: -0
+      value: -1.4606309
       objectReference: {fileID: 0}
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: slowFallOff.m_Curve.Array.data[1].outSlope
-      value: -0
+      value: -1.4606309
       objectReference: {fileID: 0}
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
@@ -2606,7 +2606,7 @@ PrefabInstance:
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: slowFallOff.m_Curve.Array.data[0].value
-      value: 0.70022273
+      value: 1.0001495
       objectReference: {fileID: 0}
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
@@ -2616,17 +2616,32 @@ PrefabInstance:
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: slowFallOff.m_Curve.Array.data[0].outWeight
-      value: 0.049014926
+      value: 0.0911154
       objectReference: {fileID: 0}
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: slowFallOff.m_Curve.Array.data[1].inWeight
-      value: 0.034482777
+      value: 0.061403982
       objectReference: {fileID: 0}
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: multiplier
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476518270706910873, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: baseSensitivity
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476518270706910873, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: SlowTimeSensitivity
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476518270706910873, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: mouseSensitivity
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
