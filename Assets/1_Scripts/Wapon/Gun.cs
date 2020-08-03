@@ -35,7 +35,7 @@ public class Gun : MonoBehaviour
     bool aiming;
     bool canAim;
     bool canSlow;
-    bool timeSwitch = false;
+    public bool timeSwitch = false;
 
     [SerializeField] Transform GunPosBase;
     [SerializeField] Transform gunPosADS;
