@@ -6,7 +6,9 @@ public class CamCtrl : MonoBehaviour
 {
     //Camera rotate variables
     [SerializeField] string mouseXInputName, mouseYInputName;
-    [SerializeField] float mouseSensitivity;
+    public float mouseSensitivity;
+    [SerializeField] float baseSensitivity;
+    [SerializeField] float SlowTimeSensitivity;
 
     [SerializeField] Transform playerBody;
 
@@ -40,6 +42,14 @@ public class CamCtrl : MonoBehaviour
     void Update()
     {
         CameraRotation();
+        if (GetComponentInChildren<Gun>().timeSwitch == true && Time.timeScale != 1)
+        {
+            mouseSensitivity = Mathf.Lerp(baseSensitivity, SlowTimeSensitivity, GetComponentInChildren<Gun>().lerpTime);
+        }
+        else
+        {
+            mouseSensitivity = baseSensitivity;
+        }
     }
 
     void CameraRotation()

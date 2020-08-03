@@ -331,7 +331,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    float lerpTime;
+    public float lerpTime;
     [SerializeField] float multiplier;
     void lerpTimerFunc()
     {
