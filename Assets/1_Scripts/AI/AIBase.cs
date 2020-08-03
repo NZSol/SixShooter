@@ -12,7 +12,8 @@ public class AIBase : MonoBehaviour
     //Line of Sight
     float playerDist;
     float minDetectRange = 10;
-    float attackRange = 3f;
+    [SerializeField] float attackRange = 3f;
+    float baseAttackRange;
     [SerializeField] float fovRange = 75;
     bool brokenLos;
     Spawning spawnScript;
@@ -69,6 +70,7 @@ public class AIBase : MonoBehaviour
         animCtrl = GetComponent<Animator>();
         health = 10;
         spawnScript = GetComponentInParent<Spawning>();
+        baseAttackRange = attackRange;
     }
 
     private void Update()
@@ -90,10 +92,21 @@ public class AIBase : MonoBehaviour
     }
 
 
-
     public void Damage(int i)
     {
         health -= i;
         animCtrl.SetBool("Shot", true);
+    }
+
+    public void resetAtkRange()
+    {
+        StartCoroutine(ATKRange());
+    }
+
+    IEnumerator ATKRange()
+    {
+        attackRange = 0;
+        yield return new WaitForSeconds(0.5f);
+        attackRange = baseAttackRange;
     }
 }

@@ -22,7 +22,6 @@ public class attackingScript : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        attackScript = animator.GetComponent<attackingScript>();
         anim = animator;
         player = GameObject.FindGameObjectWithTag("Player");
         attacking = true;
