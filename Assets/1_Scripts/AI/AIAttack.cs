@@ -7,7 +7,6 @@ public class AIAttack : MonoBehaviour
     attackingScript attack;
     GameObject Player;
     public bool ExitState;
-    float Dist;
     Animator anim;
     [SerializeField] attackingScript attackState;
     AIBase MasterAI;
@@ -21,19 +20,8 @@ public class AIAttack : MonoBehaviour
     }
 
     AnimatorStateInfo currentState;
-    AnimatorStateInfo desiredState;
-    AnimationState animState;
     private void Update()
     {
-        if (MasterAI.animCtrl.GetCurrentAnimatorStateInfo(0).IsName("Attacking"))
-        {
-            currentState = MasterAI.animCtrl.GetCurrentAnimatorStateInfo(0);
-        }
-        if (attackState == null)
-        {
-            //animState = MasterAI.animCtrl.GetCurrentAnimatorStateInfo(0).IsName("Attacking");
-        }
-        //Dist = attackState.distance;
         print(currentState.shortNameHash);
     }
 
@@ -46,11 +34,19 @@ public class AIAttack : MonoBehaviour
     public IEnumerator PlayerAttack()
     {
         yield return new WaitForSeconds(3);
-        if(Dist < dmgRange)
+        GetComponent<BoxCollider>().enabled = true;
+        Player.GetComponent<HealthSystem>().healthReduce(i: 15);
+        GetComponent<BoxCollider>().enabled = false;
+        yield return new WaitForSeconds(1);
+        ExitState = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+     if (other.tag == "Player")
         {
             Player.GetComponent<HealthSystem>().healthReduce(i: 15);
         }
-        ExitState = true;
     }
 
 }
