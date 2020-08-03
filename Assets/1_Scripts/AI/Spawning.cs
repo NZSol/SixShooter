@@ -47,7 +47,6 @@ public class Spawning : MonoBehaviour
     void Update()
     {
         spawnTimer();
-        print(aiCharList.Count);
     }
 
 

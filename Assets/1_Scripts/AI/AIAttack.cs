@@ -19,32 +19,29 @@ public class AIAttack : MonoBehaviour
         MasterAI = GetComponent<AIBase>();
     }
 
-    AnimatorStateInfo currentState;
-    private void Update()
-    {
-        print(currentState.shortNameHash);
-    }
 
     public void DoCoroutine()
     {
-        StartCoroutine(PlayerAttack());
         print("CheckingCoroutine");
+        StartCoroutine(PlayerAttack());
     }
 
     public IEnumerator PlayerAttack()
     {
         yield return new WaitForSeconds(3);
         GetComponent<BoxCollider>().enabled = true;
-        Player.GetComponent<HealthSystem>().healthReduce(i: 15);
+        //Player.GetComponent<HealthSystem>().healthReduce(i: 15);
+        yield return new WaitForSeconds(0.5f);
         GetComponent<BoxCollider>().enabled = false;
-        yield return new WaitForSeconds(1);
         ExitState = true;
+        MasterAI.resetAtkRange();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider col)
     {
-     if (other.tag == "Player")
+     if (col.tag == "Player")
         {
+            print("triggered");
             Player.GetComponent<HealthSystem>().healthReduce(i: 15);
         }
     }

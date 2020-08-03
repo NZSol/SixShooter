@@ -61,7 +61,6 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(ammoCount);
         AccesoryFunction();
         muzzFlash.SetActive(false);
         if (aiming == true)
@@ -125,7 +124,7 @@ public class Gun : MonoBehaviour
             startReload = true;
         }
 
-        print(canSlow + "slow" );
+
         //print(slowTimer + "ST");
     }
 
