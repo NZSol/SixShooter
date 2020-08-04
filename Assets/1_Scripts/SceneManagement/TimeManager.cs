@@ -9,29 +9,43 @@ public class TimeManager : MonoBehaviour
     float slowDuration = 2f;
 
     public static bool endSlow;
+    public static bool GamePause;
 
     // Update is called once per frame
     void Update()
     {
-        if(endSlow == true)
+        if (GamePause == false)
         {
-            ReduceSlowmo();
+            if (endSlow == true)
+            {
+                ReduceSlowmo();
+            }
+            if (Time.timeScale >= 1)
+            {
+                endSlow = false;
+            }
         }
-        if(Time.timeScale >= 1)
+        else
         {
-            endSlow = false;
+            PauseMenu();
         }
     }
 
     public void DoSlowmo()
     {
         Time.timeScale = slowFactor;
-        Time.fixedDeltaTime = Time.timeScale * 0.2f;
+        //Time.fixedDeltaTime = Time.timeScale * 0.2f;
     }
 
     public void ReduceSlowmo()
     {
         Time.timeScale += (1f / slowDuration) * Time.unscaledDeltaTime;
         Time.timeScale = Mathf.Clamp(Time.timeScale, 0, 1);
+    }
+
+    public static void PauseMenu()
+    {
+        Time.timeScale = 0;
+        //Time.fixedDeltaTime = Time.timeScale * 0.005f;
     }
 }
