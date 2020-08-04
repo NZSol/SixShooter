@@ -6,7 +6,9 @@ public class CamCtrl : MonoBehaviour
 {
     //Camera rotate variables
     [SerializeField] string mouseXInputName, mouseYInputName;
-    [SerializeField] float mouseSensitivity;
+    public float mouseSensitivity;
+    [SerializeField] float baseSensitivity;
+    [SerializeField] float SlowTimeSensitivity;
 
     [SerializeField] Transform playerBody;
 
@@ -40,6 +42,14 @@ public class CamCtrl : MonoBehaviour
     void Update()
     {
         CameraRotation();
+        if (GetComponentInChildren<Gun>().timeSwitch == true && Time.timeScale != 1)
+        {
+            mouseSensitivity = Mathf.Lerp(baseSensitivity, SlowTimeSensitivity, GetComponentInChildren<Gun>().lerpTime);
+        }
+        else
+        {
+            mouseSensitivity = baseSensitivity;
+        }
     }
 
     void CameraRotation()
@@ -66,19 +76,19 @@ public class CamCtrl : MonoBehaviour
         playerBody.Rotate(Vector3.up * mouseX);
 
 
-        if(MoveCtrl.forwardMovement == Vector3.zero && MoveCtrl.rightMovement == Vector3.zero)
-        {
-            headbob(idleCounter, 0.075f, 0.075f);
-            idleCounter += Time.unscaledDeltaTime;
+        //if(MoveCtrl.forwardMovement == Vector3.zero && MoveCtrl.rightMovement == Vector3.zero)
+        //{
+        //    headbob(idleCounter, 0.075f, 0.075f);
+        //    idleCounter += Time.unscaledDeltaTime;
             
-        }
-        else
-        {
-            headbob(movementCounter, 0.12f, 0.12f);
-            movementCounter += Time.unscaledDeltaTime * speedMult;
+        //}
+        //else
+        //{
+        //    headbob(movementCounter, 0.12f, 0.12f);
+        //    movementCounter += Time.unscaledDeltaTime * speedMult;
             
-        }
-        normCam.localPosition = Vector3.Lerp(normCam.localPosition, BobPos, Time.unscaledDeltaTime * 1);
+        //}
+        //normCam.localPosition = Vector3.Lerp(normCam.localPosition, BobPos, Time.unscaledDeltaTime * 1);
     }
 
     void ClampXRotToVal(float value)

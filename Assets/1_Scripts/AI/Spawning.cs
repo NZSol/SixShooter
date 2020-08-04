@@ -83,10 +83,10 @@ public class Spawning : MonoBehaviour
 
     void RandomRecast()
     {
-        Vector3 RayFrom = new Vector3(target.x, target.y + 1000, target.z);
+        Vector3 RayFrom = new Vector3(target.x, target.y + 5, target.z);
         RaycastHit hit;
 
-        if (Physics.Raycast(RayFrom, Vector3.down * 2000, out hit, Mathf.Infinity, layerMask: 1 << 0))
+        if (Physics.Raycast(RayFrom, Vector3.down * 10, out hit, Mathf.Infinity, layerMask: 1 << 0))
         {
             target = new Vector3(hit.point.x, hit.point.y + 1.5f, hit.point.z);
         }
