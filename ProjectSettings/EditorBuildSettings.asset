@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/2_Scenes/MenuScene.unity
+    guid: 8a72153f353cbcb4cba3b81cd9910ef6
+  - enabled: 1
+    path: Assets/2_Scenes/Intro.unity
+    guid: b7d512bdccc545845b254046f411efad
+  - enabled: 1
     path: Assets/2_Scenes/FletchersBackUp.unity
     guid: 8884bcdfc6ebd4244adbc2debecc03f1
   m_configObjects: {}
