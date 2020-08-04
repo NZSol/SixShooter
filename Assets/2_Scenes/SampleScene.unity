@@ -457,26 +457,6 @@ Canvas:
     type: 3}
   m_PrefabInstance: {fileID: 8127554080073689809}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &355076908 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3476518271141552116, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1936216856}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &355076909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 355076908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b23a6ebd219c14593cac8e1c7893bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  HealthMeter: {fileID: 1743087456}
 --- !u!1 &483327407
 GameObject:
   m_ObjectHideFlags: 0
@@ -2534,190 +2514,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6656929964021877462, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: aimPoint
-      value: 
-      objectReference: {fileID: 1883825100}
-    - target: {fileID: 6656929964021877462, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+    - target: {fileID: 8280404505200060898, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: timeManager
       value: 
       objectReference: {fileID: 1218007622}
-    - target: {fileID: 6656929964021877462, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: mat
-      value: 
-      objectReference: {fileID: 2100000, guid: a65889c475dd39842b3c7e84e077326d, type: 2}
-    - target: {fileID: 6656929964021877462, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: CanvasUI
-      value: 
-      objectReference: {fileID: 330459042}
-    - target: {fileID: 6656929964021877462, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: ammoCountTxt
-      value: 
-      objectReference: {fileID: 559118048}
-    - target: {fileID: 3476518271725944924, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 1591
-      objectReference: {fileID: 0}
-    - target: {fileID: 4303446875904110946, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4303446875904110946, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: slowFallOff.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: crouchSpeed
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: standSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: timeSlowMin
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: slowFallOff.m_Curve.Array.data[0].inSlope
-      value: 0.09199187
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: slowFallOff.m_Curve.Array.data[0].outSlope
-      value: 0.09199187
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: slowFallOff.m_Curve.Array.data[0].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: slowFallOff.m_Curve.Array.data[1].time
-      value: 0.99993443
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: slowFallOff.m_Curve.Array.data[1].value
-      value: 0.0006374419
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: slowFallOff.m_Curve.Array.data[1].inSlope
-      value: -1.4606309
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: slowFallOff.m_Curve.Array.data[1].outSlope
-      value: -1.4606309
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: slowFallOff.m_Curve.Array.data[1].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: slowFallOff.m_Curve.Array.data[0].value
-      value: 1.0001495
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: slowFallOff.m_Curve.Array.data[0].time
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: slowFallOff.m_Curve.Array.data[0].outWeight
-      value: 0.0911154
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: slowFallOff.m_Curve.Array.data[1].inWeight
-      value: 0.061403982
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: multiplier
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518270706910873, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: baseSensitivity
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518270706910873, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: SlowTimeSensitivity
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518270706910873, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: mouseSensitivity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476518270706910873, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: speedMult
-      value: 49.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 202596615, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.311
-      objectReference: {fileID: 0}
-    - target: {fileID: 202596615, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.063
-      objectReference: {fileID: 0}
-    - target: {fileID: 202596615, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.108
-      objectReference: {fileID: 0}
-    - target: {fileID: 202596615, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.11123347
-      objectReference: {fileID: 0}
-    - target: {fileID: 202596615, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.07580826
-      objectReference: {fileID: 0}
-    - target: {fileID: 202596615, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.110673286
-      objectReference: {fileID: 0}
-    - target: {fileID: 5593437907256176008, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: d56ce2737f29fc44c86534209169fec6, type: 2}
-    - target: {fileID: 8280404505200060898, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
-        type: 3}
-      propertyPath: ammoCountTxt
-      value: 
-      objectReference: {fileID: 559118048}
     - target: {fileID: 8280404505200060898, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: CanvasUI
@@ -2725,9 +2526,14 @@ PrefabInstance:
       objectReference: {fileID: 330459042}
     - target: {fileID: 8280404505200060898, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
-      propertyPath: timeManager
+      propertyPath: ammoCountTxt
       value: 
-      objectReference: {fileID: 1218007622}
+      objectReference: {fileID: 559118048}
+    - target: {fileID: 8202146093969836031, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: HealthMeter
+      value: 
+      objectReference: {fileID: 1743087456}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
 --- !u!1 &2048759961

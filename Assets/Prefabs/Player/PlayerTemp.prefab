@@ -1380,6 +1380,7 @@ GameObject:
   - component: {fileID: 1173102720}
   - component: {fileID: 6185740921976923015}
   - component: {fileID: 355076909}
+  - component: {fileID: 8202146093969836031}
   m_Layer: 0
   m_Name: PlayerTemp
   m_TagString: Player
@@ -1582,6 +1583,20 @@ Rigidbody:
   m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &355076909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3476518271141552116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b23a6ebd219c14593cac8e1c7893bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  HealthMeter: {fileID: 0}
+--- !u!114 &8202146093969836031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
