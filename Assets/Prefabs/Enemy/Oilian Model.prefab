@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4792041792601132292}
   m_Layer: 0
-  m_Name: Oilian
+  m_Name: Oilian Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,12 +51,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: f9598aff378ed6b4b98b0c1db6643eeb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.000543444
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f9598aff378ed6b4b98b0c1db6643eeb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0053899223
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f9598aff378ed6b4b98b0c1db6643eeb,
         type: 3}
