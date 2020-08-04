@@ -16,10 +16,10 @@ public class Gun : MonoBehaviour
     float timeToFire;
     bool canFire = true;
     bool reloading = false;
-    bool startReload = false;
+    public bool startReload = false;
 
     //Ammo
-    int ammoCount = 6;
+    public int ammoCount = 6;
     float timeToReload = 6;
 
     //Other
@@ -28,6 +28,7 @@ public class Gun : MonoBehaviour
     [SerializeField] ParticleSystem hitParticle;
     [SerializeField] ParticleSystem bloodParticle;
     [SerializeField] float speedModifier;
+    [SerializeField] GameObject gunMesh;
 
 
     //ADS
@@ -52,8 +53,7 @@ public class Gun : MonoBehaviour
         canAim = true;
         canSlow = true;
         muzzFlash.SetActive(false);
-        mat = gameObject.GetComponent<Material>();
-        Renderer render = GetComponent<Renderer>();
+        Renderer render = gunMesh.gameObject.GetComponent<Renderer>();
         mat = render.material;
         mat.SetColor("_EmissionColor", Color.white * intenseMax);
     }
@@ -303,17 +303,17 @@ public class Gun : MonoBehaviour
     void lerpFuncIn()
     {
         lerpTimerFunc();
-        transform.position = Vector3.Lerp(GunPosBase.position, gunPosADS.position, lerpTime);
-        transform.localScale = Vector3.Lerp(GunPosBase.localScale, gunPosADS.localScale, lerpTime);
-        transform.localRotation = Quaternion.Lerp(GunPosBase.localRotation, gunPosADS.localRotation, lerpTime);
+        //transform.position = Vector3.Lerp(GunPosBase.position, gunPosADS.position, lerpTime);
+        //transform.localScale = Vector3.Lerp(GunPosBase.localScale, gunPosADS.localScale, lerpTime);
+        //transform.localRotation = Quaternion.Lerp(GunPosBase.localRotation, gunPosADS.localRotation, lerpTime);
         camFOV = Mathf.Lerp(FOVHip, FOVAim, lerpTime);
     }
     void lerpFuncOut()
     {
         lerpTimerFunc();
-        transform.position = Vector3.Lerp(GunPosBase.position, gunPosADS.position, lerpTime);
-        transform.localScale = Vector3.Lerp(GunPosBase.localScale, gunPosADS.localScale, lerpTime);
-        transform.localRotation = Quaternion.Lerp(GunPosBase.localRotation, gunPosADS.localRotation, lerpTime);
+        //transform.position = Vector3.Lerp(GunPosBase.position, gunPosADS.position, lerpTime);
+        //transform.localScale = Vector3.Lerp(GunPosBase.localScale, gunPosADS.localScale, lerpTime);
+        //transform.localRotation = Quaternion.Lerp(GunPosBase.localRotation, gunPosADS.localRotation, lerpTime);
         camFOV = Mathf.Lerp(FOVHip, FOVAim, lerpTime);
     }
 

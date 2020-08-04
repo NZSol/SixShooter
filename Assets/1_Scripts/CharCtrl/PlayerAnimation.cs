@@ -30,7 +30,7 @@ public class PlayerAnimation : MonoBehaviour
             playerAnim.SetBool("Firing", false);
         }
 
-        if (Input.GetAxis(VertInput) > 0 || Input.GetAxis(HorizInput) > 0)
+        if (Input.GetAxis(VertInput) != 0 || Input.GetAxis(HorizInput) != 0)
         {
             playerAnim.SetBool("Walking", true);
         }
@@ -50,7 +50,7 @@ public class PlayerAnimation : MonoBehaviour
             playerAnim.SetBool("ADS", false);
         }
 
-        if (Input.GetKey(Reload))
+        if (GetComponent<Gun>().startReload == true)
         {
             playerAnim.SetBool("Reloading", true);
         }
