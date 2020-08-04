@@ -25,11 +25,6 @@ public class PlayerAnimation : MonoBehaviour
             playerAnim.SetBool("Firing", true);
         }
 
-        if (Input.GetKeyUp(shoot))
-        {
-            playerAnim.SetBool("Firing", false);
-        }
-
         if (Input.GetAxis(VertInput) != 0 || Input.GetAxis(HorizInput) != 0)
         {
             playerAnim.SetBool("Walking", true);
@@ -53,7 +48,14 @@ public class PlayerAnimation : MonoBehaviour
         if (GetComponent<Gun>().startReload == true)
         {
             playerAnim.SetBool("Reloading", true);
+            playerAnim.SetBool("Firing", false);
+            print("hitting");
         }
+        else
+        {
+            playerAnim.SetBool("Reloading", false);
+        }
+
         if (playerAnim.GetBool("Reloading") == true && Input.GetKeyDown(shoot))
         {
             playerAnim.SetBool("Reloading", false);
