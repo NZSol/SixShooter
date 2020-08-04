@@ -33,18 +33,32 @@ public class MoveCtrl : MonoBehaviour
 
     float offset;
 
+    //timeSlowSpeed
+    [SerializeField] AnimationCurve slowFallOff;
+    float slowTimeMultip;
+    float falloff;
+    [SerializeField] float multiplier;
+
     // Start is called before the first frame update
     void Start()
     {
         charCtrl = GetComponent<CharacterController>();
         heightY = viewManager.transform.position.y;
         offset = viewManager.transform.position.y - transform.position.y;
+        timeSlowBase = 1;
+        slowTimeMultip = slowFallOff.Evaluate(falloff);
     }
 
     // Update is called once per frame
     void Update()
     {
         heightY = transform.position.y + offset;
+        //timeSlowMult = Mathf.Lerp(timeSlowMin, timeSlowBase, Time.timeScale);
+        if (GetComponentInChildren<Gun>().timeSwitch == true && Time.timeScale != 1)
+        {
+            timeSlowMult = slowTimeMultip * (Time.timeScale * multiplier);
+        }
+        else timeSlowMult = 1;
 
         playerMove();
 
@@ -104,6 +118,8 @@ public class MoveCtrl : MonoBehaviour
     }
 
     public static Vector3 forwardMovement, rightMovement;
+    [SerializeField] float timeSlowMin;
+    float timeSlowBase, timeSlowMult;
 
     void playerMove()
     {
@@ -117,7 +133,7 @@ public class MoveCtrl : MonoBehaviour
 
         if (isJumping == false && !Input.GetKeyDown(jumpKey))
         {
-            charCtrl.SimpleMove(moveState);
+            charCtrl.SimpleMove(moveState * timeSlowMult);
         }
         else
         {
