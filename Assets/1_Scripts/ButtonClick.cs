@@ -35,6 +35,8 @@ public class ButtonClick : MonoBehaviour
         if (buildIndex == 2 && Input.GetKeyDown(KeyCode.Escape))
         {
             TimeManager.GamePause = !TimeManager.GamePause;
+            pauseMenu.SetActive(false);
+            Cursor.visible = false;
             //Debug.Log("Work");
             //TimeManager.endSlow = false;
             //Time.timeScale = 0;
@@ -130,6 +132,15 @@ public class ButtonClick : MonoBehaviour
             pauseMenu.SetActive(false);
 
         }
+    }
+    public void ResumeButton()
+    {
+
+        TimeManager.GamePause = !TimeManager.GamePause;
+        pauseMenu.SetActive(false);
+        Cursor.visible = false;
+        pauseUI = !pauseUI;
+        PauseUI();
     }
 
 }
