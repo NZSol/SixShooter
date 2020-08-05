@@ -24,6 +24,9 @@ public class CamCtrl : MonoBehaviour
     [SerializeField] float speedMult;
 
 
+    //TimeManagerStuff
+    float timeMult;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +44,15 @@ public class CamCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (TimeManager.GamePause == true)
+        {
+            timeMult = Time.deltaTime;
+        }
+        else
+        {
+            timeMult = Time.unscaledDeltaTime;
+        }
+
         CameraRotation();
         if (GetComponentInChildren<Gun>().timeSwitch == true && Time.timeScale != 1)
         {
@@ -54,8 +66,8 @@ public class CamCtrl : MonoBehaviour
 
     void CameraRotation()
     {
-        float mouseX = Input.GetAxis(mouseXInputName) * mouseSensitivity * Time.unscaledDeltaTime;
-        float mouseY = Input.GetAxis(mouseYInputName) * mouseSensitivity * Time.unscaledDeltaTime;
+        float mouseX = Input.GetAxis(mouseXInputName) * mouseSensitivity * timeMult;
+        float mouseY = Input.GetAxis(mouseYInputName) * mouseSensitivity * timeMult;
 
         xAxisClamp += mouseY;
 
