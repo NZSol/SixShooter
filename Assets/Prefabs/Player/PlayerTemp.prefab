@@ -560,7 +560,6 @@ MonoBehaviour:
   myCam: {fileID: 3476518271725944924}
   startReload: 0
   ammoCount: 6
-  aimPoint: {fileID: 0}
   muzzFlash: {fileID: 202596611}
   hitParticle: {fileID: 5611993856713497722, guid: 9dd6011e2ee094e468283f40f387acea,
     type: 3}
@@ -570,10 +569,8 @@ MonoBehaviour:
   gunMesh: {fileID: 9088503547630668152}
   timeManager: {fileID: 0}
   timeSwitch: 0
-  GunPosBase: {fileID: 0}
-  gunPosADS: {fileID: 0}
-  CanvasUI: {fileID: 0}
   ammoCountTxt: {fileID: 0}
+  shootClip: {fileID: 0}
   mat: {fileID: 2100000, guid: a65889c475dd39842b3c7e84e077326d, type: 2}
   lerpTime: 0
   multiplier: 6
@@ -1380,7 +1377,6 @@ GameObject:
   - component: {fileID: 1173102720}
   - component: {fileID: 6185740921976923015}
   - component: {fileID: 8202146093969836031}
-  - component: {fileID: 1912933871}
   m_Layer: 0
   m_Name: PlayerTemp
   m_TagString: Player
@@ -1596,14 +1592,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   HealthMeter: {fileID: 0}
---- !u!81 &1912933871
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3476518271141552116}
-  m_Enabled: 1
 --- !u!1 &3476518271652888941
 GameObject:
   m_ObjectHideFlags: 0
