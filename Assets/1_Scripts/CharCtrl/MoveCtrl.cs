@@ -39,7 +39,19 @@ public class MoveCtrl : MonoBehaviour
     float falloff;
     [SerializeField] float multiplier;
 
-    // Start is called before the first frame update
+    //Ladder Stuff
+    bool ladderBool;
+    [SerializeField] Camera cam;
+    public float range = 1;
+    public float rangeFromLadder;
+    public float climbSpeed;
+    public GameObject ladder;
+
+    
+    public enum States{MoveState, LadderState}
+    public States stateEnum;
+
+    
     void Start()
     {
         charCtrl = GetComponent<CharacterController>();
@@ -47,10 +59,56 @@ public class MoveCtrl : MonoBehaviour
         offset = viewManager.transform.position.y - transform.position.y;
         timeSlowBase = 1;
         slowTimeMultip = slowFallOff.Evaluate(falloff);
+        stateEnum = States.MoveState;
     }
 
+    
     // Update is called once per frame
     void Update()
+    {
+        RaycastHit hit;
+        Debug.DrawRay(transform.position, cam.transform.forward * range, Color.magenta);
+        if (Physics.Raycast(transform.position, cam.transform.forward, out hit, range, 1 << 12))
+        {
+            ladder = hit.transform.gameObject;
+            stateEnum = States.LadderState;
+        }
+
+        switch (stateEnum)
+        {
+            case States.MoveState:
+                PlayerMove();
+                break;
+
+            case States.LadderState:
+                ladderMove();
+                break;
+        }
+
+    }
+
+    void ladderMove()
+    {
+        //float playerDist = Vector3.Distance(transform.position, ladder.transform.position);
+        print("check");
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, ladder.transform.position, out hit, rangeFromLadder))
+        {
+            print("hit");
+            Debug.DrawRay(transform.position, ladder.transform.position * rangeFromLadder, Color.white);
+            float vertInput = Input.GetAxis(verticalInputName) * climbSpeed;
+            Vector3 climb = transform.up * vertInput;
+            moveState = climb * Time.deltaTime;
+            transform.position += moveState;
+            print(moveState);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, ladder.transform.position * rangeFromLadder, Color.red);
+        }
+    }
+
+    void PlayerMove()
     {
         heightY = transform.position.y + offset;
         //timeSlowMult = Mathf.Lerp(timeSlowMin, timeSlowBase, Time.timeScale);
@@ -59,14 +117,10 @@ public class MoveCtrl : MonoBehaviour
             timeSlowMult = slowTimeMultip * (Time.timeScale * multiplier);
         }
         else timeSlowMult = 1;
-
-        playerMove();
-
         if (Input.GetKeyDown(KeyCode.T))
         {
             toggleCrouchMode = !toggleCrouchMode;
         }
-
         if (toggleCrouchMode == true)
         {
             CrouchTogg();
@@ -75,6 +129,8 @@ public class MoveCtrl : MonoBehaviour
         {
             CrouchHold();
         }
+
+        playerMove();
     }
 
     void CrouchTogg()
@@ -120,6 +176,7 @@ public class MoveCtrl : MonoBehaviour
     public static Vector3 forwardMovement, rightMovement;
     [SerializeField] float timeSlowMin;
     float timeSlowBase, timeSlowMult;
+    public float angularMultiplier;
 
     void playerMove()
     {
@@ -130,6 +187,13 @@ public class MoveCtrl : MonoBehaviour
         rightMovement = transform.right * horizInput;
 
         moveState = new Vector3((rightMovement.x + forwardMovement.x) * (aimSpeedModif), (rightMovement.y + forwardMovement.y) * (aimSpeedModif), (rightMovement.z + forwardMovement.z) * (aimSpeedModif));
+
+        if(Input.GetButton(verticalInputName) && Input.GetButton(horizontalInputName))
+        {
+            Vector3 angularRgtMove = rightMovement/2;
+            Vector3 angularFwdMove = forwardMovement / 2;
+            moveState = new Vector3((angularFwdMove.x + angularRgtMove.x) * aimSpeedModif, (angularFwdMove.y + angularRgtMove.y) * aimSpeedModif, (angularFwdMove.z + angularRgtMove.z) * aimSpeedModif) * angularMultiplier;
+        }
 
         if (isJumping == false && !Input.GetKeyDown(jumpKey))
         {
