@@ -12,7 +12,10 @@ public class ButtonClick : MonoBehaviour
     public GameObject optionsPanel;
     public GameObject pauseMenu;
     public AudioMixer mixer;
+    public AudioMixer gameMixer;
+
     bool pauseUI;
+    CursorLockMode desiredMode;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +50,10 @@ public class ButtonClick : MonoBehaviour
     public void SetLevel (float sliderValue)
     {
         mixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20);
+    }
+    public void SetInGameLevel(float sliderValue)
+    {
+        gameMixer.SetFloat("InGameSound", Mathf.Log10(sliderValue) * 20);
     }
     public void OpenOptions(bool newValue)
     {
@@ -109,11 +116,19 @@ public class ButtonClick : MonoBehaviour
         if(pauseUI == true)
         {
             pauseMenu.SetActive(true);
+            Cursor.visible = true;
+            desiredMode = CursorLockMode.None;
+            {
+                Cursor.lockState = desiredMode;
+            }
             //make time pause
         }
         if (pauseUI == false)
         {
+            Cursor.visible = false;
+            desiredMode = CursorLockMode.Confined;
             pauseMenu.SetActive(false);
+
         }
     }
 
