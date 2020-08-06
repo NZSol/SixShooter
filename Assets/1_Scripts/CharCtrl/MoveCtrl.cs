@@ -39,7 +39,20 @@ public class MoveCtrl : MonoBehaviour
     float falloff;
     [SerializeField] float multiplier;
 
-    // Start is called before the first frame update
+    //Ladder Stuff
+    bool ladderBool = false;
+    [SerializeField] Camera cam;
+    public float range = 1;
+    public float rangeFromLadder;
+    public float climbSpeed;
+    public GameObject ladder;
+    Vector3 rayDir;
+    float yPos;
+
+    public enum States{MoveState, LadderState}
+    public States stateEnum;
+
+    
     void Start()
     {
         charCtrl = GetComponent<CharacterController>();
@@ -47,11 +60,78 @@ public class MoveCtrl : MonoBehaviour
         offset = viewManager.transform.position.y - transform.position.y;
         timeSlowBase = 1;
         slowTimeMultip = slowFallOff.Evaluate(falloff);
+        stateEnum = States.MoveState;
     }
 
+    
     // Update is called once per frame
     void Update()
     {
+        RaycastHit hit;
+        Debug.DrawRay(transform.position, cam.transform.forward * range, Color.magenta);
+        if (Physics.Raycast(transform.position, cam.transform.forward, out hit, range, 1 << 12) && charCtrl.isGrounded)
+        {
+            ladder = hit.transform.gameObject;
+            stateEnum = States.LadderState;
+        }
+
+        switch (stateEnum)
+        {
+            case States.MoveState:
+                PlayerMove();
+                if (ladderBool == true)
+                {
+                    ladderBool = false;
+                }
+                break;
+
+            case States.LadderState:
+                ladderMove(yPos);
+                if(ladderBool == false)
+                {
+                    yPos = transform.position.y;
+                    ladderBool = true;
+                }
+                break;
+        }
+        if (ladder != null)
+        {
+            rayDir = ladder.transform.position - this.gameObject.transform.position;
+        }
+    }
+
+    void ladderMove(float i)
+    {
+        //float playerDist = Vector3.Distance(transform.position, ladder.transform.position);
+        RaycastHit hit;
+        if(transform.position.y < i)
+        {
+            stateEnum = States.MoveState;
+        }
+        else
+        {
+            if (Physics.Raycast(transform.position, rayDir, out hit, rangeFromLadder, 1 << 12))
+            {
+                Debug.DrawRay(transform.position, rayDir * rangeFromLadder, Color.white);
+                float vertInput = Input.GetAxis(verticalInputName) * climbSpeed;
+                Vector3 climb = transform.up * vertInput;
+                moveState = climb * Time.deltaTime;
+                transform.position += moveState;
+
+                print(climb);
+
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, rayDir * rangeFromLadder, Color.red);
+                stateEnum = States.MoveState;
+            }
+        }
+    }
+
+    void PlayerMove()
+    {
+        ladder = null;
         heightY = transform.position.y + offset;
         //timeSlowMult = Mathf.Lerp(timeSlowMin, timeSlowBase, Time.timeScale);
         if (GetComponentInChildren<Gun>().timeSwitch == true && Time.timeScale != 1)
@@ -59,14 +139,10 @@ public class MoveCtrl : MonoBehaviour
             timeSlowMult = slowTimeMultip * (Time.timeScale * multiplier);
         }
         else timeSlowMult = 1;
-
-        playerMove();
-
         if (Input.GetKeyDown(KeyCode.T))
         {
             toggleCrouchMode = !toggleCrouchMode;
         }
-
         if (toggleCrouchMode == true)
         {
             CrouchTogg();
@@ -75,6 +151,8 @@ public class MoveCtrl : MonoBehaviour
         {
             CrouchHold();
         }
+
+        playerMove();
     }
 
     void CrouchTogg()
@@ -120,6 +198,7 @@ public class MoveCtrl : MonoBehaviour
     public static Vector3 forwardMovement, rightMovement;
     [SerializeField] float timeSlowMin;
     float timeSlowBase, timeSlowMult;
+    public float angularMultiplier;
 
     void playerMove()
     {
@@ -130,6 +209,13 @@ public class MoveCtrl : MonoBehaviour
         rightMovement = transform.right * horizInput;
 
         moveState = new Vector3((rightMovement.x + forwardMovement.x) * (aimSpeedModif), (rightMovement.y + forwardMovement.y) * (aimSpeedModif), (rightMovement.z + forwardMovement.z) * (aimSpeedModif));
+
+        if(Input.GetButton(verticalInputName) && Input.GetButton(horizontalInputName))
+        {
+            Vector3 angularRgtMove = rightMovement/2;
+            Vector3 angularFwdMove = forwardMovement / 2;
+            moveState = new Vector3((angularFwdMove.x + angularRgtMove.x) * aimSpeedModif, (angularFwdMove.y + angularRgtMove.y) * aimSpeedModif, (angularFwdMove.z + angularRgtMove.z) * aimSpeedModif) * angularMultiplier;
+        }
 
         if (isJumping == false && !Input.GetKeyDown(jumpKey))
         {
@@ -146,8 +232,6 @@ public class MoveCtrl : MonoBehaviour
             StartCoroutine(Jump());
         }
     }
-
-    
 
     IEnumerator Jump()
     {
