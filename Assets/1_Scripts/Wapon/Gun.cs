@@ -14,7 +14,7 @@ public class Gun : MonoBehaviour
 
     //Fire Timer
     float timeToFire;
-    bool canFire = true;
+    bool canFire = false;
     bool reloading = false;
     public bool startReload = false;
 
@@ -23,7 +23,6 @@ public class Gun : MonoBehaviour
     float timeToReload = 6;
 
     //Other
-    [SerializeField] GameObject aimPoint;
     [SerializeField] GameObject muzzFlash;
     [SerializeField] ParticleSystem hitParticle;
     [SerializeField] ParticleSystem bloodParticle;
@@ -38,31 +37,33 @@ public class Gun : MonoBehaviour
     bool canSlow;
     public bool timeSwitch = false;
 
-    [SerializeField] Transform GunPosBase;
-    [SerializeField] Transform gunPosADS;
 
     //Canvas
-    [SerializeField] Canvas CanvasUI;
     [SerializeField] Text ammoCountTxt;
+
+    //AnimatorStuff
+    Animator anim;
+    [SerializeField] AnimationClip shootClip;
 
     // Start is called before the first frame update
     void Start()
     {
         gun = this.gameObject;
-        timeToFire = 1.5f;
         canAim = true;
         canSlow = true;
         muzzFlash.SetActive(false);
         Renderer render = gunMesh.gameObject.GetComponent<Renderer>();
         mat = render.material;
         mat.SetColor("_EmissionColor", Color.white * intenseMax);
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         AccesoryFunction();
-        muzzFlash.SetActive(false);
+
+
         if (aiming == true)
         {
             MoveCtrl.aimSpeedModif = speedModifier;
@@ -72,12 +73,14 @@ public class Gun : MonoBehaviour
             MoveCtrl.aimSpeedModif = 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && timeToFire >= 1.5f && ammoCount >= 0)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && ammoCount >= 0 && canFire == true)
         {
             timeToFire = 0;
-            canFire = false;
-            Shoot();
             ammoCount--;
+            canFire = false;
+            anim.SetBool("ExitTime", false);
+            Shoot();
+
             if (timeSwitch == true)
             {
                 slowTimer = 0;
@@ -88,24 +91,12 @@ public class Gun : MonoBehaviour
 
 
 
-        //Check Ammo and timer before firing again
-        ShootTimer();
+        //Check Ammo before firing again
         CheckAmmo();
         ADSCheck();
         ADSCool();
         
 
-
-        //Declare if able to fire or not based upon timer and ammo
-        if (ammoCount > 0 && timeToFire == 1.5f)
-        {
-            canFire = true;
-        }
-        else
-        {
-            canFire = false;
-        }
-        
 
         //Reload Functions
         //if bool = true
@@ -125,7 +116,7 @@ public class Gun : MonoBehaviour
         }
 
 
-        //print(slowTimer + "ST");
+        print(anim.GetBool("ExitTime"));
     }
 
 
@@ -196,19 +187,45 @@ public class Gun : MonoBehaviour
         StopCoroutine(MuzzleFlash());
     }
 
-    //Timer before shooting again
-    void ShootTimer()
+
+    public void RecoilFinish()
     {
-        if (timeToFire < 1.5f)
+        anim.SetBool("Firing", false);
+        anim.SetBool("ExitTime", true);
+        if (ammoCount > 0)
         {
-            timeToFire += Time.deltaTime;
-        }
-        else
-        {
-            timeToFire = 1.5f;
             canFire = true;
+            StartCoroutine(CheckFire());
         }
+        print("test");
     }
+    IEnumerator CheckFire()
+    {
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("Firing", false);
+    }
+    public void Unlock()
+    {
+        canFire = true;
+        print("UNLOCK");
+    }
+
+    public void ReloadBullet()
+    {
+        if (ammoCount <= 5)
+        {
+            ammoCount++;
+        }
+        if (ammoCount == 6)
+        {
+            startReload = false;
+            anim.SetBool("ExitTime", false);
+            anim.Play("Transition_from_Reload");
+            canAim = true;
+        }
+
+    }
+
 
     //Ammo check
     void CheckAmmo()
@@ -218,10 +235,7 @@ public class Gun : MonoBehaviour
             canFire = false;
             ammoCount = 0;
         }
-        else
-        {
-            canFire = true;
-        }
+
         ammoCountTxt.text = ammoCount + "/6";
     }
 
@@ -232,17 +246,8 @@ public class Gun : MonoBehaviour
         yield return new WaitForEndOfFrame();
         timeToReload -= Time.deltaTime;
         canAim = false;
+        canFire = false;
 
-        if (timeToReload <= 0)
-        {
-            ammoCount = 6;
-            timeToReload = 6;
-            canAim = true;
-        }
-        if (ammoCount == 6 && timeToReload == 6)
-        {
-            startReload = false;
-        }
     }
 
 
