@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.Video;
 public class GameStartAfterIntro : MonoBehaviour
 {
+    public VideoPlayer intro;
     // Start is called before the first frame update
     void Start()
     {
+        intro.SetDirectAudioVolume(0, ButtonClick.audioVolume);
         StartCoroutine(StartGame());
     }
 

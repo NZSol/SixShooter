@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Video;
 
 public class ButtonClick : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class ButtonClick : MonoBehaviour
     public static bool isPaused;
     bool pauseUI;
     CursorLockMode desiredMode;
+
+    public static float audioVolume;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,7 @@ public class ButtonClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         Scene currentScene = SceneManager.GetActiveScene();
         int buildIndex = currentScene.buildIndex;
         string sceneName = currentScene.name;
@@ -69,7 +73,9 @@ public class ButtonClick : MonoBehaviour
     }
     public void SetInGameLevel(float sliderValue)
     {
+        audioVolume = sliderValue;
         gameMixer.SetFloat("InGameSound", Mathf.Log10(sliderValue) * 20);
+
     }
     public void OpenOptions(bool newValue)
     {
