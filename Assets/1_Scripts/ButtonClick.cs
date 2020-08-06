@@ -19,6 +19,7 @@ public class ButtonClick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         pauseUI = false;
         optionsPanel.SetActive(false);
         pauseMenu.SetActive(false);
@@ -31,19 +32,24 @@ public class ButtonClick : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         int buildIndex = currentScene.buildIndex;
         string sceneName = currentScene.name;
-        if(pauseMenu == true)
+        if(pauseMenu == true || buildIndex == 0)
         {
             Cursor.visible = true;
         }
-        else
+        if (buildIndex == 0)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        if(buildIndex == 2 && !pauseUI)
         {
             Cursor.visible = false;
         }
         if (buildIndex == 2 && Input.GetKeyDown(KeyCode.Escape))
         {
+
+            Cursor.lockState = CursorLockMode.Confined;
             TimeManager.GamePause = !TimeManager.GamePause;
             pauseMenu.SetActive(false);
-            Cursor.visible = false;
             //Debug.Log("Work");
             //TimeManager.endSlow = false;
             //Time.timeScale = 0;
@@ -67,6 +73,7 @@ public class ButtonClick : MonoBehaviour
     }
     public void OpenOptions(bool newValue)
     {
+        Cursor.visible = true;
         optionsPanel.SetActive(newValue);
 
     }
@@ -126,27 +133,27 @@ public class ButtonClick : MonoBehaviour
         if(pauseUI == true)
         {
             pauseMenu.SetActive(true);
-            desiredMode = CursorLockMode.None;
-            {
-                Cursor.lockState = desiredMode;
-            }
             //make time pause
         }
         if (pauseUI == false)
         {
-            desiredMode = CursorLockMode.Confined;
             pauseMenu.SetActive(false);
 
         }
     }
     public void ResumeButton()
     {
-        desiredMode = CursorLockMode.Confined;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         isPaused = !isPaused;
         TimeManager.GamePause = !TimeManager.GamePause;
         pauseMenu.SetActive(false);
         pauseUI = !pauseUI;
         PauseUI();
+    }
+    public void Invert()
+    {
+        CamCtrl.YInversion = !CamCtrl.YInversion;
     }
 
 }

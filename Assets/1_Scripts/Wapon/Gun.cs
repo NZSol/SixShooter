@@ -212,6 +212,7 @@ public class Gun : MonoBehaviour
         if (ammoCount <= 5)
         {
             ammoCount++;
+            StartCoroutine(enableShoot());
         }
         if (ammoCount == 6)
         {
@@ -222,7 +223,13 @@ public class Gun : MonoBehaviour
         }
 
     }
-
+    IEnumerator enableShoot()
+    {
+        yield return new WaitForSeconds(0.1f);
+        canFire = true;
+        canAim = true;
+        StopCoroutine(enableShoot());
+    }
 
     //Ammo check
     void CheckAmmo()
@@ -244,6 +251,7 @@ public class Gun : MonoBehaviour
         timeToReload -= Time.deltaTime;
         canAim = false;
         canFire = false;
+
 
     }
 
