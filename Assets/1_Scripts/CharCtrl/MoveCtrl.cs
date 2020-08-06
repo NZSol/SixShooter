@@ -40,14 +40,15 @@ public class MoveCtrl : MonoBehaviour
     [SerializeField] float multiplier;
 
     //Ladder Stuff
-    bool ladderBool;
+    bool ladderBool = false;
     [SerializeField] Camera cam;
     public float range = 1;
     public float rangeFromLadder;
     public float climbSpeed;
     public GameObject ladder;
+    Vector3 rayDir;
+    float yPos;
 
-    
     public enum States{MoveState, LadderState}
     public States stateEnum;
 
@@ -68,7 +69,7 @@ public class MoveCtrl : MonoBehaviour
     {
         RaycastHit hit;
         Debug.DrawRay(transform.position, cam.transform.forward * range, Color.magenta);
-        if (Physics.Raycast(transform.position, cam.transform.forward, out hit, range, 1 << 12))
+        if (Physics.Raycast(transform.position, cam.transform.forward, out hit, range, 1 << 12) && charCtrl.isGrounded)
         {
             ladder = hit.transform.gameObject;
             stateEnum = States.LadderState;
@@ -78,38 +79,59 @@ public class MoveCtrl : MonoBehaviour
         {
             case States.MoveState:
                 PlayerMove();
+                if (ladderBool == true)
+                {
+                    ladderBool = false;
+                }
                 break;
 
             case States.LadderState:
-                ladderMove();
+                ladderMove(yPos);
+                if(ladderBool == false)
+                {
+                    yPos = transform.position.y;
+                    ladderBool = true;
+                }
                 break;
         }
-
+        if (ladder != null)
+        {
+            rayDir = ladder.transform.position - this.gameObject.transform.position;
+        }
     }
 
-    void ladderMove()
+    void ladderMove(float i)
     {
         //float playerDist = Vector3.Distance(transform.position, ladder.transform.position);
-        print("check");
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, ladder.transform.position, out hit, rangeFromLadder))
+        if(transform.position.y < i)
         {
-            print("hit");
-            Debug.DrawRay(transform.position, ladder.transform.position * rangeFromLadder, Color.white);
-            float vertInput = Input.GetAxis(verticalInputName) * climbSpeed;
-            Vector3 climb = transform.up * vertInput;
-            moveState = climb * Time.deltaTime;
-            transform.position += moveState;
-            print(moveState);
+            stateEnum = States.MoveState;
         }
         else
         {
-            Debug.DrawRay(transform.position, ladder.transform.position * rangeFromLadder, Color.red);
+            if (Physics.Raycast(transform.position, rayDir, out hit, rangeFromLadder, 1 << 12))
+            {
+                Debug.DrawRay(transform.position, rayDir * rangeFromLadder, Color.white);
+                float vertInput = Input.GetAxis(verticalInputName) * climbSpeed;
+                Vector3 climb = transform.up * vertInput;
+                moveState = climb * Time.deltaTime;
+                transform.position += moveState;
+
+                print(climb);
+
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, rayDir * rangeFromLadder, Color.red);
+                stateEnum = States.MoveState;
+            }
         }
     }
 
     void PlayerMove()
     {
+        ladder = null;
         heightY = transform.position.y + offset;
         //timeSlowMult = Mathf.Lerp(timeSlowMin, timeSlowBase, Time.timeScale);
         if (GetComponentInChildren<Gun>().timeSwitch == true && Time.timeScale != 1)
@@ -210,8 +232,6 @@ public class MoveCtrl : MonoBehaviour
             StartCoroutine(Jump());
         }
     }
-
-    
 
     IEnumerator Jump()
     {

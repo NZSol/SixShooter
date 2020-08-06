@@ -560,7 +560,6 @@ MonoBehaviour:
   myCam: {fileID: 3476518271725944924}
   startReload: 0
   ammoCount: 6
-  aimPoint: {fileID: 0}
   muzzFlash: {fileID: 202596611}
   hitParticle: {fileID: 5611993856713497722, guid: 9dd6011e2ee094e468283f40f387acea,
     type: 3}
@@ -570,10 +569,9 @@ MonoBehaviour:
   gunMesh: {fileID: 9088503547630668152}
   timeManager: {fileID: 0}
   timeSwitch: 0
-  GunPosBase: {fileID: 0}
-  gunPosADS: {fileID: 0}
-  CanvasUI: {fileID: 0}
   ammoCountTxt: {fileID: 0}
+  shootClip: {fileID: 1827226128182048838, guid: 099fc8e4b4208d74daaf0ca4662676b6,
+    type: 3}
   mat: {fileID: 2100000, guid: a65889c475dd39842b3c7e84e077326d, type: 2}
   lerpTime: 0
   multiplier: 6
@@ -1363,6 +1361,7 @@ MonoBehaviour:
   playerBody: {fileID: 3476518271141552112}
   normCam: {fileID: 3476518271652888940}
   speedMult: 49.16
+  YInversion: 0
 --- !u!1 &3476518271141552116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,10 +1457,10 @@ BoxCollider:
   m_GameObject: {fileID: 3476518271141552116}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.2422476, z: 1}
-  m_Center: {x: 0, y: -0.3788762, z: 0}
+  m_Size: {x: 0.09, y: 0.85, z: 0.08}
+  m_Center: {x: 0, y: -0.33, z: 0}
 --- !u!114 &3476518271141552079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1533,7 +1532,14 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   multiplier: 100
+  cam: {fileID: 3476518271725944924}
+  range: 0.6
+  rangeFromLadder: 5.8
+  climbSpeed: 3
+  ladder: {fileID: 0}
+  stateEnum: 0
   timeSlowMin: 10
+  angularMultiplier: 1.5
 --- !u!143 &3476518271141552078
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1578,7 +1584,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -1743,7 +1749,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3639
+    m_Bits: 7735
   m_RenderingPath: 3
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
