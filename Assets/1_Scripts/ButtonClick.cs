@@ -44,11 +44,12 @@ public class ButtonClick : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Confined;
         }
-        if(buildIndex == 2 && !pauseUI)
+        if(buildIndex == 0 && !pauseUI)
         {
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
-        if (buildIndex == 2 && Input.GetKeyDown(KeyCode.Escape))
+        if (buildIndex == 0 && Input.GetKeyDown(KeyCode.Escape))
         {
 
             Cursor.lockState = CursorLockMode.Confined;
