@@ -13,7 +13,7 @@ public class ButtonClick : MonoBehaviour
     public GameObject pauseMenu;
     public AudioMixer mixer;
     public AudioMixer gameMixer;
-
+    public static bool isPaused;
     bool pauseUI;
     CursorLockMode desiredMode;
     // Start is called before the first frame update
@@ -31,7 +31,14 @@ public class ButtonClick : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         int buildIndex = currentScene.buildIndex;
         string sceneName = currentScene.name;
-
+        if(pauseMenu == true)
+        {
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.visible = false;
+        }
         if (buildIndex == 2 && Input.GetKeyDown(KeyCode.Escape))
         {
             TimeManager.GamePause = !TimeManager.GamePause;
@@ -41,6 +48,7 @@ public class ButtonClick : MonoBehaviour
             //TimeManager.endSlow = false;
             //Time.timeScale = 0;
             pauseUI = !pauseUI;
+            isPaused = !isPaused;
             PauseUI();
         }
     }
@@ -118,7 +126,6 @@ public class ButtonClick : MonoBehaviour
         if(pauseUI == true)
         {
             pauseMenu.SetActive(true);
-            Cursor.visible = true;
             desiredMode = CursorLockMode.None;
             {
                 Cursor.lockState = desiredMode;
@@ -127,7 +134,6 @@ public class ButtonClick : MonoBehaviour
         }
         if (pauseUI == false)
         {
-            Cursor.visible = false;
             desiredMode = CursorLockMode.Confined;
             pauseMenu.SetActive(false);
 
@@ -135,10 +141,10 @@ public class ButtonClick : MonoBehaviour
     }
     public void ResumeButton()
     {
-
+        desiredMode = CursorLockMode.Confined;
+        isPaused = !isPaused;
         TimeManager.GamePause = !TimeManager.GamePause;
         pauseMenu.SetActive(false);
-        Cursor.visible = false;
         pauseUI = !pauseUI;
         PauseUI();
     }

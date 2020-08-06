@@ -20,7 +20,7 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(shoot))
+        if(Input.GetKeyDown(shoot) && !ButtonClick.isPaused)
         {
             playerAnim.SetBool("Firing", true);
         }

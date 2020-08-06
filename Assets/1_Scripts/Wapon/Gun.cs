@@ -73,7 +73,7 @@ public class Gun : MonoBehaviour
             MoveCtrl.aimSpeedModif = 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && ammoCount >= 0 && canFire == true)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && ammoCount >= 0 && canFire == true && !ButtonClick.isPaused)
         {
             timeToFire = 0;
             ammoCount--;
