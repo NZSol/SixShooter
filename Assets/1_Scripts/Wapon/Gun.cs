@@ -73,7 +73,7 @@ public class Gun : MonoBehaviour
             MoveCtrl.aimSpeedModif = 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && ammoCount >= 0 && canFire == true)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && ammoCount >= 0 && canFire == true && !ButtonClick.isPaused)
         {
             timeToFire = 0;
             ammoCount--;
@@ -212,6 +212,7 @@ public class Gun : MonoBehaviour
         if (ammoCount <= 5)
         {
             ammoCount++;
+            StartCoroutine(enableShoot());
         }
         if (ammoCount == 6)
         {
@@ -222,7 +223,13 @@ public class Gun : MonoBehaviour
         }
 
     }
-
+    IEnumerator enableShoot()
+    {
+        yield return new WaitForSeconds(0.1f);
+        canFire = true;
+        canAim = true;
+        StopCoroutine(enableShoot());
+    }
 
     //Ammo check
     void CheckAmmo()
@@ -244,6 +251,7 @@ public class Gun : MonoBehaviour
         timeToReload -= Time.deltaTime;
         canAim = false;
         canFire = false;
+
 
     }
 
