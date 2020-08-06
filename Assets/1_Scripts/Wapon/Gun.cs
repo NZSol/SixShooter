@@ -115,8 +115,6 @@ public class Gun : MonoBehaviour
             startReload = true;
         }
 
-
-        print(anim.GetBool("ExitTime"));
     }
 
 
@@ -207,7 +205,6 @@ public class Gun : MonoBehaviour
     public void Unlock()
     {
         canFire = true;
-        print("UNLOCK");
     }
 
     public void ReloadBullet()

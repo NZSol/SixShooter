@@ -26,6 +26,8 @@ public class CamCtrl : MonoBehaviour
 
     //TimeManagerStuff
     float timeMult;
+    
+    public bool YInversion;
 
     // Start is called before the first frame update
     void Start()
@@ -67,7 +69,16 @@ public class CamCtrl : MonoBehaviour
     void CameraRotation()
     {
         float mouseX = Input.GetAxis(mouseXInputName) * mouseSensitivity * timeMult;
-        float mouseY = Input.GetAxis(mouseYInputName) * mouseSensitivity * timeMult;
+        float mouseY;
+
+        if(YInversion == false)
+        {
+            mouseY = Input.GetAxis(mouseYInputName) * mouseSensitivity * timeMult;
+        }
+        else
+        {
+            mouseY = -Input.GetAxis(mouseYInputName) * mouseSensitivity * timeMult;
+        }
 
         xAxisClamp += mouseY;
 
