@@ -9,6 +9,7 @@ public class GameStartAfterIntro : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         intro.SetDirectAudioVolume(0, ButtonClick.audioVolume);
         StartCoroutine(StartGame());
     }
@@ -16,10 +17,14 @@ public class GameStartAfterIntro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene(2);
+        }
     }
     IEnumerator StartGame()
     {
+
         yield return new WaitForSeconds(25);
         SceneManager.LoadScene(2);
     }

@@ -16,13 +16,13 @@ public class ButtonClick : MonoBehaviour
     public AudioMixer gameMixer;
     public static bool isPaused;
     bool pauseUI;
-    CursorLockMode desiredMode;
 
     public static float audioVolume;
     // Start is called before the first frame update
     void Start()
     {
-
+        Time.timeScale = 1;
+        isPaused = !isPaused;
         pauseUI = false;
         optionsPanel.SetActive(false);
         pauseMenu.SetActive(false);
@@ -40,16 +40,12 @@ public class ButtonClick : MonoBehaviour
         {
             Cursor.visible = true;
         }
-        if (buildIndex == 0)
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-        }
-        if(buildIndex == 0 && !pauseUI)
+
+        if(buildIndex == 2 && !pauseUI)
         {
             Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
         }
-        if (buildIndex == 0 && Input.GetKeyDown(KeyCode.Escape))
+        if (buildIndex == 2 && Input.GetKeyDown(KeyCode.Escape))
         {
 
             Cursor.lockState = CursorLockMode.Confined;
@@ -87,6 +83,7 @@ public class ButtonClick : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
+
     }
     public void HandleInputData(int val)
     {
@@ -162,5 +159,12 @@ public class ButtonClick : MonoBehaviour
     {
         CamCtrl.YInversion = !CamCtrl.YInversion;
     }
-
+    public void QuitToDesktop()
+    {
+        Application.Quit();
+    }
+    public void QuitToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
