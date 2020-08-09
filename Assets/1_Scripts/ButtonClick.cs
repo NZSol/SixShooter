@@ -4,16 +4,18 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.Video;
+using DigitalRuby.SimpleLUT;
 
 public class ButtonClick : MonoBehaviour
 {
     public AudioSource audioSource;
     public AudioClip buttonClick;
     public GameObject optionsPanel;
+    public GameObject controls;
     public GameObject pauseMenu;
     public AudioMixer mixer;
     public AudioMixer gameMixer;
+    public SimpleLUT simpleL;
     public static bool isPaused;
     bool pauseUI;
 
@@ -25,6 +27,7 @@ public class ButtonClick : MonoBehaviour
         isPaused = !isPaused;
         pauseUI = false;
         optionsPanel.SetActive(false);
+        controls.SetActive(false);
         pauseMenu.SetActive(false);
         
     }
@@ -73,6 +76,22 @@ public class ButtonClick : MonoBehaviour
         audioVolume = sliderValue;
         gameMixer.SetFloat("InGameSound", Mathf.Log10(sliderValue) * 20);
 
+    }
+    public void BrightnessAdjuster(float sliderValue)
+    {
+        simpleL.Brightness = sliderValue;
+    }
+    public void SharpnessAdjuster(float sliderValue)
+    {
+        simpleL.Sharpness = sliderValue;
+    }
+    public void ContrastAdjuster(float sliderValue)
+    {
+        simpleL.Contrast = sliderValue;
+    }
+    public void SatAdjuster(float sliderValue)
+    {
+        simpleL.Saturation = sliderValue;
     }
     public void OpenOptions(bool newValue)
     {
@@ -159,6 +178,12 @@ public class ButtonClick : MonoBehaviour
     {
         CamCtrl.YInversion = !CamCtrl.YInversion;
     }
+    public void OpenControls(bool newValue)
+    {
+        Cursor.visible = true;
+        controls.SetActive(newValue);
+
+    }
     public void QuitToDesktop()
     {
         Application.Quit();
@@ -167,4 +192,5 @@ public class ButtonClick : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
 }
