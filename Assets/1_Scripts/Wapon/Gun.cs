@@ -195,7 +195,7 @@ public class Gun : MonoBehaviour
             canFire = true;
             StartCoroutine(CheckFire());
         }
-        print("test");
+
     }
     IEnumerator CheckFire()
     {
@@ -205,6 +205,7 @@ public class Gun : MonoBehaviour
     public void Unlock()
     {
         canFire = true;
+        print("hit");
     }
 
     public void ReloadBullet()
