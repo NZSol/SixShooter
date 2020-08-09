@@ -49,7 +49,6 @@ public class PlayerAnimation : MonoBehaviour
         {
             playerAnim.SetBool("Reloading", true);
             playerAnim.SetBool("Firing", false);
-            print("hitting");
         }
         else
         {
