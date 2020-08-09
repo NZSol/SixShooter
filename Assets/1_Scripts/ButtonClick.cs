@@ -5,9 +5,14 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using TMPro;
 using DigitalRuby.SimpleLUT;
+using UnityEngine.Rendering.PostProcessing;
 
 public class ButtonClick : MonoBehaviour
 {
+    public PostProcessVolume ppMainV;
+    AmbientOcclusion ao;
+    Bloom bloom;
+    ScreenSpaceReflections ssr;
     public AudioSource audioSource;
     public AudioClip buttonClick;
     public GameObject optionsPanel;
@@ -23,6 +28,10 @@ public class ButtonClick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PostProcessVolume volume = ppMainV.GetComponent<PostProcessVolume>();
+        volume.profile.TryGetSettings(out ao);
+        volume.profile.TryGetSettings(out bloom);
+        volume.profile.TryGetSettings(out ssr);
         Time.timeScale = 1;
         isPaused = !isPaused;
         pauseUI = false;
@@ -97,6 +106,31 @@ public class ButtonClick : MonoBehaviour
     {
         Cursor.visible = true;
         optionsPanel.SetActive(newValue);
+
+    }
+    public void AmbientOcclusion(float sliderValue)
+    {
+        ao.intensity.value = sliderValue;
+    }
+    public void BloomAmount(float sliderValue)
+    {
+        bloom.intensity.value = sliderValue;
+    }
+    public void SSR(int value)
+    {
+        if(value == 0)
+        {
+            ssr.preset.value = ScreenSpaceReflectionPreset.Low;
+        }
+        if(value == 1)
+        {
+            ssr.preset.value = ScreenSpaceReflectionPreset.Medium;
+        }
+        if (value == 2)
+        {
+            ssr.preset.value = ScreenSpaceReflectionPreset.High;
+        }
+
 
     }
     public void PlayGame()
