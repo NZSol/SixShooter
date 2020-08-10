@@ -17,12 +17,14 @@ EnterCafeteriaTrigger
 ExitCafeteriaTrigger
 EnterPuzzleRoomTrigger
 ExitPuzzleRoomTrigger
-SecretRoomTrigger
+
 EnterPlatformRoomTrigger
 ExitPlatformRoomTrigger
 EnterComsTrigger
 ExitComsTigger
 EnterLockerTrigger
+
+SecretRoomTrigger
 EnterEndZoneTrigger
 
      */
@@ -43,18 +45,54 @@ EnterEndZoneTrigger
         switch (other.gameObject.name)
         {
             case "LadderTrigger":
-
+                Debug.Log(other.gameObject.name);
             break;
-            case "Ladder":
+            case "JumpingPuzzleTrigger":
+                Debug.Log(other.gameObject.name);
+                break;
+            case "FallingJumpingPuzzleTrigger":
 
                 break;
-            case "Ladder":
+            case "BridgeTrigger":
 
                 break;
-            case "Ladder":
+            case "EnterOfficeTrigger":
 
                 break;
-            case "Ladder":
+            case "ExitOfficeTrigger":
+
+                break;
+            case "EnterCafeteriaTrigger":
+
+                break;
+            case "ExitCafeteriaTrigger":
+
+                break;
+            case "EnterPuzzleRoomTrigger":
+
+                break;
+            case "ExitPuzzleRoomTrigger":
+
+                break;
+            case "EnterPlatformRoomTrigger":
+
+                break;
+            case "ExitPlatformRoomTrigger":
+
+                break;
+            case "EnterComsTrigger":
+
+                break;
+            case "ExitComsTigger":
+
+                break;
+            case "EnterLockerTrigger":
+
+                break;
+            case "SecretRoomTrigger":
+
+                break;
+            case "EnterEndZoneTrigger":
 
                 break;
 
