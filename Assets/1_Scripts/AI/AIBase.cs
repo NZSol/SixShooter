@@ -95,6 +95,7 @@ public class AIBase : MonoBehaviour
 
     Collider[] colliders;
     public List<Collider> RagdollParts = new List<Collider>();
+    public List<Collider> ColliderParts = new List<Collider>();
 
     void enableBones()
     {
@@ -113,18 +114,18 @@ public class AIBase : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            if (col.gameObject != this.gameObject)
+            if (col.gameObject == this.gameObject || col.tag == "listDontAdd" || col.tag == "critPoint" || col.tag == "regDamage" || col.material == null)
+            {
+                ColliderParts.Add(col);
+            }
+            else
             {
                 RagdollParts.Add(col);
-            }
-            if (col.tag == "listDontAdd" || col.tag == "critPoint" || col.tag == "regDamage")
-            {
-                RagdollParts.Remove(col);
             }
         }
 
         colliders = RagdollParts.ToArray();
-        foreach (Collider col in colliders)
+        foreach (Collider col in RagdollParts)
         {
             col.enabled = false;
         }
