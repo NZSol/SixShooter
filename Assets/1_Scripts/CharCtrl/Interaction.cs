@@ -7,6 +7,7 @@ public class Interaction : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] KeyCode Interact;
     Vector3 forward;
+
     // Start is called before the first frame update
     void Start()
     {

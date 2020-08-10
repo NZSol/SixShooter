@@ -24,6 +24,8 @@ public class ButtonClick : MonoBehaviour
     public static bool isPaused = false;
     bool pauseUI;
 
+
+
     public static float audioVolume;
     // Start is called before the first frame update
     void Start()
@@ -217,6 +219,13 @@ public class ButtonClick : MonoBehaviour
         controls.SetActive(newValue);
 
     }
+
+
+
+
+
+
+
     public void QuitToDesktop()
     {
         Application.Quit();

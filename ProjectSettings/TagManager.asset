@@ -10,6 +10,10 @@ TagManager:
   - extendBridge
   - door
   - listDontAdd
+  - getaway
+  - newspaper
+  - diary
+  - injury
   layers:
   - Default
   - TransparentFX
