@@ -21,7 +21,7 @@ public class ButtonClick : MonoBehaviour
     public AudioMixer mixer;
     public AudioMixer gameMixer;
     public SimpleLUT simpleL;
-    public static bool isPaused;
+    public static bool isPaused = false;
     bool pauseUI;
 
     public static float audioVolume;
@@ -33,12 +33,11 @@ public class ButtonClick : MonoBehaviour
         volume.profile.TryGetSettings(out bloom);
         volume.profile.TryGetSettings(out ssr);
         Time.timeScale = 1;
-        isPaused = !isPaused;
         pauseUI = false;
         optionsPanel.SetActive(false);
         controls.SetActive(false);
         pauseMenu.SetActive(false);
-        
+        print("test");
     }
 
     // Update is called once per frame

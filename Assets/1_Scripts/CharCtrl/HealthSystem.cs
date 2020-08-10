@@ -24,9 +24,10 @@ public class HealthSystem : MonoBehaviour
     void Update()
     {
         UIUpdate();
-        if (health <= 0)
+        if(health <= 0)
         {
             EndGame();
+            TimeManager.PauseMenu();
         }
     }
 
@@ -42,7 +43,7 @@ public class HealthSystem : MonoBehaviour
     void EndGame()
     {
         EndGameUI.SetActive(true);
-        SceneLoader.GetComponent<AsyncLoadFunc>().loadFunc();
+        //SceneLoader.GetComponent<AsyncLoadFunc>().loadFunc();
     }
 
     void UIUpdate()
