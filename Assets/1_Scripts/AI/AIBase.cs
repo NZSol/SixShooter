@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class AIBase : MonoBehaviour
 {
-
     GameObject player;
     public Animator animCtrl;
 
@@ -71,6 +70,7 @@ public class AIBase : MonoBehaviour
         health = 10;
         spawnScript = GetComponentInParent<Spawning>();
         baseAttackRange = attackRange;
+        disableBones();
     }
 
     private void Update()
@@ -87,7 +87,46 @@ public class AIBase : MonoBehaviour
         if (health <= 0)
         {
             spawnScript.aiCharList.Remove(gameObject);
-            Destroy(gameObject);
+            Destroy(GetComponent<Animator>());
+            enableBones();
+        }
+    }
+
+
+    Collider[] colliders;
+    public List<Collider> RagdollParts = new List<Collider>();
+
+    void enableBones()
+    {
+        colliders = this.gameObject.GetComponentsInChildren<Collider>();
+
+        foreach (Collider col in colliders)
+        {
+            col.enabled = true;
+        }
+        
+    }
+
+    void disableBones()
+    {
+        colliders = this.gameObject.GetComponentsInChildren<Collider>();
+
+        foreach (Collider col in colliders)
+        {
+            if (col.gameObject != this.gameObject)
+            {
+                RagdollParts.Add(col);
+            }
+            if (col.tag == "listDontAdd" || col.tag == "critPoint" || col.tag == "regDamage")
+            {
+                RagdollParts.Remove(col);
+            }
+        }
+
+        colliders = RagdollParts.ToArray();
+        foreach (Collider col in colliders)
+        {
+            col.enabled = false;
         }
     }
 
