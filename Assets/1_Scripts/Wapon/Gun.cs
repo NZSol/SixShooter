@@ -117,7 +117,7 @@ public class Gun : MonoBehaviour
 
     }
 
-
+    GameObject hitObj;
     //when ammo above 0, shoot ray, if hit target, spawn particle effect on hit pos
     //If ammo below 0, start reload
     void Shoot()
@@ -131,15 +131,9 @@ public class Gun : MonoBehaviour
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.green);
                 print("hit" + hit.transform.name);
                 Instantiate(bloodParticle, hit.point, transform.rotation);
-                
-                if(hit.transform.tag == "critPoint")
-                {
-                    hit.transform.gameObject.GetComponentInParent<AIBase>().Damage(i: 10);
-                }
-                else if (hit.transform.tag == "regDamage")
-                {
-                    hit.transform.gameObject.GetComponentInParent<AIBase>().Damage(i: 4);
-                }
+
+                hitObj = hit.transform.gameObject;
+                runDamageMethod();
             }
             else if (Physics.Raycast(ray, out hit, range))
             {
@@ -160,15 +154,11 @@ public class Gun : MonoBehaviour
                     //gameManager.EndGame();
                     print("GAME ENDING");
                 }
-                else
-                {
-                    print("missed");
-                }
             }
             else
             {
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.red);
-                print("missed");
+                print("missedShot");
             }
         }
         else
@@ -185,6 +175,19 @@ public class Gun : MonoBehaviour
         StopCoroutine(MuzzleFlash());
     }
 
+    void runDamageMethod()
+    {
+        if(hitObj.tag == "critPoint")
+        {
+            hitObj.GetComponentInParent<AIBase>().Damage(i: 10);
+            print("hitCrit");
+        }
+        else if(hitObj.tag == "regDamage")
+        {
+            hitObj.GetComponentInParent<AIBase>().Damage(i: 4);
+            print("hitBAse");
+        }
+    }
 
     public void RecoilFinish()
     {
@@ -195,7 +198,7 @@ public class Gun : MonoBehaviour
             canFire = true;
             StartCoroutine(CheckFire());
         }
-        print("test");
+
     }
     IEnumerator CheckFire()
     {
@@ -205,6 +208,7 @@ public class Gun : MonoBehaviour
     public void Unlock()
     {
         canFire = true;
+        print("hit");
     }
 
     public void ReloadBullet()

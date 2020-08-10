@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AIAttack : MonoBehaviour
 {
+    [SerializeField] Collider[] colArray;
     attackingScript attack;
     GameObject Player;
     public bool ExitState;
@@ -22,17 +23,22 @@ public class AIAttack : MonoBehaviour
 
     public void DoCoroutine()
     {
-        print("CheckingCoroutine");
         StartCoroutine(PlayerAttack());
     }
 
     public IEnumerator PlayerAttack()
     {
         yield return new WaitForSeconds(3);
-        GetComponent<BoxCollider>().enabled = true;
-        //Player.GetComponent<HealthSystem>().healthReduce(i: 15);
+        foreach (Collider col in colArray)
+        {
+            col.enabled = true;
+        }
+        Player.GetComponent<HealthSystem>().healthReduce(i: 15);
         yield return new WaitForSeconds(0.5f);
-        GetComponent<BoxCollider>().enabled = false;
+        foreach (Collider col in colArray)
+        {
+            col.enabled = false;
+        }
         ExitState = true;
         MasterAI.resetAtkRange();
     }
@@ -45,5 +51,13 @@ public class AIAttack : MonoBehaviour
             Player.GetComponent<HealthSystem>().healthReduce(i: 15);
         }
     }
+
+
+
+
+
+
+
+
 
 }

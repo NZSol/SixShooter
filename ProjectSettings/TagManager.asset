@@ -9,6 +9,7 @@ TagManager:
   - regDamage
   - extendBridge
   - door
+  - listDontAdd
   layers:
   - Default
   - TransparentFX

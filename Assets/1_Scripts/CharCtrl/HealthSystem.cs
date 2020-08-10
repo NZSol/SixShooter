@@ -8,7 +8,8 @@ public class HealthSystem : MonoBehaviour
 
     [SerializeField] int health;
 
-    GameObject EndGameUI;
+    [SerializeField] GameObject EndGameUI;
+    [SerializeField] GameObject SceneLoader;
 
     [SerializeField] Slider HealthMeter;
 
@@ -16,12 +17,18 @@ public class HealthSystem : MonoBehaviour
     void Start()
     {
         health = 100;
+        EndGameUI.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         UIUpdate();
+        if(health <= 0)
+        {
+            EndGame();
+            TimeManager.PauseMenu();
+        }
     }
 
     public void healthReduce (int i)
@@ -36,7 +43,7 @@ public class HealthSystem : MonoBehaviour
     void EndGame()
     {
         EndGameUI.SetActive(true);
-
+        //SceneLoader.GetComponent<AsyncLoadFunc>().loadFunc();
     }
 
     void UIUpdate()
