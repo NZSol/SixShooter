@@ -195,6 +195,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cbc8851220b4194ca8a2e6b2aa0de3d, type: 3}
+--- !u!1 &720081321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 720081323}
+  - component: {fileID: 720081322}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &720081322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720081321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0d84eb9e78fa7429e96c0ec11c8392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &720081323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720081321}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.47345474, y: 1.7254729, z: -0.2765866}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &789681184 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8063569648324965276, guid: 1a2af196126afd340a01f66c165acb71,
+    type: 3}
+  m_PrefabInstance: {fileID: 8063569648545710946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1100820129 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1535367096969933537, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
@@ -635,7 +684,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 13.490001, y: 166.585, z: 67.604004}
 --- !u!1 &1711083444
 GameObject:
@@ -939,6 +988,11 @@ PrefabInstance:
       propertyPath: ammoCountTxt
       value: 
       objectReference: {fileID: 8127554079628025680}
+    - target: {fileID: 8280404505200060898, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: timeManager
+      value: 
+      objectReference: {fileID: 720081322}
     - target: {fileID: 8202146093969836031, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: HealthMeter
@@ -2219,7 +2273,7 @@ RectTransform:
   - {fileID: 8127554080814354159}
   - {fileID: 2101954927}
   - {fileID: 583250773}
-  - {fileID: 892842238}
+  - {fileID: 789681184}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
