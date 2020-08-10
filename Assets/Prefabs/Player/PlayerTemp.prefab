@@ -514,7 +514,7 @@ Transform:
   m_GameObject: {fileID: 1535367096969933537}
   m_LocalRotation: {x: -0.0029170925, y: 0.70869124, z: -0.0030608492, w: 0.70550615}
   m_LocalPosition: {x: -0.06, y: 1.68, z: 4.67}
-  m_LocalScale: {x: 17, y: 17, z: 24}
+  m_LocalScale: {x: 17, y: 17, z: 17}
   m_Children:
   - {fileID: 7379255215394476677}
   - {fileID: 1250470352081605911}
@@ -1599,6 +1599,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  EndGameUI: {fileID: 0}
+  SceneLoader: {fileID: 0}
   HealthMeter: {fileID: 0}
 --- !u!1 &3476518271652888941
 GameObject:

@@ -23,6 +23,7 @@ public class PlayerAnimation : MonoBehaviour
         if(Input.GetKeyDown(shoot) && !ButtonClick.isPaused)
         {
             playerAnim.SetBool("Firing", true);
+            
         }
 
         if (Input.GetAxis(VertInput) != 0 || Input.GetAxis(HorizInput) != 0)
@@ -47,6 +48,7 @@ public class PlayerAnimation : MonoBehaviour
 
         if (GetComponent<Gun>().startReload == true)
         {
+           
             playerAnim.SetBool("Reloading", true);
             playerAnim.SetBool("Firing", false);
         }
