@@ -46,6 +46,7 @@ EnterEndZoneTrigger
         {
             case "LadderTrigger":
                 Debug.Log(other.gameObject.name);
+                Destroy(other.gameObject);
             break;
             case "JumpingPuzzleTrigger":
                 Debug.Log(other.gameObject.name);
