@@ -22,7 +22,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         if(Input.GetKeyDown(shoot) && !ButtonClick.isPaused)
         {
-            playerAnim.SetBool("Firing", true);
+            playerAnim.SetTrigger("Firing");
             
         }
 
@@ -50,7 +50,7 @@ public class PlayerAnimation : MonoBehaviour
         {
            
             playerAnim.SetBool("Reloading", true);
-            playerAnim.SetBool("Firing", false);
+            
         }
         else
         {
