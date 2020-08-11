@@ -35,7 +35,7 @@ public class EnemySoundEvents : MonoBehaviour
 
     public void WalkSound()
     {
-        //walkAudioS.PlayOneShot(walk);
-        //walkAudioS.volume = 1.0f;
+        walkAudioS.PlayOneShot(walk);
+        walkAudioS.volume = 1.0f;
     }
 }

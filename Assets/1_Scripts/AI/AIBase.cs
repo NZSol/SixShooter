@@ -81,7 +81,6 @@ public class AIBase : MonoBehaviour
         HealthCheck();
 
 
-        print(health);
     }
 
     void HealthCheck()
