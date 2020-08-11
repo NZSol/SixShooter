@@ -63,7 +63,7 @@ public class Gun : MonoBehaviour
     void Update()
     {
         AccesoryFunction();
-
+        print(hitObj);
 
         if (aiming == true)
         {
@@ -80,7 +80,10 @@ public class Gun : MonoBehaviour
             ammoCount--;
             canFire = false;
             anim.SetBool("ExitTime", false);
+            muzzFlash.SetActive(true);
+            StartCoroutine(MuzzleFlashOff());
             muzzleflash.Play();
+
             Shoot();
 
             if (timeSwitch == true)
@@ -129,10 +132,10 @@ public class Gun : MonoBehaviour
             if (Physics.Raycast(ray, out hit, range, 1 << 10))
             {
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.green);
+                hitObj = hit.transform.gameObject;
                 print("hit" + hit.transform.name);
                 Instantiate(bloodParticle, hit.point, transform.rotation);
 
-                hitObj = hit.transform.gameObject;
                 runDamageMethod();
             }
             else if (Physics.Raycast(ray, out hit, range))
@@ -167,8 +170,12 @@ public class Gun : MonoBehaviour
         }
     }
 
-   
-    
+
+        IEnumerator MuzzleFlashOff()
+        {
+            yield return new WaitForSeconds(0.15f);
+            muzzFlash.SetActive(false);
+        }
 
     void runDamageMethod()
     {

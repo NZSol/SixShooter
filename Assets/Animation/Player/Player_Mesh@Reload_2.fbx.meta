@@ -59,7 +59,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.00297619
+      - time: 0.035714284
         functionName: ReloadSound
         data: 
         objectReferenceParameter: {instanceID: 0}
