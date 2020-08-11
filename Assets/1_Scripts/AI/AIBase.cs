@@ -88,7 +88,7 @@ public class AIBase : MonoBehaviour
         {
             spawnScript.aiCharList.Remove(gameObject);
             Destroy(GetComponent<Animator>());
-            enableBones();
+            enableRagdollBones();
         }
     }
 
@@ -113,10 +113,11 @@ public class AIBase : MonoBehaviour
                 RagdollParts.Add(col);
             }
         }
+        new WaitForSeconds(2);
         disableBones();
     }
 
-    void enableBones()
+    void enableRagdollBones()
     {
         foreach (Collider col in RagdollParts)
         {
@@ -145,8 +146,12 @@ public class AIBase : MonoBehaviour
 
     public void Damage(int i)
     {
+        print(i + " damaging AI");
         health -= i;
-        animCtrl.SetBool("Shot", true);
+        if (animCtrl.GetBool("Shot") == false || animCtrl.GetBool("Following") == false)
+        {
+            animCtrl.SetBool("Shot", true);
+        }
     }
 
     public void resetAtkRange()
