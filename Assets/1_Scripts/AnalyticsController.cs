@@ -43,6 +43,10 @@ EnterEndZoneTrigger
     }
     private void OnTriggerEnter(Collider other)
     {
+
+#if !UNITY_EDITOR
+
+
         switch (other.gameObject.name)
         {
             case "LadderTrigger":
@@ -101,5 +105,6 @@ EnterEndZoneTrigger
                 break;
 
         }
+#endif
     }
 }
