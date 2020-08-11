@@ -29,7 +29,7 @@ public class PlayerSoundEvents : MonoBehaviour
         index = Random.Range(0, walkAudioS.Length);
 
         walkAudioS[index].PlayOneShot(walkAudioS[index].clip);
-        walkAudioS[index].volume = 0.5f;
+        walkAudioS[index].volume = 1.5f;
         Debug.Log(index);
     }
 

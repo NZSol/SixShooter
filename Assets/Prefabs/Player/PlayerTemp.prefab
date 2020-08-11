@@ -284,7 +284,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 40
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5931,8 +5931,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535367096969933537}
-  m_LocalRotation: {x: -0.0029170925, y: 0.70869124, z: -0.0030608492, w: 0.70550615}
-  m_LocalPosition: {x: -0.06, y: 1.68, z: 4.67}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.04, y: 1.67, z: 4.07}
   m_LocalScale: {x: 17, y: 17, z: 17}
   m_Children:
   - {fileID: 7379255215394476677}
@@ -5944,7 +5944,7 @@ Transform:
   - {fileID: 673279444}
   m_Father: {fileID: 3476518270706910874}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0.013, y: 90.258, z: -0.48400003}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!95 &5593437907256176008
 Animator:
   serializedVersion: 3
@@ -6026,15 +6026,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10defe66dd46287408f385ec3421ea3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reload: {fileID: 8300000, guid: 6fad2dd4ed3f7af45a3c1347bf18707b, type: 3}
-  firing: {fileID: 8300000, guid: 6956060950166c147868f9dcd2307340, type: 3}
-  transitionTo: {fileID: 8300000, guid: d581758f642dc9b4d9587b6605f6a084, type: 3}
-  transitionFrom: {fileID: 8300000, guid: 2b20ead89a9a7d94198cb452c4a2a47c, type: 3}
   playerAudioS: {fileID: 630582023}
   walkAudioS:
   - {fileID: 1503164808}
   - {fileID: 1492893775}
   - {fileID: 1822888899}
+  reload: {fileID: 8300000, guid: 6fad2dd4ed3f7af45a3c1347bf18707b, type: 3}
+  firing: {fileID: 8300000, guid: 68185f99479637049ae2a5a4066bc0b0, type: 3}
+  transitionTo: {fileID: 8300000, guid: d581758f642dc9b4d9587b6605f6a084, type: 3}
+  transitionFrom: {fileID: 8300000, guid: 2b20ead89a9a7d94198cb452c4a2a47c, type: 3}
 --- !u!1 &1633461734372774679
 GameObject:
   m_ObjectHideFlags: 0
@@ -6820,6 +6820,7 @@ GameObject:
   - component: {fileID: 1173102720}
   - component: {fileID: 3413981699558000640}
   - component: {fileID: 6185740921976923015}
+  - component: {fileID: 179340172}
   m_Layer: 0
   m_Name: PlayerTemp
   m_TagString: Player
@@ -6857,7 +6858,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3476518271141552116}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -7047,6 +7048,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &179340172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3476518271141552116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499c62f8a6c90524bb8e52f177244c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3476518271652888941
 GameObject:
   m_ObjectHideFlags: 0

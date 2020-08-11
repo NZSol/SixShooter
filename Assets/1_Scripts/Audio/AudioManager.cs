@@ -21,7 +21,6 @@ public Sound[] sounds;
     private void Start()
     {
         Play("Ready_Weapon");
-        Play("Ambient_Steps");
     }
 
     public void Play (string name)

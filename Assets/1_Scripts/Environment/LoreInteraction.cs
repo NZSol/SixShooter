@@ -41,18 +41,22 @@ public class LoreInteraction : MonoBehaviour
         if (Input.GetKeyDown(Interact) && other.CompareTag("getaway"))
         {
             GetawayActive = !GetawayActive;
+            FindObjectOfType<AudioManager>().Play("Paper_Pickup");
         }
         if (Input.GetKeyDown(Interact) && other.CompareTag("newspaper"))
         {
             newspaperActive = !newspaperActive;
+            FindObjectOfType<AudioManager>().Play("Paper_Pickup");
         }
         if (Input.GetKeyDown(Interact) && other.CompareTag("injury"))
         {
             InjuryActive = !InjuryActive;
+            FindObjectOfType<AudioManager>().Play("Paper_Pickup");
         }
         if (Input.GetKeyDown(Interact) && other.CompareTag("diary"))
         {
             DiaryActive = !DiaryActive;
+            FindObjectOfType<AudioManager>().Play("Paper_Pickup");
         }
 
     }
