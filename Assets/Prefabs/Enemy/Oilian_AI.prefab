@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 793583882045874290}
   - component: {fileID: 5344216748104860566}
   m_Layer: 10
-  m_Name: R_Knee_J
+  m_Name: R_Knee_Col
   m_TagString: regDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 3190867093801775593}
   - component: {fileID: 7371381880723376922}
   m_Layer: 10
-  m_Name: Claw_Shoulder_J
+  m_Name: Claw_Shoulder_Col
   m_TagString: regDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 7349771385593518244}
   - component: {fileID: 920386236735378339}
   m_Layer: 10
-  m_Name: R_Shoulder_J (1)
+  m_Name: R_Shoulder_Col
   m_TagString: regDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 1021133383523090701}
   - component: {fileID: 7386477516110338142}
   m_Layer: 10
-  m_Name: L_Leg_Top_J (1)
+  m_Name: L_Leg_Top_Col
   m_TagString: regDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 8860060890618212523}
   - component: {fileID: 1053252941871980347}
   m_Layer: 10
-  m_Name: Cube
+  m_Name: Claw_Low_Col
   m_TagString: listDontAdd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 539619856813332371}
   - component: {fileID: 7703961160332198554}
   m_Layer: 10
-  m_Name: R_Elbow_J
+  m_Name: R_Elbow_Col
   m_TagString: regDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 5601118350691684403}
   - component: {fileID: 7734759872457589134}
   m_Layer: 10
-  m_Name: Head_J
+  m_Name: Head_Col
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 5207790001962726442}
   - component: {fileID: 6449873049055658659}
   m_Layer: 10
-  m_Name: L_Wrist_J
+  m_Name: L_Wrist_Col
   m_TagString: regDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 5609564293273255424}
   - component: {fileID: 4323097247075821323}
   m_Layer: 10
-  m_Name: L_Shoulder_J (1)
+  m_Name: L_Shoulder_Col
   m_TagString: regDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -528,7 +528,7 @@ GameObject:
   - component: {fileID: 4938965237145871763}
   - component: {fileID: 7798277678981682578}
   m_Layer: 10
-  m_Name: R_Wrist_J
+  m_Name: R_Wrist_Col
   m_TagString: regDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 6275365713450570043}
   - component: {fileID: 8641157485821961212}
   m_Layer: 10
-  m_Name: L_Elbow_J
+  m_Name: L_Elbow_Col
   m_TagString: regDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -620,7 +620,7 @@ GameObject:
   - component: {fileID: 6815202698929609409}
   - component: {fileID: 950184994378810049}
   m_Layer: 10
-  m_Name: Hip_J (1)
+  m_Name: Hip_Col
   m_TagString: regDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -664,7 +664,7 @@ GameObject:
   - component: {fileID: 5857464621006329004}
   - component: {fileID: 3716526154951530354}
   m_Layer: 10
-  m_Name: Claw_Elbow_J
+  m_Name: Claw_Elbow_Col
   m_TagString: regDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 1420138994137659646}
   - component: {fileID: 8596191388315672090}
   m_Layer: 10
-  m_Name: R_Leg_Top_J (1)
+  m_Name: R_Leg_Top_Col
   m_TagString: regDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -755,7 +755,7 @@ GameObject:
   - component: {fileID: 5054449300936207360}
   - component: {fileID: 8273226223900603164}
   m_Layer: 10
-  m_Name: L_Knee_J
+  m_Name: L_Knee_Col
   m_TagString: regDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -801,7 +801,7 @@ GameObject:
   - component: {fileID: 3849150430995842563}
   - component: {fileID: 5316024950694374179}
   m_Layer: 10
-  m_Name: Spine_02_J
+  m_Name: Spine_02_Col
   m_TagString: regDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -862,7 +862,7 @@ GameObject:
   - component: {fileID: 433619707601003426}
   - component: {fileID: 5367651942941502221}
   m_Layer: 10
-  m_Name: Sphere
+  m_Name: Mouth_Col
   m_TagString: critPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -954,7 +954,7 @@ GameObject:
   - component: {fileID: 2728700725125868400}
   - component: {fileID: 8878790792155396050}
   m_Layer: 10
-  m_Name: Sphere
+  m_Name: Eye_Col
   m_TagString: critPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1046,7 +1046,7 @@ GameObject:
   - component: {fileID: 1176902221180921891}
   - component: {fileID: 7279672467389633897}
   m_Layer: 10
-  m_Name: Cube (1)
+  m_Name: Claw_Up_Col
   m_TagString: listDontAdd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

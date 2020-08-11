@@ -141,6 +141,7 @@ public class AIBase : MonoBehaviour
         foreach (Collider col in RagdollParts)
         {
             col.enabled = false;
+            col.isTrigger = true;
         }
         foreach(Collider col in ColliderParts)
         {

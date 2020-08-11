@@ -121,7 +121,7 @@ public class Gun : MonoBehaviour
 
     }
 
-    GameObject hitObj;
+    public GameObject hitObj;
     //when ammo above 0, shoot ray, if hit target, spawn particle effect on hit pos
     //If ammo below 0, start reload
     void Shoot()
