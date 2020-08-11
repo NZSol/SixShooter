@@ -113,7 +113,12 @@ public class AIBase : MonoBehaviour
                 RagdollParts.Add(col);
             }
         }
-        new WaitForSeconds(2);
+        StartCoroutine(disableRagdollBones());
+    }
+
+    IEnumerator disableRagdollBones()
+    {
+        yield return new WaitForSeconds(2);
         disableBones();
     }
 
