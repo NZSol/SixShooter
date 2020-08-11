@@ -7,12 +7,9 @@ public class Interaction : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] KeyCode Interact;
     Vector3 forward;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool coroutineBool, endCoroutineBool;
+    bool inOil;
+    public bool hitBool;
 
     // Update is called once per frame
     void Update()
@@ -35,5 +32,47 @@ public class Interaction : MonoBehaviour
                 }
             }
         }
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 2))
+        {
+            if (hit.transform.gameObject.layer == 13 && hitBool == false)
+            {
+                hitBool = true;
+                coroutineBool = true;
+                endCoroutineBool = false;
+                inOil = true;
+            }
+            else
+            {
+                inOil = false;
+                endCoroutineBool = true;
+                hitBool = false;
+            }
+            print(hit.transform.gameObject.layer);
+        }
+
+
+        if (coroutineBool == true && endCoroutineBool == false)
+        {
+            coroutineBool = false;
+            StartCoroutine(PlayerDamage());
+        }
+        else
+        {
+            StopCoroutine(PlayerDamage());
+        }
     }
+
+
+    IEnumerator PlayerDamage()
+    {
+        print("checking");
+        do
+        {
+            gameObject.GetComponent<HealthSystem>().healthReduce(i: 5);
+            yield return new WaitForSeconds(2);
+        }
+        while (inOil);
+    }
+
 }
