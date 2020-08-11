@@ -80,15 +80,22 @@ public class AIBase : MonoBehaviour
         CanSeePlayer();
         HealthCheck();
 
+
+        print(health);
     }
 
     void HealthCheck()
     {
         if (health <= 0)
         {
-            spawnScript.aiCharList.Remove(gameObject);
-            Destroy(GetComponent<Animator>());
+            if(spawnScript)
+            {
+                spawnScript.aiCharList.Remove(gameObject);
+            }
             enableRagdollBones();
+            Destroy(animCtrl);
+            Destroy(GetComponent<NavMeshAgent>());
+            Destroy(this);
         }
     }
 

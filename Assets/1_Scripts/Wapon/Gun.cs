@@ -121,7 +121,7 @@ public class Gun : MonoBehaviour
 
     }
 
-    GameObject hitObj;
+    public GameObject hitObj;
     //when ammo above 0, shoot ray, if hit target, spawn particle effect on hit pos
     //If ammo below 0, start reload
     void Shoot()
@@ -132,8 +132,8 @@ public class Gun : MonoBehaviour
             if (Physics.Raycast(ray, out hit, range, 1 << 10))
             {
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.green);
-                hitObj = hit.transform.gameObject;
-                print("hit" + hit.transform.name);
+                hitObj = hit.collider.gameObject;
+
                 Instantiate(bloodParticle, hit.point, transform.rotation);
 
                 runDamageMethod();
@@ -144,10 +144,10 @@ public class Gun : MonoBehaviour
                 Instantiate(hitParticle, hit.point, transform.rotation);
                 if (hit.transform.tag == "Destructible")
                 {
-                    Destroy(hit.transform.gameObject);
+                    Destroy(hit.transform);
                     print("destoryObj");
                 }
-                else if (hit.transform.tag == "extendBridge")
+                else if (hit.transform.tag == "extendBridge" )
                 {
                     Animator anim = hit.transform.gameObject.GetComponentInChildren<Animator>();
                     anim.SetBool("Extend", true);
