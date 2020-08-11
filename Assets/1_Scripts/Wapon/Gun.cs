@@ -80,7 +80,10 @@ public class Gun : MonoBehaviour
             ammoCount--;
             canFire = false;
             anim.SetBool("ExitTime", false);
+            muzzFlash.SetActive(true);
+            StartCoroutine(MuzzleFlashOff());
             muzzleflash.Play();
+
             Shoot();
 
             if (timeSwitch == true)
@@ -167,8 +170,12 @@ public class Gun : MonoBehaviour
         }
     }
 
-   
-    
+
+        IEnumerator MuzzleFlashOff()
+        {
+            yield return new WaitForSeconds(0.15f);
+            muzzFlash.SetActive(false);
+        }
 
     void runDamageMethod()
     {

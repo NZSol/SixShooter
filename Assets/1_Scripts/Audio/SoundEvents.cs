@@ -5,18 +5,17 @@ using UnityEngine;
 
 public class SoundEvents : MonoBehaviour
 {
-    
 
+            
+       
+        public AudioClip reload;
+        public AudioClip firing;
+        public AudioClip transitionTo;
+        public AudioClip transitionFrom;
+
+        
+    public AudioSource playerAudioS;
     public AudioSource[] walkAudioS;
-    public AudioSource reloadAudioS;
-    public AudioClip reload;
-    public AudioSource firingS;
-    public AudioClip firing;
-    public AudioSource transitionToS;
-    public AudioClip transitionTo;
-    public AudioSource transitionFromS;
-    public AudioClip transitionFrom;
-
     int index;
 
 
@@ -33,30 +32,32 @@ public class SoundEvents : MonoBehaviour
         index = Random.Range(0, walkAudioS.Length);
 
         walkAudioS[index].PlayOneShot(walkAudioS[index].clip);
+        walkAudioS[index].volume = 0.5f;
         Debug.Log(index);
     }
 
     public void ReloadSound()
     {
-        reloadAudioS.PlayOneShot(reload);
+        playerAudioS.PlayOneShot(reload);
+        playerAudioS.volume = 1.5f;
     }
 
     public void FiringSound()
     {
-        reloadAudioS.volume = 0.5f;
-        reloadAudioS.PlayOneShot(firing);
+        playerAudioS.volume = 0.5f;
+        playerAudioS.PlayOneShot(firing);
         
     }
 
     public void TransitionToReload()
     {
 
-        transitionToS.PlayOneShot(transitionTo);
+        playerAudioS.PlayOneShot(transitionTo);
     }
 
     public void TransitionFromReload()
     {
 
-        transitionFromS.PlayOneShot(transitionFrom);
+        playerAudioS.PlayOneShot(transitionFrom);
     }
 }
