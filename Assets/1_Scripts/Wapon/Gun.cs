@@ -25,6 +25,7 @@ public class Gun : MonoBehaviour
     //Other
     [SerializeField] GameObject muzzFlash;
     [SerializeField] ParticleSystem hitParticle;
+    [SerializeField] ParticleSystem muzzleflash;
     [SerializeField] ParticleSystem bloodParticle;
     [SerializeField] float speedModifier;
     [SerializeField] GameObject gunMesh;
@@ -73,12 +74,13 @@ public class Gun : MonoBehaviour
             MoveCtrl.aimSpeedModif = 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && ammoCount >= 0 && canFire == true && !ButtonClick.isPaused)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && ammoCount > 0 && canFire == true && !ButtonClick.isPaused)
         {
             timeToFire = 0;
             ammoCount--;
             canFire = false;
             anim.SetBool("ExitTime", false);
+            muzzleflash.Play();
             Shoot();
 
             if (timeSwitch == true)
@@ -111,7 +113,6 @@ public class Gun : MonoBehaviour
         //Manual
         if (ammoCount < 6 && Input.GetKeyDown(KeyCode.R))
         {
-            ammoCount = 0;
             startReload = true;
         }
 
@@ -125,7 +126,6 @@ public class Gun : MonoBehaviour
         RaycastHit hit;
         if (ammoCount > 0)
         {
-            StartCoroutine(MuzzleFlash());
             if (Physics.Raycast(ray, out hit, range, 1 << 10))
             {
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.green);
@@ -167,13 +167,8 @@ public class Gun : MonoBehaviour
         }
     }
 
-    IEnumerator MuzzleFlash()
-    {
-        muzzFlash.SetActive(true);
-        yield return new WaitForSeconds(0.05f);
-        muzzFlash.SetActive(false);
-        StopCoroutine(MuzzleFlash());
-    }
+   
+    
 
     void runDamageMethod()
     {
