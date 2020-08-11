@@ -50,3 +50,9 @@ MonoBehaviour:
     pitch: 1.12
     source: {fileID: 0}
     loop: 0
+  - name: Ambient_Steps
+    clip: {fileID: 8300000, guid: 8af883350e42ea94f9a4c20e1a595a9c, type: 3}
+    volume: 0.2
+    pitch: 1.12
+    source: {fileID: 0}
+    loop: 1
