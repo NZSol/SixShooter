@@ -69,8 +69,8 @@ public class AIBase : MonoBehaviour
         animCtrl = GetComponent<Animator>();
         health = 10;
         spawnScript = GetComponentInParent<Spawning>();
+        populateLists();
         baseAttackRange = attackRange;
-        disableBones();
     }
 
     private void Update()
@@ -97,24 +97,14 @@ public class AIBase : MonoBehaviour
     public List<Collider> RagdollParts = new List<Collider>();
     public List<Collider> ColliderParts = new List<Collider>();
 
-    void enableBones()
+
+    void populateLists()
     {
         colliders = this.gameObject.GetComponentsInChildren<Collider>();
 
         foreach (Collider col in colliders)
         {
-            col.enabled = true;
-        }
-        
-    }
-
-    void disableBones()
-    {
-        colliders = this.gameObject.GetComponentsInChildren<Collider>();
-
-        foreach (Collider col in colliders)
-        {
-            if (col.gameObject == this.gameObject || col.tag == "listDontAdd" || col.tag == "critPoint" || col.tag == "regDamage" || col.material == null)
+            if (col.gameObject == this.gameObject || col.tag == "listDontAdd" || col.tag == "critPoint" || col.tag == "regDamage")
             {
                 ColliderParts.Add(col);
             }
@@ -123,11 +113,32 @@ public class AIBase : MonoBehaviour
                 RagdollParts.Add(col);
             }
         }
+        disableBones();
+    }
 
-        colliders = RagdollParts.ToArray();
+    void enableBones()
+    {
+        foreach (Collider col in RagdollParts)
+        {
+            col.enabled = true;
+        }
+        foreach (Collider col in ColliderParts)
+        {
+            col.enabled = false;
+        }
+
+        
+    }
+
+    void disableBones()
+    {
         foreach (Collider col in RagdollParts)
         {
             col.enabled = false;
+        }
+        foreach(Collider col in ColliderParts)
+        {
+            col.enabled = true;
         }
     }
 
