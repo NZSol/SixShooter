@@ -41,7 +41,7 @@ public class PlayerSoundEvents : MonoBehaviour
 
     public void FiringSound()
     {
-        playerAudioS.volume = 0.5f;
+        playerAudioS.volume = 1f;
         playerAudioS.PlayOneShot(firing);
         
     }
