@@ -24,6 +24,7 @@ public class Interaction : MonoBehaviour
                 if(hit.transform.tag == "door")
                 {
                     hit.transform.gameObject.GetComponent<DoorSwing>().triggered = !hit.transform.gameObject.GetComponent<DoorSwing>().triggered;
+                    FindObjectOfType<AudioManager>().Play("Door");
                 }
                 
                 if(hit.transform.tag == "emit")
