@@ -36,8 +36,24 @@ public class HealthSystem : MonoBehaviour
     public void healthReduce (int i)
     {
         health -= i;
-        damageVignetteAnim.SetTrigger("PlayerHit");
+               
+        int rand = Random.Range(0, 3);
+        if (rand == 0)
+        {
+            cameraShakeAnim.SetTrigger("CameraShake");
+        }
+        else if (rand == 1)
+        {
+            cameraShakeAnim.SetTrigger("CameraShake2");
+        }
+        else if (rand == 2)
+        {
+            cameraShakeAnim.SetTrigger("CameraShake3");
+        }
+
         cameraShakeAnim.SetTrigger("CameraShake");
+        damageVignetteAnim.SetTrigger("PlayerHit");
+
         if (health <= 0)
         {
             EndGame();
