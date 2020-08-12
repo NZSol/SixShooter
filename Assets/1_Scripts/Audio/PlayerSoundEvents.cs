@@ -7,13 +7,14 @@ public class PlayerSoundEvents : MonoBehaviour
 {
     public AudioSource playerAudioS;
     public AudioSource[] walkAudioS;
-
+    public AudioSource[] damagedAudioS;
     public AudioClip reload;
     public AudioClip firing;
     public AudioClip transitionTo;
     public AudioClip transitionFrom;
 
     int walkIndex;
+    int damageIndex;
 
 
 
@@ -44,6 +45,12 @@ public class PlayerSoundEvents : MonoBehaviour
         playerAudioS.volume = 1f;
         playerAudioS.PlayOneShot(firing);
         
+    }
+
+    public void DamagedSound()
+    {
+        damageIndex = Random.Range(0, damagedAudioS.Length);
+        damagedAudioS[damageIndex].PlayOneShot(damagedAudioS[damageIndex].clip);
     }
 
     public void TransitionToReload()

@@ -8,6 +8,8 @@ public class HealthSystem : MonoBehaviour
 
     [SerializeField] int health;
 
+    PlayerSoundEvents damageSoundScript;
+
     [SerializeField] GameObject EndGameUI;
     [SerializeField] GameObject SceneLoader;
 
@@ -20,6 +22,7 @@ public class HealthSystem : MonoBehaviour
     {
         health = 100;
         EndGameUI.SetActive(false);
+        damageSoundScript = GetComponentInChildren<PlayerSoundEvents>();
     }
 
     // Update is called once per frame
@@ -53,6 +56,7 @@ public class HealthSystem : MonoBehaviour
 
         cameraShakeAnim.SetTrigger("CameraShake");
         damageVignetteAnim.SetTrigger("PlayerHit");
+        damageSoundScript.DamagedSound();
 
         if (health <= 0)
         {

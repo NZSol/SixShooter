@@ -100,7 +100,6 @@ public class AIBase : MonoBehaviour
             Destroy(animCtrl);
             if (val < 1)
             {
-                enemyDeathScript.DeathSound();
                 val++;
             }
             Destroy(GetComponent<NavMeshAgent>());
@@ -179,6 +178,7 @@ public class AIBase : MonoBehaviour
         health -= i;
         if (animCtrl.GetBool("Shot") == false || animCtrl.GetBool("Following") == false)
         {
+            enemyDeathScript.DeathSound();
             animCtrl.SetBool("Shot", true);
         }
     }
