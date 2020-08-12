@@ -37,15 +37,24 @@ public class Interaction : MonoBehaviour
                     hit.transform.gameObject.GetComponent<DoorSwing>().triggered = !hit.transform.gameObject.GetComponent<DoorSwing>().triggered;
                     FindObjectOfType<AudioManager>().Play("Door");
                 }
+            }
 
+            if (Input.GetKeyDown(Interact))
+            {
                 if (hit.transform.tag == "endGame" && slideVal <= 5)
                 {
+                    img.enabled = true;
                     slideVal += Time.deltaTime;
                     slide.value = slideVal;
                     if (slideVal > 5)
                     {
                         slideVal = 5;
                     }
+                }
+                else
+                {
+                    slideVal = 0;
+                    img.enabled = false;
                 }
             }
         }
