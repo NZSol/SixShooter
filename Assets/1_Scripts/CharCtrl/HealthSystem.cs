@@ -12,6 +12,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] GameObject SceneLoader;
 
     public Animator damageVignetteAnim;
+    public Animator cameraShakeAnim;
     [SerializeField] Slider HealthMeter;
 
     // Start is called before the first frame update
@@ -36,6 +37,7 @@ public class HealthSystem : MonoBehaviour
     {
         health -= i;
         damageVignetteAnim.SetTrigger("PlayerHit");
+        cameraShakeAnim.SetTrigger("CameraShake");
         if (health <= 0)
         {
             EndGame();
