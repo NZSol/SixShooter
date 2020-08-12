@@ -8,6 +8,9 @@ public class AIBase : MonoBehaviour
     GameObject player;
     public Animator animCtrl;
 
+    EnemySoundEvents enemyDeathScript;
+    
+
     //Line of Sight
     float playerDist;
     float minDetectRange = 10;
@@ -66,6 +69,7 @@ public class AIBase : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
+        enemyDeathScript = GetComponent<EnemySoundEvents>();
         animCtrl = GetComponent<Animator>();
         health = 10;
         spawnScript = GetComponentInParent<Spawning>();
@@ -93,6 +97,7 @@ public class AIBase : MonoBehaviour
             }
             enableRagdollBones();
             Destroy(animCtrl);
+            enemyDeathScript.DeathSound();
             Destroy(GetComponent<NavMeshAgent>());
             Destroy(this);
         }
