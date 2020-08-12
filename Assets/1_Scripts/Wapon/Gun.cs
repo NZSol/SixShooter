@@ -205,7 +205,7 @@ public class Gun : MonoBehaviour
     public void Unlock()
     {
         canFire = true;
-        print("hit");
+        //print("hit");
     }
 
     public void ReloadBullet()

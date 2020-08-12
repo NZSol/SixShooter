@@ -31,7 +31,7 @@ public class PlayerSoundEvents : MonoBehaviour
 
         walkAudioS[walkIndex].PlayOneShot(walkAudioS[walkIndex].clip);
         walkAudioS[walkIndex].volume = 1.5f;
-        Debug.Log(walkIndex);
+        //Debug.Log(walkIndex);
     }
 
     public void ReloadSound()
