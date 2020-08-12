@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LoreInteraction : MonoBehaviour
 {
+    public GameObject interact;
     [SerializeField] KeyCode Interact;
     public GameObject getaway;
     public GameObject newspaper;

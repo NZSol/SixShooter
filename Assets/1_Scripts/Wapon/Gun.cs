@@ -63,7 +63,6 @@ public class Gun : MonoBehaviour
     void Update()
     {
         AccesoryFunction();
-        print(hitObj);
 
         if (aiming == true)
         {
@@ -141,13 +140,15 @@ public class Gun : MonoBehaviour
             {
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.yellow);
                 Instantiate(hitParticle, hit.point, transform.rotation);
-                if (hit.transform.tag == "Destructible")
+                if (hit.collider.tag == "Destructible")
                 {
-                    Destroy(hit.transform);
+                    Destroy(hit.transform.gameObject);
+                    hit.transform.gameObject.GetComponent<Spawning>().EmptyList();
                     print("destoryObj");
                 }
-                else if (hit.transform.tag == "extendBridge" )
+                else if (hit.collider.tag == "extendBridge" )
                 {
+                    print("Bridge");
                     Animator anim = hit.transform.gameObject.GetComponentInChildren<Animator>();
                     anim.SetBool("Extend", true);
                 }

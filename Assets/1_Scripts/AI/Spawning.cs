@@ -98,4 +98,12 @@ public class Spawning : MonoBehaviour
 
     }
 
+    public void EmptyList()
+    {
+        foreach (GameObject AI in aiCharList)
+        {
+            aiCharList.Remove(AI);
+        }
+    }
+
 }
