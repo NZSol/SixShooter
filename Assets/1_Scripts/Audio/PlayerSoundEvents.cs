@@ -13,7 +13,7 @@ public class PlayerSoundEvents : MonoBehaviour
     public AudioClip transitionTo;
     public AudioClip transitionFrom;
 
-    int index;
+    int walkIndex;
 
 
 
@@ -26,11 +26,11 @@ public class PlayerSoundEvents : MonoBehaviour
 
     public void Walk()
     {
-        index = Random.Range(0, walkAudioS.Length);
+        walkIndex = Random.Range(0, walkAudioS.Length);
 
-        walkAudioS[index].PlayOneShot(walkAudioS[index].clip);
-        walkAudioS[index].volume = 1.5f;
-        Debug.Log(index);
+        walkAudioS[walkIndex].PlayOneShot(walkAudioS[walkIndex].clip);
+        walkAudioS[walkIndex].volume = 1.5f;
+        Debug.Log(walkIndex);
     }
 
     public void ReloadSound()
