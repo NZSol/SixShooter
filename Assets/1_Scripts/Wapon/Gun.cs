@@ -187,7 +187,7 @@ public class Gun : MonoBehaviour
         else if(hitObj.tag == "regDamage")
         {
             hitObj.GetComponentInParent<AIBase>().Damage(i: 4);
-            print("hitBAse");
+            print("hitBase");
         }
     }
 
