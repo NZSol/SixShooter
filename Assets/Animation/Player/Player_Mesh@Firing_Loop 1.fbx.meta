@@ -59,8 +59,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
+      - time: 0.00000000102301
         functionName: FiringSound
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.052505966
+        functionName: GunShoot
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
