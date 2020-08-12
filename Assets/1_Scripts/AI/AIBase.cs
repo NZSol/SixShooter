@@ -89,6 +89,7 @@ public class AIBase : MonoBehaviour
 
     void HealthCheck()
     {
+        int val = 0;
         if (health <= 0)
         {
             if(spawnScript)
@@ -97,7 +98,11 @@ public class AIBase : MonoBehaviour
             }
             enableRagdollBones();
             Destroy(animCtrl);
-            enemyDeathScript.DeathSound();
+            if (val < 1)
+            {
+                enemyDeathScript.DeathSound();
+                val++;
+            }
             Destroy(GetComponent<NavMeshAgent>());
             Destroy(this);
         }
@@ -138,6 +143,10 @@ public class AIBase : MonoBehaviour
         foreach (Collider col in RagdollParts)
         {
             col.enabled = true;
+            if (col.GetComponent<Rigidbody>() != null)
+            {
+                col.GetComponent<Rigidbody>().isKinematic = false;
+            }
         }
         foreach (Collider col in ColliderParts)
         {
@@ -152,6 +161,10 @@ public class AIBase : MonoBehaviour
         foreach (Collider col in RagdollParts)
         {
             col.enabled = false;
+            if (col.GetComponent<Rigidbody>() != null)
+            {
+                col.GetComponent<Rigidbody>().isKinematic = true;
+            }
         }
         foreach(Collider col in ColliderParts)
         {
