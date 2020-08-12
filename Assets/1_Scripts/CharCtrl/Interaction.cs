@@ -11,6 +11,7 @@ public class Interaction : MonoBehaviour
     public bool coroutineBool, endCoroutineBool;
     bool inOil;
     public bool hitBool;
+    [SerializeField] float interCheckRange;
 
     //UI
     [SerializeField] Image img;
@@ -27,19 +28,21 @@ public class Interaction : MonoBehaviour
 
         RaycastHit hit;
         forward = cam.transform.forward;
-        Debug.DrawRay(transform.position, forward * 3, Color.cyan);
-        if (Physics.Raycast(transform.position, forward, out hit, 3, 1 << 9))
+        Debug.DrawRay(transform.position, forward * interCheckRange, Color.cyan);
+
+        if (Physics.Raycast(transform.position, forward, out hit, interCheckRange, 1 << 9))
         {
             if (Input.GetKeyDown(Interact))
             {
                 if (hit.transform.tag == "door")
                 {
+                    print("checking");
                     hit.transform.gameObject.GetComponent<DoorSwing>().triggered = !hit.transform.gameObject.GetComponent<DoorSwing>().triggered;
                     FindObjectOfType<AudioManager>().Play("Door");
                 }
             }
 
-            if (Input.GetKeyDown(Interact))
+            if (Input.GetKey(Interact))
             {
                 if (hit.transform.tag == "endGame" && slideVal <= 5)
                 {
@@ -58,7 +61,7 @@ public class Interaction : MonoBehaviour
                 }
             }
         }
-
+        print(Dist);
 
 
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 2))
