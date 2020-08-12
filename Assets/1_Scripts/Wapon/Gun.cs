@@ -78,7 +78,6 @@ public class Gun : MonoBehaviour
             timeToFire = 0;
             ammoCount--;
             canFire = false;
-            anim.SetBool("ExitTime", false);
             muzzFlash.SetActive(true);
             StartCoroutine(MuzzleFlashOff());
             muzzleflash.Play();
