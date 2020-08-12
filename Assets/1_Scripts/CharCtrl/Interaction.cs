@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Interaction : MonoBehaviour
 {
@@ -11,9 +12,19 @@ public class Interaction : MonoBehaviour
     bool inOil;
     public bool hitBool;
 
+    //UI
+    [SerializeField] Image img;
+    [SerializeField] Slider slide;
+    float slideVal;
+    [SerializeField] GameObject bomb;
+    float Dist;
+    [SerializeField] float rangeFromBomb;
+
     // Update is called once per frame
     void Update()
     {
+        Dist = Vector3.Distance(bomb.transform.position, gameObject.transform.position);
+
         RaycastHit hit;
         forward = cam.transform.forward;
         Debug.DrawRay(transform.position, forward * 3, Color.cyan);
@@ -21,18 +32,25 @@ public class Interaction : MonoBehaviour
         {
             if (Input.GetKeyDown(Interact))
             {
-                if(hit.transform.tag == "door")
+                if (hit.transform.tag == "door")
                 {
                     hit.transform.gameObject.GetComponent<DoorSwing>().triggered = !hit.transform.gameObject.GetComponent<DoorSwing>().triggered;
                     FindObjectOfType<AudioManager>().Play("Door");
                 }
-                
-                if(hit.transform.tag == "emit")
+
+                if (hit.transform.tag == "endGame" && slideVal <= 5)
                 {
-                    hit.transform.gameObject.GetComponent<lightFlash>().check = !hit.transform.gameObject.GetComponent<lightFlash>().check;
+                    slideVal += Time.deltaTime;
+                    slide.value = slideVal;
+                    if (slideVal > 5)
+                    {
+                        slideVal = 5;
+                    }
                 }
             }
         }
+
+
 
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 2))
         {
