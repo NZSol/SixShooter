@@ -337,12 +337,23 @@ PrefabInstance:
       propertyPath: dmgRange
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -746239918741016803, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
+        type: 3}
+      propertyPath: damageVignette
+      value: 
+      objectReference: {fileID: 1480061847}
     - target: {fileID: 578541188, guid: c9e0c5ef07527a143ab3ca2b3432dc97, type: 3}
       propertyPath: walkAudioS
       value: 
       objectReference: {fileID: 836413755}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9e0c5ef07527a143ab3ca2b3432dc97, type: 3}
+--- !u!95 &221045300 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3239452259791185407, guid: b0b96510ad999a7449d1d17d1970e578,
+    type: 3}
+  m_PrefabInstance: {fileID: 1835810795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &642055648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -509,6 +520,24 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 17852871}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1480061847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3318921477404753147, guid: b0b96510ad999a7449d1d17d1970e578,
+    type: 3}
+  m_PrefabInstance: {fileID: 1835810795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1480061849 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7692113251802857264, guid: b0b96510ad999a7449d1d17d1970e578,
+    type: 3}
+  m_PrefabInstance: {fileID: 1835810795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480061847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1615448615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -889,10 +918,9 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3806013206658762350, guid: b0b96510ad999a7449d1d17d1970e578,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
+    - target: {fileID: 319797927, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
@@ -993,6 +1021,16 @@ PrefabInstance:
       propertyPath: SceneLoader
       value: 
       objectReference: {fileID: 714338264}
+    - target: {fileID: 3413981699558000640, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: damageVignette
+      value: 
+      objectReference: {fileID: 1480061849}
+    - target: {fileID: 3413981699558000640, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: damageVignetteAnim
+      value: 
+      objectReference: {fileID: 221045300}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
 --- !u!114 &2002909636 stripped
