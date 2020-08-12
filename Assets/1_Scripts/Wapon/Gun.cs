@@ -152,11 +152,6 @@ public class Gun : MonoBehaviour
                     Animator anim = hit.transform.gameObject.GetComponentInChildren<Animator>();
                     anim.SetBool("Extend", true);
                 }
-                else if (hit.transform.tag == "endGame")
-                {
-                    //gameManager.EndGame();
-                    print("GAME ENDING");
-                }
             }
             else
             {
