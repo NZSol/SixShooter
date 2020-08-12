@@ -21,10 +21,14 @@ public class AIBase : MonoBehaviour
     Spawning spawnScript;
 
     int health;
-
+    Vector3 EndPos, endPosDir;
 
     bool CanSeePlayer()
     {
+        if (EndPos != Vector3.zero)
+        {
+            endPosDir = EndPos - transform.position;
+        }
         RaycastHit hit;
         Vector3 rayDir = player.transform.position - transform.position;
         if (Physics.Raycast(transform.position, rayDir, out hit))
@@ -55,6 +59,7 @@ public class AIBase : MonoBehaviour
                 else
                 {
                     Debug.DrawRay(transform.position, rayDir, Color.red);
+                    Debug.DrawRay(transform.position, endPosDir, Color.yellow);
                     animCtrl.SetInteger("ActState", 3);
 
                     return false;
