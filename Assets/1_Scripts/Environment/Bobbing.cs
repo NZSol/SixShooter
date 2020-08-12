@@ -41,6 +41,8 @@ public class Bobbing : MonoBehaviour
         tempPos = posOffset;
         tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * amplitude;
 
+
         transform.position = tempPos;
+
     }
 }
