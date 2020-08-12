@@ -6058,6 +6058,7 @@ MonoBehaviour:
   ammoCountTxt: {fileID: 0}
   shootClip: {fileID: 1827226128182048838, guid: 099fc8e4b4208d74daaf0ca4662676b6,
     type: 3}
+  hitObj: {fileID: 0}
   mat: {fileID: 2100000, guid: a65889c475dd39842b3c7e84e077326d, type: 2}
   lerpTime: 0
   multiplier: 6
@@ -6886,7 +6887,6 @@ GameObject:
   - component: {fileID: 3413981699558000640}
   - component: {fileID: 6185740921976923015}
   - component: {fileID: 179340172}
-  - component: {fileID: 490086787}
   m_Layer: 0
   m_Name: PlayerTemp
   m_TagString: Player
@@ -7097,6 +7097,8 @@ MonoBehaviour:
   health: 100
   EndGameUI: {fileID: 0}
   SceneLoader: {fileID: 0}
+  damageVignetteAnim: {fileID: 0}
+  cameraShakeAnim: {fileID: 0}
   HealthMeter: {fileID: 0}
 --- !u!54 &6185740921976923015
 Rigidbody:
@@ -7126,23 +7128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499c62f8a6c90524bb8e52f177244c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &490086787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3476518271141552116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dac4f5169cea5774a9060e8984a1f947, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Interact: 101
-  getaway: {fileID: 0}
-  newspaper: {fileID: 0}
-  injury: {fileID: 0}
-  diary: {fileID: 0}
 --- !u!1 &3476518271652888941
 GameObject:
   m_ObjectHideFlags: 0
@@ -7229,7 +7214,6 @@ GameObject:
   - component: {fileID: 3476518271725944924}
   - component: {fileID: 3476518271725944925}
   - component: {fileID: 208253837}
-  - component: {fileID: 1396967552}
   m_Layer: 11
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7363,27 +7347,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!114 &1396967552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3476518271725944926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab2fd0b11cfb2fb4ca4ed47adfcc3b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Shader: {fileID: 4800000, guid: 9d7e8f87435780644abb4acdfd72a2f0, type: 3}
-  LookupTexture: {fileID: 0}
-  Amount: 1
-  TintColor: {r: 1, g: 1, b: 1, a: 1}
-  Hue: 0
-  Saturation: 0
-  Brightness: 0
-  Contrast: 0
-  Sharpness: 0.5
 --- !u!1 &3484659879656572864
 GameObject:
   m_ObjectHideFlags: 0
