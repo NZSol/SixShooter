@@ -42,8 +42,9 @@ public class lightFlash : MonoBehaviour
     {
         while (true)
         {
-            check = !check;
+            check = true;
             yield return new WaitForSeconds(Random.Range(flickerMin, flickerMax));
+            check = false;
         }
     }
 
