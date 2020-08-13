@@ -100,6 +100,17 @@ public class Interaction : MonoBehaviour
             img.enabled = false;
         }
 
+        print(slide.value + "slide.Value");
+        print(slideVal + "SlideVal");
+        if(Dist < rangeFromBomb)
+        {
+            img.enabled = true;
+        }
+        else
+        {
+            img.enabled = false;
+        }
+
 
 
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 2))
