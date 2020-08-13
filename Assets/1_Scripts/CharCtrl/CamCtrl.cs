@@ -130,5 +130,10 @@ public class CamCtrl : MonoBehaviour
     {
         normCam.transform.localPosition = CamOrigin + new Vector3(Mathf.Cos(x) * xIntense, Mathf.Sin(x * 2) * yIntense, 0);
     }
+    public void SenseSldier(float sliderValue)
+    {
+        baseSensitivity = sliderValue * 20;
+        mouseSensitivity = sliderValue * 20;
+    }
 
 }

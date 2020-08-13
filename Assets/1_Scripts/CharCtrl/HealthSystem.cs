@@ -121,7 +121,6 @@ public class HealthSystem : MonoBehaviour
     {
         EndGameUI.SetActive(true);
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
         TimeManager.GamePause = true;
         //SceneLoader.GetComponent<AsyncLoadFunc>().loadFunc();
     }
