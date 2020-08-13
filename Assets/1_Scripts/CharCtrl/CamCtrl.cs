@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CamCtrl : MonoBehaviour
 {
+    GameObject Player;
+
     //Camera rotate variables
     [SerializeField] string mouseXInputName, mouseYInputName;
     public float mouseSensitivity;
@@ -32,6 +34,7 @@ public class CamCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.FindWithTag("Player");
         LockCursor();
         xAxisClamp = 0.0f;
         CamOrigin = normCam.transform.localPosition;
@@ -56,7 +59,7 @@ public class CamCtrl : MonoBehaviour
         }
 
         CameraRotation();
-        if (GetComponentInChildren<Gun>().timeSwitch == true && Time.timeScale != 1)
+        if (Player.GetComponentInChildren<Gun>().timeSwitch == true && Time.timeScale != 1)
         {
             mouseSensitivity = Mathf.Lerp(baseSensitivity, SlowTimeSensitivity, GetComponentInChildren<Gun>().lerpTime);
         }
