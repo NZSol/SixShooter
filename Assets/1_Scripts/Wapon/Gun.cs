@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using GameAnalyticsSDK;
 
 public class Gun : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Gun : MonoBehaviour
     [SerializeField] Camera myCam;
     Vector3 endPoint;
     Ray ray;
+    private int bulletsFired;
 
     //Fire Timer
     float timeToFire;
@@ -63,6 +65,7 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bulletsFired = 0;
         gun = this.gameObject;
         canAim = true;
         canSlow = true;
@@ -129,7 +132,7 @@ public class Gun : MonoBehaviour
         muzzFlash.SetActive(true);
         StartCoroutine(MuzzleFlashOff());
         muzzleflash.Play();
-
+        bulletsFired++;
         Shoot();
 
         if (timeSwitch == true)
@@ -511,7 +514,14 @@ public class Gun : MonoBehaviour
     {
     }
 
+    private void OnApplicationQuit()
+    {
+#if !UNITY_EDITOR
 
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "Game", bulletsFired);
+
+#endif
+    }
 
 
 
