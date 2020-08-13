@@ -120,6 +120,30 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 3713e67532e2e66449bfeb5e6886bdda, type: 2}
+--- !u!114 &17468770 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6544776912217743796, guid: b0b96510ad999a7449d1d17d1970e578,
+    type: 3}
+  m_PrefabInstance: {fileID: 8127554080073689809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &20134583 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6069493514335113075, guid: b0b96510ad999a7449d1d17d1970e578,
+    type: 3}
+  m_PrefabInstance: {fileID: 8127554080073689809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &76207049
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,6 +457,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240924270}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &300736738 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8690674775506264322, guid: b0b96510ad999a7449d1d17d1970e578,
+    type: 3}
+  m_PrefabInstance: {fileID: 8127554080073689809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &358787516 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: d8816564133228a45b482329a6ebc079,
@@ -453,6 +489,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: -7825289430055562144, guid: d8816564133228a45b482329a6ebc079, type: 3}
+--- !u!114 &397584963 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5815965486535889289, guid: b0b96510ad999a7449d1d17d1970e578,
+    type: 3}
+  m_PrefabInstance: {fileID: 8127554080073689809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &483327407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1849,6 +1897,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8816564133228a45b482329a6ebc079, type: 3}
+--- !u!114 &1417527710 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8445553732840831215, guid: b0b96510ad999a7449d1d17d1970e578,
+    type: 3}
+  m_PrefabInstance: {fileID: 8127554080073689809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1436000110
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,6 +2093,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490654541}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1558020292 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6263859214370271260, guid: b0b96510ad999a7449d1d17d1970e578,
+    type: 3}
+  m_PrefabInstance: {fileID: 8127554080073689809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1566016199 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 319797927, guid: b0b96510ad999a7449d1d17d1970e578,
@@ -2713,6 +2785,36 @@ PrefabInstance:
       propertyPath: ammoCountTxt
       value: 
       objectReference: {fileID: 559118048}
+    - target: {fileID: 8280404505200060898, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: ammoCountImg6
+      value: 
+      objectReference: {fileID: 1558020292}
+    - target: {fileID: 8280404505200060898, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: ammoCountImg5
+      value: 
+      objectReference: {fileID: 300736738}
+    - target: {fileID: 8280404505200060898, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: ammoCountImg4
+      value: 
+      objectReference: {fileID: 17468770}
+    - target: {fileID: 8280404505200060898, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: ammoCountImg3
+      value: 
+      objectReference: {fileID: 397584963}
+    - target: {fileID: 8280404505200060898, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: ammoCountImg2
+      value: 
+      objectReference: {fileID: 2126748810}
+    - target: {fileID: 8280404505200060898, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: ammoCountImg1
+      value: 
+      objectReference: {fileID: 20134583}
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: range
@@ -2743,6 +2845,18 @@ PrefabInstance:
       propertyPath: bombRange
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1173102720, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
+      propertyPath: interCheckRange
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1173102720, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 1417527710}
+    - target: {fileID: 1173102720, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
+      propertyPath: endgameTime
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 3476518271725944924, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -2768,6 +2882,11 @@ PrefabInstance:
       propertyPath: HealthMeter
       value: 
       objectReference: {fileID: 1743087456}
+    - target: {fileID: 3476518271141552114, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6185740921976923015, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: m_IsKinematic
@@ -3206,6 +3325,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2126748810 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8606067517125338534, guid: b0b96510ad999a7449d1d17d1970e578,
+    type: 3}
+  m_PrefabInstance: {fileID: 8127554080073689809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2133573377
 GameObject:
   m_ObjectHideFlags: 0

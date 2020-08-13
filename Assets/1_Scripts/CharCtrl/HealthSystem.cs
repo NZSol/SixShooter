@@ -14,6 +14,8 @@ public class HealthSystem : MonoBehaviour
     public Animator damageVignetteAnim;
     public Animator cameraShakeAnim;
     [SerializeField] Slider HealthMeter;
+    public static bool GameOver;
+
 
     public static bool canBeHit = true;
     public bool onRegenHealth;
@@ -23,6 +25,7 @@ public class HealthSystem : MonoBehaviour
     {
         health = 100;
         EndGameUI.SetActive(false);
+        GameOver = false;
     }
 
     // Update is called once per frame
@@ -38,6 +41,11 @@ public class HealthSystem : MonoBehaviour
         if (health<100 && onRegenHealth == false)
         {
             StartCoroutine("RegenDelay");
+        }
+
+        if (GameOver == true)
+        {
+            EndGame();
         }
     }
 
@@ -95,8 +103,7 @@ public class HealthSystem : MonoBehaviour
         canBeHit = true;
     }
 
-
-    void EndGame()
+    public void EndGame()
     {
         EndGameUI.SetActive(true);
         //SceneLoader.GetComponent<AsyncLoadFunc>().loadFunc();
