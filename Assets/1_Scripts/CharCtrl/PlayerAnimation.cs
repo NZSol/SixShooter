@@ -12,18 +12,20 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] KeyCode Reload;
     CharacterController charControl;
     GameObject player;
+    Gun gunScript;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         charControl = player.GetComponent<CharacterController>();
+        gunScript = GetComponent<Gun>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(shoot) && !ButtonClick.isPaused && Gun.ammoCount > 0)
+        if(Input.GetKeyDown(shoot) && !ButtonClick.isPaused && gunScript.canFire == true)
         {
             playerAnim.SetTrigger("Firing");
             
@@ -55,13 +57,15 @@ public class PlayerAnimation : MonoBehaviour
             playerAnim.SetBool("Reloading", true);
             
         }
-        else
+        else if (GetComponent<Gun>().startReload == false)
         {
             playerAnim.SetBool("Reloading", false);
         }
+        //else if ()
 
-        if (playerAnim.GetBool("Reloading") == true && Input.GetKeyDown(shoot))
+        if (playerAnim.GetBool("Reloading") == true && Input.GetKeyDown(shoot) && gunScript.cancelReload == false)
         {
+            gunScript.cancelReload = true;
             playerAnim.SetBool("Reloading", false);
         }
 

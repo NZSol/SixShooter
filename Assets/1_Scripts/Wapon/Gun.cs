@@ -16,7 +16,7 @@ public class Gun : MonoBehaviour
 
     //Fire Timer
     float timeToFire;
-    bool canFire = false;
+    public bool canFire = false;
     bool reloading = false;
     public bool startReload = false;
     public AudioSource recharging;
@@ -24,6 +24,7 @@ public class Gun : MonoBehaviour
     //Ammo
     public static int ammoCount = 6;
     float timeToReload = 6;
+    public bool cancelReload;
 
     //Other
     [SerializeField] GameObject muzzFlash;
@@ -111,6 +112,7 @@ public class Gun : MonoBehaviour
         if (startReload == true)
         {
             StartCoroutine(Reload());
+            canFire = false;
         }
         else
         {
@@ -252,20 +254,46 @@ public class Gun : MonoBehaviour
 
     public void ReloadBullet()
     {
-        if (ammoCount <= 5)
+        if (cancelReload == false)
         {
-            ammoCount++;
-            StartCoroutine(enableShoot());
+            if (ammoCount <= 5)
+            {
+                ammoCount++;
+                StartCoroutine(enableShoot());
+            }
+            if (ammoCount == 6)
+            {
+                startReload = false;
+                anim.SetBool("ExitTime", false);
+                anim.Play("Transition_from_Reload");
+                canAim = true;
+            }
         }
-        if (ammoCount == 6)
+        else
         {
-            startReload = false;
-            anim.SetBool("ExitTime", false);
-            anim.Play("Transition_from_Reload");
+            cancelReload = false;
+            canFire = true;
             canAim = true;
+            startReload = false;
+            anim.Play("Transition_from_Reload");
+            anim.SetBool("ExitTime", false);
+            ammoCount++;
         }
 
     }
+
+    public void TransitionFromReload()
+    {
+        if (cancelReload == true)
+        {
+            canFire = true;
+            canAim = true;
+            startReload = false;
+            cancelReload = false;
+
+        }
+    }
+
     IEnumerator enableShoot()
     {
         yield return new WaitForSeconds(0.1f);
@@ -357,8 +385,8 @@ public class Gun : MonoBehaviour
         //animate reload
         yield return new WaitForEndOfFrame();
         timeToReload -= Time.deltaTime;
-        canAim = false;
-        canFire = false;
+        //canAim = false;
+        //canFire = false;
 
 
     }
