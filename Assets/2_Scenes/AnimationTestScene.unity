@@ -389,6 +389,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &211674522 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8127554080097122796, guid: b0b96510ad999a7449d1d17d1970e578,
+    type: 3}
+  m_PrefabInstance: {fileID: 1835810795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &214364150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,6 +1217,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8127554079551704497, guid: b0b96510ad999a7449d1d17d1970e578,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 319797927, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1213,6 +1230,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127554079008846351, guid: b0b96510ad999a7449d1d17d1970e578,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127554080600291103, guid: b0b96510ad999a7449d1d17d1970e578,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
@@ -1323,6 +1350,11 @@ PrefabInstance:
       propertyPath: ammoCountImg1
       value: 
       objectReference: {fileID: 1739222094}
+    - target: {fileID: 8280404505200060898, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: crossHair
+      value: 
+      objectReference: {fileID: 211674522}
     - target: {fileID: 3413981699558000640, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: EndGameUI
@@ -1343,22 +1375,6 @@ PrefabInstance:
       propertyPath: HealthMeter
       value: 
       objectReference: {fileID: 2002909636}
-    - target: {fileID: 1100820134, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
-      propertyPath: ADS
-      value: 
-      objectReference: {fileID: 8300000, guid: fdb6b9eb178796a4eb960e085bde8204, type: 3}
-    - target: {fileID: 1100820134, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
-      propertyPath: Descope
-      value: 
-      objectReference: {fileID: 8300000, guid: 7e3a04ca9217f8d408329c16f605ac1c, type: 3}
-    - target: {fileID: 1100820134, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
-      propertyPath: jumpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: e2c8ab582b1b49b4c9ce6ca288f616d8, type: 3}
-    - target: {fileID: 1100820134, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
-      propertyPath: landingSound
-      value: 
-      objectReference: {fileID: 8300000, guid: eb179cebc4fae014ca84b73da8217be8, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
 --- !u!114 &2002909636 stripped
