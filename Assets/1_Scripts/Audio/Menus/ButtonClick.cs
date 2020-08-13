@@ -13,6 +13,7 @@ public class ButtonClick : MonoBehaviour
     AmbientOcclusion ao;
     Bloom bloom;
     ScreenSpaceReflections ssr;
+    ChromaticAberration cA;
     public AudioSource audioSource;
     public AudioClip buttonClick;
     public GameObject optionsPanel;
@@ -34,6 +35,7 @@ public class ButtonClick : MonoBehaviour
         volume.profile.TryGetSettings(out ao);
         volume.profile.TryGetSettings(out bloom);
         volume.profile.TryGetSettings(out ssr);
+        volume.profile.TryGetSettings(out cA);
         Time.timeScale = 1;
         pauseUI = false;
         optionsPanel.SetActive(false);
@@ -45,7 +47,10 @@ public class ButtonClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKey(KeyCode.Mouse1) && Input.GetKeyDown(KeyCode.LeftShift))
+        {
+                StartCoroutine(ChromaticA());
+        }
         Scene currentScene = SceneManager.GetActiveScene();
         int buildIndex = currentScene.buildIndex;
         string sceneName = currentScene.name;
@@ -221,7 +226,15 @@ public class ButtonClick : MonoBehaviour
     }
 
 
-
+    IEnumerator ChromaticA()
+    {
+        cA.intensity.value = Mathf.Lerp(0, 3, 1);
+        yield return new WaitForSeconds(0.5f);
+        cA.intensity.value = Mathf.Lerp(3, 0, 1);
+        yield return new WaitForSeconds(0.5f);
+        cA.intensity.value = 0;
+        StopCoroutine(ChromaticA());
+    }
 
 
 
