@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class TurnOnSound : MonoBehaviour
 {
-    public AudioSource[] AI;
+    public GameObject[] AI;
     // Start is called before the first frame update
     void Start()
     {
-        
+        for (int i = 0; i < AI.Length; i++)
+        {
+
+            AI[i].SetActive(false);
+
+        }
     }
 
     // Update is called once per frame
@@ -22,7 +27,7 @@ public class TurnOnSound : MonoBehaviour
         {
             for (int i = 0; i < AI.Length; i++)
             {
-                AI[i].mute = false;
+                AI[i].SetActive(true);
             }
         }
     }

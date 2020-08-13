@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using GameAnalyticsSDK;
 
 public class Gun : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Gun : MonoBehaviour
     [SerializeField] Camera myCam;
     Vector3 endPoint;
     Ray ray;
+    private int bulletsFired;
 
     //Fire Timer
     float timeToFire;
@@ -28,10 +30,14 @@ public class Gun : MonoBehaviour
     [SerializeField] ParticleSystem hitParticle;
     [SerializeField] ParticleSystem muzzleflash;
     [SerializeField] ParticleSystem bloodParticle;
+    [SerializeField] ParticleSystem barrelExplosion;
     [SerializeField] ParticleSystem critEffect;
     [SerializeField] ParticleSystem RegEffect;
     [SerializeField] float speedModifier;
     [SerializeField] GameObject gunMesh;
+
+    AudioManager audioManager;
+    
 
 
     //ADS
@@ -59,6 +65,7 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bulletsFired = 0;
         gun = this.gameObject;
         canAim = true;
         canSlow = true;
@@ -67,6 +74,7 @@ public class Gun : MonoBehaviour
         mat = render.material;
         mat.SetColor("_EmissionColor", Color.white * intenseMax);
         anim = GetComponent<Animator>();
+        audioManager = FindObjectOfType<AudioManager>();
 
         ammoCountImg6.enabled = true;
         ammoCountImg5.enabled = true;
@@ -124,7 +132,7 @@ public class Gun : MonoBehaviour
         muzzFlash.SetActive(true);
         StartCoroutine(MuzzleFlashOff());
         muzzleflash.Play();
-
+        bulletsFired++;
         Shoot();
 
         if (timeSwitch == true)
@@ -154,8 +162,8 @@ public class Gun : MonoBehaviour
                 }
                 else if (hit.collider.tag == "critPoint")
                 {
-                    //Instantiate(CritEffect, hit.point, transform.rotation);
-                    //Play SoundEffect
+                    Instantiate(critEffect, hit.point, transform.rotation);
+                    audioManager.Play("CritHit");
                 }
 
                 Instantiate(bloodParticle, hit.point, transform.rotation);
@@ -171,6 +179,13 @@ public class Gun : MonoBehaviour
                 {
                     Destroy(hit.transform.gameObject);
                     hit.transform.gameObject.GetComponent<Spawning>().EmptyList();
+                    print("destoryObj");
+                }
+                if (hit.collider.tag == "Barrel")
+                {
+                    Destroy(hit.transform.gameObject);
+                    Instantiate(barrelExplosion, hit.point, transform.rotation);
+                    audioManager.Play("BarrelExplosion");
                     print("destoryObj");
                 }
                 else if (hit.collider.tag == "extendBridge" )
@@ -499,7 +514,14 @@ public class Gun : MonoBehaviour
     {
     }
 
+    private void OnApplicationQuit()
+    {
+#if !UNITY_EDITOR
 
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "Game", bulletsFired);
+
+#endif
+    }
 
 
 

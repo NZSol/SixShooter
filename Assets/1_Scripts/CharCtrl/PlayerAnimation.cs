@@ -10,11 +10,14 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] KeyCode shoot;
     [SerializeField] KeyCode ADS;
     [SerializeField] KeyCode Reload;
+    CharacterController charControl;
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
-    {
-       
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        charControl = player.GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -26,7 +29,7 @@ public class PlayerAnimation : MonoBehaviour
             
         }
 
-        if (Input.GetAxis(VertInput) != 0 || Input.GetAxis(HorizInput) != 0)
+        if (Input.GetAxis(VertInput)  != 0 && charControl.isGrounded || Input.GetAxis(HorizInput) != 0 && charControl.isGrounded)
         {
             playerAnim.SetBool("Walking", true);
         }

@@ -53,7 +53,7 @@ public class LoreInteraction : MonoBehaviour
         {
             GetawayActive = false;
         }
-        if (Input.GetKeyDown(Interact) && other.CompareTag("newspaper"))
+        if (Input.GetKey(Interact) && other.CompareTag("newspaper"))
         {
             newspaperActive = true;
         }
@@ -61,7 +61,7 @@ public class LoreInteraction : MonoBehaviour
         {
             newspaperActive = false;
         }
-        if (Input.GetKeyDown(Interact) && other.CompareTag("injury"))
+        if (Input.GetKey(Interact) && other.CompareTag("injury"))
         {
             InjuryActive = true;
         }
@@ -69,7 +69,7 @@ public class LoreInteraction : MonoBehaviour
         {
             InjuryActive = false;
         }
-        if (Input.GetKeyDown(Interact) && other.CompareTag("diary"))
+        if (Input.GetKey(Interact) && other.CompareTag("diary"))
         {
             DiaryActive = true;
 

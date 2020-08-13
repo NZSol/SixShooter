@@ -15,6 +15,7 @@ TagManager:
   - diary
   - injury
   - endGame
+  - Barrel
   layers:
   - Default
   - TransparentFX

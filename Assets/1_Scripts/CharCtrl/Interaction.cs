@@ -16,7 +16,8 @@ public class Interaction : MonoBehaviour
     [SerializeField] float interCheckRange;
 
     //UI
-    [SerializeField] Image img;
+    [SerializeField] Text plantTheBomb;
+    [SerializeField] Text reachThePlatform;
     [SerializeField] Slider slide;
     float slideVal;
     [SerializeField] GameObject bomb;
@@ -26,7 +27,8 @@ public class Interaction : MonoBehaviour
 
     void Start()
     {
-        img.enabled = false;
+        reachThePlatform.gameObject.SetActive(true);
+        plantTheBomb.gameObject.SetActive(false);
         slide.gameObject.SetActive(false);
         slideVal = 0;
         timer.gameObject.SetActive(false);
@@ -96,11 +98,12 @@ public class Interaction : MonoBehaviour
 
         if (Dist < rangeFromBomb && bombRigged == false)
         {
-            img.gameObject.SetActive(true);
+            reachThePlatform.gameObject.SetActive(false);
+            plantTheBomb.gameObject.SetActive(true);
         }
         else
         {
-            img.gameObject.SetActive(false);
+            plantTheBomb.gameObject.SetActive(false);
         }
 
         print(slide.value + "slide.Value");
