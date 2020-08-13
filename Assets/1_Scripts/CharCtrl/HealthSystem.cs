@@ -16,6 +16,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] Slider HealthMeter;
 
     public static bool canBeHit = true;
+    public bool onRegenHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -33,11 +34,18 @@ public class HealthSystem : MonoBehaviour
             EndGame();
             TimeManager.PauseMenu();
         }
+
+        if (health<100 && onRegenHealth == false)
+        {
+            StartCoroutine("RegenDelay");
+        }
     }
 
     public void healthReduce (int i)
     {
         health -= i;
+        StopCoroutine(RegenHealth());
+        StartCoroutine(RegenDelay());
         StartCoroutine(IFrames());
                
         int rand = Random.Range(0, 3);
@@ -63,10 +71,27 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
+    public IEnumerator RegenDelay()
+    {
+        yield return new WaitForSeconds(5);
+        onRegenHealth = true;
+        StartCoroutine("RegenHealth");
+    }
+
+    public IEnumerator RegenHealth()
+    {
+        if (onRegenHealth == true)
+        {
+            health = Mathf.Clamp(health + 1, -100, 100);
+            yield return new WaitForSeconds(1);
+            onRegenHealth = false;
+        }
+    }
+
     IEnumerator IFrames()
     {
         canBeHit = false;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         canBeHit = true;
     }
 
