@@ -5699,7 +5699,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.97e-43, y: -3579560, z: NaN, w: -3579560}
+  m_BoundingSphereOverride: {x: 0, y: 9.404242e-38, z: 7.9639e-41, w: 1.2735e-41}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -6251,9 +6251,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535367096969933537}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.04, y: 1.67, z: 4.07}
-  m_LocalScale: {x: 17, y: 17, z: 17}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.70710677}
+  m_LocalPosition: {x: -0.0057272217, y: 0.30083823, z: 0.6625358}
+  m_LocalScale: {x: 2.7673497, y: 2.9312222, z: 2.4340613}
   m_Children:
   - {fileID: 7379255215394476677}
   - {fileID: 1250470352081605911}
@@ -6263,8 +6263,8 @@ Transform:
   - {fileID: 202596615}
   - {fileID: 1348198360}
   - {fileID: 673279444}
-  m_Father: {fileID: 3476518270706910874}
-  m_RootOrder: 1
+  m_Father: {fileID: 4303446875904110946}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!95 &5593437907256176008
 Animator:
@@ -6312,6 +6312,12 @@ MonoBehaviour:
   timeManager: {fileID: 0}
   timeSwitch: 0
   ammoCountTxt: {fileID: 0}
+  ammoCountImg6: {fileID: 0}
+  ammoCountImg5: {fileID: 0}
+  ammoCountImg4: {fileID: 0}
+  ammoCountImg3: {fileID: 0}
+  ammoCountImg2: {fileID: 0}
+  ammoCountImg1: {fileID: 0}
   shootClip: {fileID: 1827226128182048838, guid: 099fc8e4b4208d74daaf0ca4662676b6,
     type: 3}
   hitObj: {fileID: 0}
@@ -7043,8 +7049,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.01288873, z: 0}
   m_LocalScale: {x: 0.14318007, y: 0.17242484, z: 0.16278526}
   m_Children:
-  - {fileID: 3476518271652888940}
-  - {fileID: 2528175141668634866}
   - {fileID: 3476518271725944923}
   m_Father: {fileID: 4303446875904110946}
   m_RootOrder: 0
@@ -7122,7 +7126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseXInputName: Mouse X
   mouseYInputName: Mouse Y
-  mouseSensitivity: 0
+  mouseSensitivity: 100
   baseSensitivity: 150
   SlowTimeSensitivity: 50
   playerBody: {fileID: 3476518271141552112}
@@ -7341,10 +7345,14 @@ MonoBehaviour:
   coroutineBool: 0
   endCoroutineBool: 0
   hitBool: 0
+  interCheckRange: 0
   img: {fileID: 0}
   slide: {fileID: 0}
   bomb: {fileID: 0}
   rangeFromBomb: 0
+  bombRange: 0
+  endgameTime: 0
+  timer: {fileID: 0}
 --- !u!114 &3413981699558000640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7363,6 +7371,7 @@ MonoBehaviour:
   damageVignetteAnim: {fileID: 0}
   cameraShakeAnim: {fileID: 1811463724}
   HealthMeter: {fileID: 0}
+  onRegenHealth: 0
 --- !u!54 &6185740921976923015
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7416,11 +7425,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3476518271652888941}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.041660253, y: 3.10947, z: 0.8956939}
-  m_LocalScale: {x: 6.98422, y: 6.98422, z: 6.9842186}
+  m_LocalPosition: {x: -0.005964937, y: 0.54903877, z: 0.1458058}
+  m_LocalScale: {x: 1, y: 1.2042531, z: 1.1369278}
   m_Children: []
-  m_Father: {fileID: 3476518270706910874}
-  m_RootOrder: 0
+  m_Father: {fileID: 4303446875904110946}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &3476518271652888938
 Camera:
@@ -7498,7 +7507,7 @@ Transform:
   m_LocalScale: {x: 42.459377, y: 43.060528, z: 35.147156}
   m_Children: []
   m_Father: {fileID: 3476518270706910874}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &3476518271725944924
 Camera:
@@ -8146,6 +8155,8 @@ Transform:
   m_LocalScale: {x: 0.67058927, y: 0.5, z: 0.67058927}
   m_Children:
   - {fileID: 3476518270706910874}
+  - {fileID: 3476518271652888940}
+  - {fileID: 2528175141668634866}
   m_Father: {fileID: 3476518271141552112}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

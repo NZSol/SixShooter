@@ -19,6 +19,8 @@ public class HealthSystem : MonoBehaviour
 
     public static bool canBeHit = true;
     public bool onRegenHealth;
+    bool regenHealth;
+    bool healBool;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,8 @@ public class HealthSystem : MonoBehaviour
         EndGameUI.SetActive(false);
         GameOver = false;
     }
+
+    float timer = 5;
 
     // Update is called once per frame
     void Update()
@@ -37,24 +41,48 @@ public class HealthSystem : MonoBehaviour
             EndGame();
             TimeManager.PauseMenu();
         }
-
-        if (health<100 && onRegenHealth == false)
+        
+        if (health < 100)
         {
-            StartCoroutine("RegenDelay");
+            if (timer >= 0 && regenHealth == false)
+            {
+                timer -= Time.deltaTime;
+            }
+            else if (timer <= 0 && regenHealth == false)
+            {
+                print("Checking");
+                if (canBeHit == true)
+                {
+                    print("checking");
+                    regenHealth = true;
+                }
+                timer = 5;
+            }
         }
-
+        else
+        {
+            regenHealth = false;
+        }
+        if (regenHealth == true)
+        {
+            health++;
+        }
         if (GameOver == true)
         {
             EndGame();
         }
+
+
+        print(timer + "timer");
+       
     }
 
     public void healthReduce (int i)
     {
         health -= i;
-        StopCoroutine(RegenHealth());
-        StartCoroutine(RegenDelay());
         StartCoroutine(IFrames());
+        regenHealth = false;
+        timer = 5;
                
         int rand = Random.Range(0, 3);
         if (rand == 0)
@@ -73,39 +101,28 @@ public class HealthSystem : MonoBehaviour
         cameraShakeAnim.SetTrigger("CameraShake");
         damageVignetteAnim.SetTrigger("PlayerHit");
 
+
         if (health <= 0)
         {
             EndGame();
         }
     }
 
-    public IEnumerator RegenDelay()
-    {
-        yield return new WaitForSeconds(5);
-        onRegenHealth = true;
-        StartCoroutine("RegenHealth");
-    }
-
-    public IEnumerator RegenHealth()
-    {
-        if (onRegenHealth == true)
-        {
-            health = Mathf.Clamp(health + 1, -100, 100);
-            yield return new WaitForSeconds(1);
-            onRegenHealth = false;
-        }
-    }
 
     IEnumerator IFrames()
     {
         canBeHit = false;
         yield return new WaitForSeconds(2);
         canBeHit = true;
+        StopCoroutine(IFrames());
     }
 
     public void EndGame()
     {
         EndGameUI.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        TimeManager.GamePause = true;
         //SceneLoader.GetComponent<AsyncLoadFunc>().loadFunc();
     }
 
