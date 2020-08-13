@@ -57,6 +57,7 @@ public class Gun : MonoBehaviour
     [SerializeField] Image ammoCountImg3;
     [SerializeField] Image ammoCountImg2;
     [SerializeField] Image ammoCountImg1;
+    [SerializeField] Image crossHair;
 
 
     //AnimatorStuff
@@ -401,13 +402,14 @@ public class Gun : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse1) && canAim == true)
         {
-            
+            crossHair.enabled = false;
             aiming = true;
             lerpFuncIn();
         }
         else
         {
             aiming = false;
+            crossHair.enabled = true;
             timeSwitch = false;
             lerpFuncOut();
         }
