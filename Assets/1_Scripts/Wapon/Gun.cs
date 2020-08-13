@@ -73,25 +73,12 @@ public class Gun : MonoBehaviour
             MoveCtrl.aimSpeedModif = 1;
         }
 
+        /*
         if (Input.GetKeyDown(KeyCode.Mouse0) && ammoCount > 0 && canFire == true && !ButtonClick.isPaused)
         {
-            timeToFire = 0;
-            ammoCount--;
-            canFire = false;
-            muzzFlash.SetActive(true);
-            StartCoroutine(MuzzleFlashOff());
-            muzzleflash.Play();
-
-            Shoot();
-
-            if (timeSwitch == true)
-            {
-                slowTimer = 0;
-                canSlow = false;
-            }
-            timeSwitch = false;
+            
         }
-
+        */
 
 
         //Check Ammo before firing again
@@ -119,6 +106,25 @@ public class Gun : MonoBehaviour
 
     }
 
+    public void GunShoot()
+    {
+        timeToFire = 0;
+        ammoCount--;
+        canFire = false;
+        muzzFlash.SetActive(true);
+        StartCoroutine(MuzzleFlashOff());
+        muzzleflash.Play();
+
+        Shoot();
+
+        if (timeSwitch == true)
+        {
+            slowTimer = 0;
+            canSlow = false;
+        }
+        timeSwitch = false;
+    }
+
     public GameObject hitObj;
     //when ammo above 0, shoot ray, if hit target, spawn particle effect on hit pos
     //If ammo below 0, start reload
@@ -139,6 +145,7 @@ public class Gun : MonoBehaviour
             else if (Physics.Raycast(ray, out hit, range))
             {
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.yellow);
+                Debug.Log("HitParticle");
                 Instantiate(hitParticle, hit.point, transform.rotation);
                 if (hit.collider.tag == "Destructible")
                 {
