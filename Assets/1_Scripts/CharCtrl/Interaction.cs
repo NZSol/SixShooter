@@ -30,6 +30,7 @@ public class Interaction : MonoBehaviour
         slide.gameObject.SetActive(false);
         slideVal = 0;
         timer.gameObject.SetActive(false);
+        bombRigged = false;
     }
     // Update is called once per frame
     void Update()
@@ -170,6 +171,7 @@ public class Interaction : MonoBehaviour
         else
         {
             endgameTime = 0;
+            HealthSystem.GameOver = true;
             //DO ENDGAME HERE
         }
 
