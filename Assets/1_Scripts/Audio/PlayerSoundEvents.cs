@@ -11,6 +11,10 @@ public class PlayerSoundEvents : MonoBehaviour
     public AudioClip firing;
     public AudioClip transitionTo;
     public AudioClip transitionFrom;
+    public AudioClip ADS;
+    public AudioClip Descope;
+    public AudioClip jumpSound;
+    public AudioClip landingSound;
 
     int walkIndex;
     int damageIndex;
@@ -46,11 +50,40 @@ public class PlayerSoundEvents : MonoBehaviour
         
     }
 
+    public void ADSSound()
+    {
+        playerAudioS.volume = 1f;
+        playerAudioS.PlayOneShot(ADS);
+
+    }
+
+    public void DescopeSound()
+    {
+        playerAudioS.volume = 1f;
+        playerAudioS.PlayOneShot(Descope);
+
+    }
+
+    public void JumpSound()
+    {
+        playerAudioS.volume = 1f;
+        playerAudioS.PlayOneShot(jumpSound);
+    }
+
+    public void LandingSound()
+    {
+        playerAudioS.volume = 1f;
+        playerAudioS.PlayOneShot(landingSound);
+
+    }
+
     public void DamagedSound()
     {
         damageIndex = Random.Range(0, damagedAudioS.Length);
         damagedAudioS[damageIndex].PlayOneShot(damagedAudioS[damageIndex].clip);
     }
+
+
 
     public void TransitionToReload()
     {
