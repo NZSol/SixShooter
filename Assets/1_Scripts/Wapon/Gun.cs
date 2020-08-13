@@ -41,6 +41,13 @@ public class Gun : MonoBehaviour
 
     //Canvas
     [SerializeField] Text ammoCountTxt;
+    [SerializeField] Image ammoCountImg6;
+    [SerializeField] Image ammoCountImg5;
+    [SerializeField] Image ammoCountImg4;
+    [SerializeField] Image ammoCountImg3;
+    [SerializeField] Image ammoCountImg2;
+    [SerializeField] Image ammoCountImg1;
+
 
     //AnimatorStuff
     Animator anim;
@@ -57,6 +64,13 @@ public class Gun : MonoBehaviour
         mat = render.material;
         mat.SetColor("_EmissionColor", Color.white * intenseMax);
         anim = GetComponent<Animator>();
+
+        ammoCountImg6.enabled = true;
+        ammoCountImg5.enabled = true;
+        ammoCountImg4.enabled = true;
+        ammoCountImg3.enabled = true;
+        ammoCountImg2.enabled = true;
+        ammoCountImg1.enabled = true;
     }
 
     // Update is called once per frame
@@ -246,9 +260,74 @@ public class Gun : MonoBehaviour
         {
             canFire = false;
             ammoCount = 0;
+            ammoCountImg6.enabled = false;
+            ammoCountImg5.enabled = false;
+            ammoCountImg4.enabled = false;
+            ammoCountImg3.enabled = false;
+            ammoCountImg2.enabled = false;
+            ammoCountImg1.enabled = false;
         }
 
-        ammoCountTxt.text = ammoCount + "/6";
+        if(ammoCount == 6)
+        {
+            ammoCountImg6.enabled = true; 
+            ammoCountImg5.enabled = true;
+            ammoCountImg4.enabled = true;
+            ammoCountImg3.enabled = true;
+            ammoCountImg2.enabled = true;
+            ammoCountImg1.enabled = true;
+        }
+
+        if (ammoCount == 5)
+        {
+            ammoCountImg6.enabled = true;
+            ammoCountImg5.enabled = true;
+            ammoCountImg4.enabled = true;
+            ammoCountImg3.enabled = true;
+            ammoCountImg2.enabled = true;
+            ammoCountImg1.enabled = false;
+        }
+
+        if (ammoCount == 4)
+        {
+            ammoCountImg6.enabled = true;
+            ammoCountImg5.enabled = true;
+            ammoCountImg4.enabled = true;
+            ammoCountImg3.enabled = true;
+            ammoCountImg2.enabled = false;
+            ammoCountImg1.enabled = false;
+        }
+
+        if (ammoCount == 3)
+        {
+            ammoCountImg6.enabled = true;
+            ammoCountImg5.enabled = true;
+            ammoCountImg4.enabled = true;
+            ammoCountImg3.enabled = false;
+            ammoCountImg2.enabled = false;
+            ammoCountImg1.enabled = false;
+        }
+
+        if (ammoCount == 2)
+        {
+            ammoCountImg6.enabled = true;
+            ammoCountImg5.enabled = true;
+            ammoCountImg4.enabled = false;
+            ammoCountImg3.enabled = false;
+            ammoCountImg2.enabled = false;
+            ammoCountImg1.enabled = false;
+        }
+        if (ammoCount == 1)
+        {
+            ammoCountImg6.enabled = true;
+            ammoCountImg5.enabled = false;
+            ammoCountImg4.enabled = false;
+            ammoCountImg3.enabled = false;
+            ammoCountImg2.enabled = false;
+            ammoCountImg1.enabled = false;
+        }
+
+        //ammoCountTxt.text = ammoCount + "/6";
     }
 
     //Countdown to reload over, assign values
