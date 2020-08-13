@@ -17,7 +17,7 @@ public class DamagePlayer : MonoBehaviour
         if (col.tag == "Player" && HealthSystem.canBeHit == true)
         {
             print("triggered");
-            Player.GetComponent<HealthSystem>().healthReduce(i: 15);
+            Player.GetComponent<HealthSystem>().healthReduce(i: 33);
             attackMaster.AttackEnd();
         }
     }
