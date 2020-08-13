@@ -29,6 +29,7 @@ public class Interaction : MonoBehaviour
         img.enabled = false;
         slide.gameObject.SetActive(false);
         slideVal = 0;
+        timer.gameObject.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -74,6 +75,7 @@ public class Interaction : MonoBehaviour
                     if (slideVal > 5)
                     {
                         slideVal = 5;
+                        bombRigged = true;
                     }
                 }
                 else
@@ -90,26 +92,18 @@ public class Interaction : MonoBehaviour
             }
         }
 
-        
-        if(Dist < rangeFromBomb)
+
+        if (Dist < rangeFromBomb && bombRigged == false)
         {
-            img.enabled = true;
+            img.gameObject.SetActive(true);
         }
         else
         {
-            img.enabled = false;
+            img.gameObject.SetActive(false);
         }
 
         print(slide.value + "slide.Value");
         print(slideVal + "SlideVal");
-        if(Dist < rangeFromBomb)
-        {
-            img.enabled = true;
-        }
-        else
-        {
-            img.enabled = false;
-        }
 
 
 
@@ -141,6 +135,12 @@ public class Interaction : MonoBehaviour
         {
             StopCoroutine(PlayerDamage());
         }
+
+
+        if(bombRigged == true)
+        {
+            endgameTimer();
+        }
     }
 
 
@@ -154,5 +154,39 @@ public class Interaction : MonoBehaviour
         }
         while (inOil);
     }
+
+    public float endgameTime;
+    [SerializeField] Text timer;
+    float minutes;
+    float seconds;
+
+    void endgameTimer()
+    {
+        timer.gameObject.SetActive(true);
+        if (endgameTime > 0)
+        {
+            endgameTime -= Time.deltaTime;
+        }
+        else
+        {
+            endgameTime = 0;
+            //DO ENDGAME HERE
+        }
+
+        displayTime(endgameTime);
+    }
+
+
+    void displayTime(float display)
+    {
+        display += 1;
+
+        minutes = Mathf.FloorToInt(display / 60);
+        seconds = Mathf.FloorToInt(display % 60);
+
+        timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+
 
 }
