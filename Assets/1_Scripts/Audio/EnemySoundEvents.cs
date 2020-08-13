@@ -31,7 +31,7 @@ public class EnemySoundEvents : MonoBehaviour
         attackindex = Random.Range(0, attackAudioS.Length);
 
         attackAudioS[attackindex].PlayOneShot(attackAudioS[attackindex].clip);
-        attackAudioS[attackindex].volume = 1.0f;
+        attackAudioS[attackindex].volume = 0.1f;
         Debug.Log(attackindex);
     }
 
@@ -40,6 +40,7 @@ public class EnemySoundEvents : MonoBehaviour
         walkindex = Random.Range(0, walkAudioS.Length);
 
         walkAudioS[walkindex].PlayOneShot(walkAudioS[walkindex].clip);
+        walkAudioS[walkindex].volume = 0.1f;
     }
 
     public void DeathSound()
