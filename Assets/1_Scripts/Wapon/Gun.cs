@@ -20,7 +20,7 @@ public class Gun : MonoBehaviour
     public AudioSource recharging;
 
     //Ammo
-    public int ammoCount = 6;
+    public static int ammoCount = 6;
     float timeToReload = 6;
 
     //Other
