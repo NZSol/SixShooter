@@ -14,7 +14,7 @@ public class AIBase : MonoBehaviour
     //Line of Sight
     float playerDist;
     float minDetectRange = 10;
-    [SerializeField] float attackRange = 3f;
+    [SerializeField] float attackRange;
     float baseAttackRange;
     [SerializeField] float fovRange = 75;
     bool brokenLos;
@@ -59,7 +59,7 @@ public class AIBase : MonoBehaviour
                 else
                 {
                     Debug.DrawRay(transform.position, rayDir, Color.red);
-                    Debug.DrawRay(transform.position, endPosDir, Color.yellow);
+                    print(hit);
                     animCtrl.SetInteger("ActState", 3);
 
                     return false;

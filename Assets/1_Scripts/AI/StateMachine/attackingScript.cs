@@ -27,7 +27,7 @@ public class attackingScript : StateMachineBehaviour
         attacking = true;
         scriptMaster = animator.GetComponent<AIBase>();
         MonoState = animator.GetComponent<AIAttack>();
-        MonoState.DoCoroutine();
+        MonoState.Attack();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

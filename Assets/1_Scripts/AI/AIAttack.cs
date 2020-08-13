@@ -21,20 +21,16 @@ public class AIAttack : MonoBehaviour
     }
 
 
-    public void DoCoroutine()
+    public void Attack()
     {
-        StartCoroutine(PlayerAttack());
-    }
-
-    public IEnumerator PlayerAttack()
-    {
-        yield return new WaitForSeconds(3);
         foreach (Collider col in colArray)
         {
             col.enabled = true;
         }
-        Player.GetComponent<HealthSystem>().healthReduce(i: 15);
-        yield return new WaitForSeconds(0.5f);
+    }
+
+    public void AttackEnd()
+    {
         foreach (Collider col in colArray)
         {
             col.enabled = false;
@@ -42,15 +38,8 @@ public class AIAttack : MonoBehaviour
         ExitState = true;
         MasterAI.resetAtkRange();
     }
+    
 
-    private void OnTriggerEnter(Collider col)
-    {
-     if (col.tag == "Player")
-        {
-            print("triggered");
-            Player.GetComponent<HealthSystem>().healthReduce(i: 15);
-        }
-    }
 
 
 

@@ -90,9 +90,7 @@ public class Interaction : MonoBehaviour
             }
         }
 
-
-        print(slide.value + "slide.Value");
-        print(slideVal + "SlideVal");
+        
         if(Dist < rangeFromBomb)
         {
             img.enabled = true;

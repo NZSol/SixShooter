@@ -15,6 +15,8 @@ public class HealthSystem : MonoBehaviour
     public Animator cameraShakeAnim;
     [SerializeField] Slider HealthMeter;
 
+    public static bool canBeHit = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +38,7 @@ public class HealthSystem : MonoBehaviour
     public void healthReduce (int i)
     {
         health -= i;
+        StartCoroutine(IFrames());
                
         int rand = Random.Range(0, 3);
         if (rand == 0)
@@ -59,6 +62,14 @@ public class HealthSystem : MonoBehaviour
             EndGame();
         }
     }
+
+    IEnumerator IFrames()
+    {
+        canBeHit = false;
+        yield return new WaitForSeconds(3);
+        canBeHit = true;
+    }
+
 
     void EndGame()
     {
