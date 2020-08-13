@@ -12,6 +12,9 @@ public class MoveCtrl : MonoBehaviour
 
     CharacterController charCtrl;
 
+    PlayerSoundEvents playerSoundScript;
+    Animator playerAnimator;
+
 
     //jumping
     bool isJumping;
@@ -62,6 +65,8 @@ public class MoveCtrl : MonoBehaviour
         slowTimeMultip = slowFallOff.Evaluate(falloff);
         stateEnum = States.MoveState;
         Cursor.lockState = CursorLockMode.Confined;
+        playerSoundScript = GetComponentInChildren<PlayerSoundEvents>();
+        playerAnimator = GetComponentInChildren<Animator>();
     }
 
     
@@ -221,6 +226,7 @@ public class MoveCtrl : MonoBehaviour
         if (isJumping == false && !Input.GetKeyDown(jumpKey))
         {
             charCtrl.SimpleMove(moveState * timeSlowMult);
+            
         }
         else
         {
@@ -229,7 +235,10 @@ public class MoveCtrl : MonoBehaviour
 
         if (Input.GetKeyDown(jumpKey) && !isJumping)
         {
+            
+            playerAnimator.SetBool("Jumping", true);
             isJumping = true;
+            playerSoundScript.JumpSound();
             StartCoroutine(Jump());
         }
     }
@@ -243,12 +252,18 @@ public class MoveCtrl : MonoBehaviour
         {
             float jumpForce = jumpFalloff.Evaluate(timeInAir);
             charCtrl.Move(((Vector3.up * jumpMultiplier) * jumpForce * Time.deltaTime) + (moveState * Time.deltaTime));
+            playerAnimator.SetBool("Walking", false);
             timeInAir += Time.deltaTime;
 
             yield return null;
         }
         while (!charCtrl.isGrounded && charCtrl.collisionFlags != CollisionFlags.Above);
 
+        
+
+        playerAnimator.SetBool("Walking", true);
+        playerAnimator.SetBool("Jumping", false);
+        playerSoundScript.LandingSound();
         isJumping = false;
         charCtrl.slopeLimit = 45;
     }

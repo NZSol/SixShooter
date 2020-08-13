@@ -192,6 +192,36 @@ PrefabInstance:
       propertyPath: dmgRange
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6049120119934995215, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
+        type: 3}
+      propertyPath: MinDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049120119934995215, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079417022067422584, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
+        type: 3}
+      propertyPath: MinDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079417022067422584, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 578860306307007994, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
+        type: 3}
+      propertyPath: MinDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 578860306307007994, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3013056353101041424, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
         type: 3}
       propertyPath: MinDistance
@@ -244,36 +274,6 @@ PrefabInstance:
     - target: {fileID: 1819763520, guid: c9e0c5ef07527a143ab3ca2b3432dc97, type: 3}
       propertyPath: MinDistance
       value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6049120119934995215, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
-        type: 3}
-      propertyPath: MinDistance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6049120119934995215, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6079417022067422584, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
-        type: 3}
-      propertyPath: MinDistance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6079417022067422584, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 578860306307007994, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
-        type: 3}
-      propertyPath: MinDistance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 578860306307007994, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1383377582170651847, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
         type: 3}
@@ -1197,6 +1197,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2115565298, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115565298, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 319797927, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1205,14 +1213,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2115565298, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2115565298, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
@@ -1343,6 +1343,22 @@ PrefabInstance:
       propertyPath: HealthMeter
       value: 
       objectReference: {fileID: 2002909636}
+    - target: {fileID: 1100820134, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
+      propertyPath: ADS
+      value: 
+      objectReference: {fileID: 8300000, guid: fdb6b9eb178796a4eb960e085bde8204, type: 3}
+    - target: {fileID: 1100820134, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
+      propertyPath: Descope
+      value: 
+      objectReference: {fileID: 8300000, guid: 7e3a04ca9217f8d408329c16f605ac1c, type: 3}
+    - target: {fileID: 1100820134, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e2c8ab582b1b49b4c9ce6ca288f616d8, type: 3}
+    - target: {fileID: 1100820134, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
+      propertyPath: landingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: eb179cebc4fae014ca84b73da8217be8, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
 --- !u!114 &2002909636 stripped
