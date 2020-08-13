@@ -14,6 +14,7 @@ public class LoreInteraction : MonoBehaviour
     bool newspaperActive;
     bool InjuryActive;
     bool DiaryActive;
+    bool readingNote;
 
 
     // Start is called before the first frame update
@@ -32,36 +33,64 @@ public class LoreInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         closeGetAway();
         newsPaperActive();
         closediary();
         closeInjury();
     }
-     public void OnTriggerStay(Collider other)
+    public void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(Interact) && other.CompareTag("getaway"))
+        if (Input.GetKeyDown(Interact) && (other.CompareTag("getaway") || other.CompareTag("newspaper") || other.CompareTag("injury") || other.CompareTag("diary")))
         {
-            GetawayActive = !GetawayActive;
             FindObjectOfType<AudioManager>().Play("Paper_Pickup");
+        }
+        if (Input.GetKey(Interact) && other.CompareTag("getaway"))
+        {
+            GetawayActive = true;
+        }
+        else
+        {
+            GetawayActive = false;
         }
         if (Input.GetKeyDown(Interact) && other.CompareTag("newspaper"))
         {
-            newspaperActive = !newspaperActive;
-            FindObjectOfType<AudioManager>().Play("Paper_Pickup");
+            newspaperActive = true;
+        }
+        else
+        {
+            newspaperActive = false;
         }
         if (Input.GetKeyDown(Interact) && other.CompareTag("injury"))
         {
-            InjuryActive = !InjuryActive;
-            FindObjectOfType<AudioManager>().Play("Paper_Pickup");
+            InjuryActive = true;
+        }
+        else
+        {
+            InjuryActive = false;
         }
         if (Input.GetKeyDown(Interact) && other.CompareTag("diary"))
         {
-            DiaryActive = !DiaryActive;
-            FindObjectOfType<AudioManager>().Play("Paper_Pickup");
-        }
+            DiaryActive = true;
 
+        }
+        else
+        {
+            DiaryActive = false;
+
+        }
     }
-     public void closeGetAway()
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("diary") || other.CompareTag("injury") || other.CompareTag("newspaper") || other.CompareTag("getaway"))
+        {
+            GetawayActive = false;
+            newspaperActive = false;
+            InjuryActive = false;
+            DiaryActive = false;
+        }
+    }
+    public void closeGetAway()
     {
         if(GetawayActive == true)
         {

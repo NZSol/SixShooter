@@ -17,6 +17,7 @@ public class Gun : MonoBehaviour
     bool canFire = false;
     bool reloading = false;
     public bool startReload = false;
+    public AudioSource recharging;
 
     //Ammo
     public int ammoCount = 6;
@@ -37,7 +38,7 @@ public class Gun : MonoBehaviour
     bool canAim;
     bool canSlow;
     public bool timeSwitch = false;
-
+    public AudioSource slowSfx;
 
     //Canvas
     [SerializeField] Text ammoCountTxt;
@@ -197,12 +198,12 @@ public class Gun : MonoBehaviour
     {
         if(hitObj.tag == "critPoint")
         {
-            hitObj.GetComponentInParent<AIBase>().Damage(i: 10);
+            hitObj.GetComponentInParent<AIBase>().Damage(i: 5);
             print("hitCrit");
         }
         else if(hitObj.tag == "regDamage")
         {
-            hitObj.GetComponentInParent<AIBase>().Damage(i: 4);
+            hitObj.GetComponentInParent<AIBase>().Damage(i: 3);
             print("hitBase");
         }
     }
@@ -345,13 +346,14 @@ public class Gun : MonoBehaviour
 
     [SerializeField] Material mat;
     float intensity;
-    float intenseMin = 0.8f;
-    float intenseMax = 2.4f;
+    float intenseMin = 0.1f;
+    float intenseMax = 5f;
 
     void ADSCheck()
     {
         if (Input.GetKey(KeyCode.Mouse1) && canAim == true)
         {
+            
             aiming = true;
             lerpFuncIn();
         }
@@ -365,6 +367,7 @@ public class Gun : MonoBehaviour
         if (aiming == true && Input.GetKeyDown(KeyCode.LeftShift) && lerpTime >= 1 && canSlow == true)
         {
             timeSwitch = true;
+            slowSfx.Play();
         }
         else if (canSlow == false)
         {
@@ -463,6 +466,7 @@ public class Gun : MonoBehaviour
 
         if (slowTimer <= 0)
         {
+            recharging.Play();
             canSlow = false;
         }
         else if (slowTimer > 0)
