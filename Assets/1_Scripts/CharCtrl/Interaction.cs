@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Interaction : MonoBehaviour
 {
+    public static bool bombRigged;
+
     [SerializeField] Camera cam;
     [SerializeField] KeyCode Interact;
     Vector3 forward;
@@ -20,14 +22,32 @@ public class Interaction : MonoBehaviour
     [SerializeField] GameObject bomb;
     float Dist;
     [SerializeField] float rangeFromBomb;
+    [SerializeField] float bombRange;
 
+    void Start()
+    {
+        img.enabled = false;
+        slide.gameObject.SetActive(false);
+        slideVal = 0;
+    }
     // Update is called once per frame
     void Update()
     {
         Dist = Vector3.Distance(bomb.transform.position, gameObject.transform.position);
+        slide.value = slideVal;
+
+        if (slideVal <= 0 || slideVal >= 5)
+        {
+            slide.gameObject.SetActive(false);
+        }
+        else
+        {
+            slide.gameObject.SetActive(true);
+        }
 
         RaycastHit hit;
         forward = cam.transform.forward;
+        Vector3 rayDir = bomb.transform.position - transform.position;
         Debug.DrawRay(transform.position, forward * interCheckRange, Color.cyan);
 
         if (Physics.Raycast(transform.position, forward, out hit, interCheckRange, 1 << 9))
@@ -41,14 +61,16 @@ public class Interaction : MonoBehaviour
                     FindObjectOfType<AudioManager>().Play("Door");
                 }
             }
-
-            if (Input.GetKey(Interact))
+        }
+        if (Physics.Raycast(transform.position, rayDir, out hit, 1 << 9))
+        {
+            Debug.DrawRay(transform.position, rayDir, Color.yellow);
+            if (Input.GetKey(Interact) && Dist <= bombRange)
             {
                 if (hit.transform.tag == "endGame" && slideVal <= 5)
                 {
-                    img.enabled = true;
+                    print("acting");
                     slideVal += Time.deltaTime;
-                    slide.value = slideVal;
                     if (slideVal > 5)
                     {
                         slideVal = 5;
@@ -57,11 +79,29 @@ public class Interaction : MonoBehaviour
                 else
                 {
                     slideVal = 0;
-                    img.enabled = false;
+                }
+            }
+            if (slideVal > 0 || slideVal < 5)
+            {
+                if (!Input.GetKey(Interact))
+                {
+                    slideVal = 0;
                 }
             }
         }
-        print(Dist);
+
+
+        print(slide.value + "slide.Value");
+        print(slideVal + "SlideVal");
+        if(Dist < rangeFromBomb)
+        {
+            img.enabled = true;
+        }
+        else
+        {
+            img.enabled = false;
+        }
+
 
 
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 2))
@@ -79,7 +119,7 @@ public class Interaction : MonoBehaviour
                 endCoroutineBool = true;
                 hitBool = false;
             }
-            print(hit.transform.gameObject.layer);
+            //print(hit.transform.gameObject.layer);
         }
 
 
