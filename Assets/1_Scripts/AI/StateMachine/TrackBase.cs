@@ -46,6 +46,7 @@ public class TrackBase : StateMachineBehaviour
         curTime = 0;
         anim = animator;
         ScriptMaster = animator.GetComponent<AIBase>();
+        animator.SetBool("Tracking", true);
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -63,6 +64,15 @@ public class TrackBase : StateMachineBehaviour
         if(searchCount == 3)
         {
             ScriptMaster.animCtrl.SetInteger("ActState", 1);
+            ScriptMaster.animCtrl.SetBool("Tracking", false);
+        }
+        if(agent.velocity == Vector3.zero)
+        {
+            animator.SetBool("Idling", true);
+        }
+        else
+        {
+            animator.SetBool("Idling", true);
         }
     }
 
@@ -93,6 +103,7 @@ public class TrackBase : StateMachineBehaviour
 
     void Search()
     {
+        ScriptMaster.travelTo = targDest;
         targDist = Vector3.Distance(targDest, anim.transform.position);
 
         if(targDest == null)
