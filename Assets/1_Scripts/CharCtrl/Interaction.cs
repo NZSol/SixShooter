@@ -181,7 +181,6 @@ public class Interaction : MonoBehaviour
 
     void displayTime(float display)
     {
-        display += 1;
 
         minutes = Mathf.FloorToInt(display / 60);
         seconds = Mathf.FloorToInt(display % 60);

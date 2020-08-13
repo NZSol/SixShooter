@@ -28,6 +28,8 @@ public class Gun : MonoBehaviour
     [SerializeField] ParticleSystem hitParticle;
     [SerializeField] ParticleSystem muzzleflash;
     [SerializeField] ParticleSystem bloodParticle;
+    [SerializeField] ParticleSystem critEffect;
+    [SerializeField] ParticleSystem RegEffect;
     [SerializeField] float speedModifier;
     [SerializeField] GameObject gunMesh;
 
@@ -87,14 +89,7 @@ public class Gun : MonoBehaviour
         {
             MoveCtrl.aimSpeedModif = 1;
         }
-
-        /*
-        if (Input.GetKeyDown(KeyCode.Mouse0) && ammoCount > 0 && canFire == true && !ButtonClick.isPaused)
-        {
-            
-        }
-        */
-
+        
 
         //Check Ammo before firing again
         CheckAmmo();
@@ -152,6 +147,16 @@ public class Gun : MonoBehaviour
             {
                 Debug.DrawRay(myCam.transform.position, myCam.transform.forward * 50, Color.green);
                 hitObj = hit.collider.gameObject;
+                if (hit.collider.tag == "regDamage")
+                {
+                    //Instantiate(RegEffect, hit.point, transform.rotation);
+                    //Play SoundEffect
+                }
+                else if (hit.collider.tag == "critPoint")
+                {
+                    //Instantiate(CritEffect, hit.point, transform.rotation);
+                    //Play SoundEffect
+                }
 
                 Instantiate(bloodParticle, hit.point, transform.rotation);
 
