@@ -94,6 +94,7 @@ public class ButtonClick : MonoBehaviour
         }
         if (isPaused)
         {
+            Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }
     }
