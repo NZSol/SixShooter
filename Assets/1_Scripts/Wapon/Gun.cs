@@ -131,10 +131,10 @@ public class Gun : MonoBehaviour
 
     public void GunShoot()
     {
+        muzzFlash.SetActive(true);
         timeToFire = 0;
         ammoCount--;
         canFire = false;
-        muzzFlash.SetActive(true);
         StartCoroutine(MuzzleFlashOff());
         muzzleflash.Play();
         bulletsFired++;
