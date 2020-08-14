@@ -42,24 +42,31 @@ public class ButtonClick : MonoBehaviour
         controls.SetActive(false);
         pauseMenu.SetActive(false);
         print("test");
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if(Input.GetKey(KeyCode.Mouse1) && Input.GetKeyDown(KeyCode.LeftShift))
         {
-                StartCoroutine(ChromaticA());
+            StartCoroutine(ChromaticA());
         }
         Scene currentScene = SceneManager.GetActiveScene();
         int buildIndex = currentScene.buildIndex;
         string sceneName = currentScene.name;
-        if(pauseMenu == true || buildIndex == 0)
+        if (SceneManager.GetActiveScene().name == "MenuScene")
         {
             Cursor.visible = true;
+            pauseUI = false;
+        }
+        else
+        {
+            Cursor.visible = false;
         }
 
-        if(buildIndex == 2 && !pauseUI)
+        if (buildIndex == 2 && !pauseUI)
         {
             Cursor.visible = false;
         }
@@ -245,7 +252,13 @@ public class ButtonClick : MonoBehaviour
     }
     public void QuitToMenu()
     {
+        ResumeButton();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        pauseUI = false;
         SceneManager.LoadScene(0);
     }
+
+   
 
 }
