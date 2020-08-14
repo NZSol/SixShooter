@@ -189,11 +189,15 @@ public class ButtonClick : MonoBehaviour
     {
         if(pauseUI == true)
         {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             pauseMenu.SetActive(true);
             //make time pause
         }
         if (pauseUI == false)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             pauseMenu.SetActive(false);
 
         }

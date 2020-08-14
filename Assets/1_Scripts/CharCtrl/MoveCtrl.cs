@@ -64,7 +64,7 @@ public class MoveCtrl : MonoBehaviour
         timeSlowBase = 1;
         slowTimeMultip = slowFallOff.Evaluate(falloff);
         stateEnum = States.MoveState;
-        Cursor.lockState = CursorLockMode.Confined;
+
         playerSoundScript = GetComponentInChildren<PlayerSoundEvents>();
         playerAnimator = GetComponentInChildren<Animator>();
     }

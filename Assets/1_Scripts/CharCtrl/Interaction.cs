@@ -24,9 +24,15 @@ public class Interaction : MonoBehaviour
     float Dist;
     [SerializeField] float rangeFromBomb;
     [SerializeField] float bombRange;
+    
+
+    public GameObject endGameTrigger;
+    public Text endGameText;
 
     void Start()
     {
+        endGameText.gameObject.SetActive(false);
+        endGameTrigger.SetActive(false);
         reachThePlatform.gameObject.SetActive(true);
         plantTheBomb.gameObject.SetActive(false);
         slide.gameObject.SetActive(false);
@@ -143,6 +149,8 @@ public class Interaction : MonoBehaviour
 
         if(bombRigged == true)
         {
+            endGameText.gameObject.SetActive(true);
+            endGameTrigger.SetActive(true);
             endgameTimer();
         }
     }

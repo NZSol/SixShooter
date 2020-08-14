@@ -6564,9 +6564,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 50
   myCam: {fileID: 3476518271725944924}
+  canFire: 0
   startReload: 0
   recharging: {fileID: 1119002676}
   ammoCount: 6
+  cancelReload: 0
   muzzFlash: {fileID: 719953366}
   hitParticle: {fileID: 5611993856713497722, guid: 9dd6011e2ee094e468283f40f387acea,
     type: 3}
@@ -6590,6 +6592,7 @@ MonoBehaviour:
   ammoCountImg3: {fileID: 0}
   ammoCountImg2: {fileID: 0}
   ammoCountImg1: {fileID: 0}
+  crossHair: {fileID: 0}
   shootClip: {fileID: 1827226128182048838, guid: 099fc8e4b4208d74daaf0ca4662676b6,
     type: 3}
   hitObj: {fileID: 0}
@@ -7629,6 +7632,8 @@ MonoBehaviour:
   bomb: {fileID: 0}
   rangeFromBomb: 6
   bombRange: 3
+  endGameTrigger: {fileID: 0}
+  endGameText: {fileID: 0}
   endgameTime: 60
   timer: {fileID: 0}
 --- !u!114 &3413981699558000640

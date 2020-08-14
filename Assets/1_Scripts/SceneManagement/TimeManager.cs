@@ -12,10 +12,17 @@ public class TimeManager : MonoBehaviour
     public static bool GamePause;
 
     // Update is called once per frame
+    private void Start()
+    {
+
+    }
     void Update()
     {
         if (GamePause == false)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+
+            Cursor.visible = false;
             if (endSlow == true)
             {
                 ReduceSlowmo();
@@ -45,6 +52,7 @@ public class TimeManager : MonoBehaviour
 
     public static void PauseMenu()
     {
+
         Time.timeScale = 0;
         //Time.fixedDeltaTime = Time.timeScale * 0.005f;
     }

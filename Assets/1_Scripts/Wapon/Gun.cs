@@ -78,6 +78,8 @@ public class Gun : MonoBehaviour
         anim = GetComponent<Animator>();
         audioManager = FindObjectOfType<AudioManager>();
 
+        Cursor.lockState = CursorLockMode.Locked;
+
         ammoCountImg6.enabled = true;
         ammoCountImg5.enabled = true;
         ammoCountImg4.enabled = true;
