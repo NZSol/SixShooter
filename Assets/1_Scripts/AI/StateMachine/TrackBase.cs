@@ -17,7 +17,7 @@ public class TrackBase : StateMachineBehaviour
     float timer = 5;
     float curTime;
     float searchRadius = 5;
-    int searchCount;
+    public static int searchCount = 0;
 
     Animator anim;
 
@@ -46,7 +46,8 @@ public class TrackBase : StateMachineBehaviour
         curTime = 0;
         anim = animator;
         ScriptMaster = animator.GetComponent<AIBase>();
-        animator.SetBool("Tracking", true);
+        ScriptMaster.animCtrl.SetBool("Tracking", true);
+        ScriptMaster.animCtrl.SetBool("Patrolling", false);
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -79,7 +80,6 @@ public class TrackBase : StateMachineBehaviour
     //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        searchCount = 0;
     }
 
 
