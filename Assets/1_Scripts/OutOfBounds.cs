@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OutOfBounds : MonoBehaviour
 {
+    public Transform respawn;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,7 @@ public class OutOfBounds : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            
+            player.transform.position = respawn.transform.position;
         }
     }
 }
