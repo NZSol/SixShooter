@@ -24,7 +24,7 @@ public class Interaction : MonoBehaviour
     float Dist;
     [SerializeField] float rangeFromBomb;
     [SerializeField] float bombRange;
-
+    [SerializeField] float oilRange;
 
 
 
@@ -120,12 +120,13 @@ public class Interaction : MonoBehaviour
         }
 
 
-        if (Physics.Raycast(transform.position, Vector3.down * 1, out hit, 1 << 13))
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, oilRange))
         {
-            Debug.DrawRay(transform.position, Vector3.down * 1, Color.yellow);
+            Debug.DrawRay(transform.position, Vector3.down * oilRange, Color.yellow);
             print(hit.collider.gameObject.layer);
-            if (hit.collider.gameObject.layer == 13 && this.gameObject.GetComponent<CharacterController>().isGrounded)
+            if (hit.collider.gameObject.layer == 13 && this.gameObject.GetComponent<CharacterController>().collisionFlags != CollisionFlags.Below)
             {
+                print("true OIL");
                 inOil = true;
             }
             else
@@ -133,7 +134,8 @@ public class Interaction : MonoBehaviour
                 inOil = false;
             }
         }
-
+        print(this.gameObject.GetComponent<CharacterController>().isGrounded + "Grounded");
+        print(this.gameObject.GetComponent<CharacterController>().collisionFlags);
         //print(hit.transform.gameObject.layer);
         if (inOil == true && CoroutineHalted == true)
         {
@@ -157,10 +159,7 @@ public class Interaction : MonoBehaviour
             
             endgameTimer();
         }
-
-
-
-        print(inOil + " In Oil");
+        
     }
     
 
