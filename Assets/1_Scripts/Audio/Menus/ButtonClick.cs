@@ -42,24 +42,31 @@ public class ButtonClick : MonoBehaviour
         controls.SetActive(false);
         pauseMenu.SetActive(false);
         print("test");
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if(Input.GetKey(KeyCode.Mouse1) && Input.GetKeyDown(KeyCode.LeftShift))
         {
-                StartCoroutine(ChromaticA());
+            StartCoroutine(ChromaticA());
         }
         Scene currentScene = SceneManager.GetActiveScene();
         int buildIndex = currentScene.buildIndex;
         string sceneName = currentScene.name;
-        if(pauseMenu == true || buildIndex == 0)
+        if (SceneManager.GetActiveScene().name == "MenuScene")
         {
             Cursor.visible = true;
+            pauseUI = false;
+        }
+        else
+        {
+            Cursor.visible = false;
         }
 
-        if(buildIndex == 2 && !pauseUI)
+        if (buildIndex == 2 && !pauseUI)
         {
             Cursor.visible = false;
         }
@@ -162,7 +169,7 @@ public class ButtonClick : MonoBehaviour
         if (val == 3)
         {
             QualitySettings.SetQualityLevel(5, true);
-        }
+        }
 
     }
 
@@ -188,15 +195,15 @@ public class ButtonClick : MonoBehaviour
     public void PauseUI()
     {
         if(pauseUI == true)
-        {
-            Cursor.lockState = CursorLockMode.Confined;
+        {
+            Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
             pauseMenu.SetActive(true);
             //make time pause
         }
         if (pauseUI == false)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
+        {
+            Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             pauseMenu.SetActive(false);
 
@@ -222,14 +229,16 @@ public class ButtonClick : MonoBehaviour
         controls.SetActive(newValue);
 
     }
-    public void CloseControls()
-    {
-        controls.SetActive(false);
+    public void CloseControls()
+    {
+        controls.SetActive(false);
+    }
+    public void CloseOptions()
+    {
+        optionsPanel.SetActive(false);
     }
-    public void CloseOptions()
-    {
-        optionsPanel.SetActive(false);
-    }
+
+
     IEnumerator ChromaticA()
     {
         cA.intensity.value = Mathf.Lerp(0, 3, 1);
@@ -249,7 +258,13 @@ public class ButtonClick : MonoBehaviour
     }
     public void QuitToMenu()
     {
+        ResumeButton();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        pauseUI = false;
         SceneManager.LoadScene(0);
     }
+
+   
 
 }

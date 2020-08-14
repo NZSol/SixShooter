@@ -19,6 +19,7 @@ public class AIBase : MonoBehaviour
     [SerializeField] float fovRange = 75;
     bool brokenLos;
     Spawning spawnScript;
+    public Vector3 travelTo;
 
     int health;
     Vector3 EndPos, endPosDir;
@@ -37,12 +38,14 @@ public class AIBase : MonoBehaviour
             {
                 Debug.DrawRay(transform.position, rayDir, Color.yellow);
                 animCtrl.SetInteger("ActState", 2);
+                animCtrl.SetBool("Patrolling", false);
                 return true;
             }
             else if ((hit.transform.tag == "Player") && (playerDist <= attackRange))
             {
                 Debug.DrawRay(transform.position, rayDir, Color.blue);
                 animCtrl.SetBool("Attacking", true);
+                animCtrl.SetBool("Patrolling", false);
                 return true;
             }
         }
@@ -54,6 +57,7 @@ public class AIBase : MonoBehaviour
                 {
                     Debug.DrawRay(transform.position, rayDir, Color.green);
                     animCtrl.SetInteger("ActState", 2);
+                    animCtrl.SetBool("Patrolling", false);
                     return true;
                 }
                 else
@@ -61,7 +65,7 @@ public class AIBase : MonoBehaviour
                     Debug.DrawRay(transform.position, rayDir, Color.red);
                     print(hit);
                     animCtrl.SetInteger("ActState", 3);
-
+                    animCtrl.SetBool("Patrolling", false);
                     return false;
                 }
             }
