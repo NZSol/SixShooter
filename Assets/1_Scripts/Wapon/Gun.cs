@@ -242,7 +242,7 @@ public class Gun : MonoBehaviour
             canFire = true;
             StartCoroutine(CheckFire());
         }
-
+        anim.updateMode = AnimatorUpdateMode.Normal;
     }
     IEnumerator CheckFire()
     {
@@ -283,6 +283,10 @@ public class Gun : MonoBehaviour
             ammoCount++;
         }
 
+    }
+    public void AnimUpdater()
+    {
+        anim.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     public void TransitionFromReload()
