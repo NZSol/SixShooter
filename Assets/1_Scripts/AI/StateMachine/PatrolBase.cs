@@ -55,6 +55,7 @@ public class PatrolBase : StateMachineBehaviour
         if (agent.velocity == Vector3.zero && Dist < 3)
         {
             ScriptMaster.animCtrl.SetBool("Idling", true);
+            Debug.Log(ScriptMaster.animCtrl.GetBool("Idling"));
         }
         else
         {

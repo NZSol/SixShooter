@@ -32,7 +32,6 @@ public class EnemySoundEvents : MonoBehaviour
 
         attackAudioS[attackindex].PlayOneShot(attackAudioS[attackindex].clip);
         attackAudioS[attackindex].volume = 0.1f;
-        Debug.Log(attackindex);
     }
 
     public void WalkSound()

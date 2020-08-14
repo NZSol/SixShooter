@@ -37,16 +37,20 @@ public class AIBase : MonoBehaviour
             if ((hit.transform.tag == "Player") && (playerDist <= minDetectRange && playerDist >= attackRange))
             {
                 Debug.DrawRay(transform.position, rayDir, Color.yellow);
-                animCtrl.SetInteger("ActState", 2);
-                animCtrl.SetBool("Patrolling", false);
+                //animCtrl.SetInteger("ActState", 2);
+                //animCtrl.SetBool("Patrolling", false);
                 return true;
             }
             else if ((hit.transform.tag == "Player") && (playerDist <= attackRange))
             {
                 Debug.DrawRay(transform.position, rayDir, Color.blue);
                 animCtrl.SetBool("Attacking", true);
-                animCtrl.SetBool("Patrolling", false);
+                //animCtrl.SetBool("Patrolling", false);
                 return true;
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, rayDir * minDetectRange, Color.magenta);
             }
         }
         if(Vector3.Angle(rayDir, transform.forward) < fovRange)
@@ -56,16 +60,21 @@ public class AIBase : MonoBehaviour
                 if (hit.transform.tag == "Player")
                 {
                     Debug.DrawRay(transform.position, rayDir, Color.green);
-                    animCtrl.SetInteger("ActState", 2);
-                    animCtrl.SetBool("Patrolling", false);
+                    //animCtrl.SetInteger("ActState", 2);
+                    //animCtrl.SetBool("Patrolling", false);
                     return true;
+                }
+                else if (animCtrl.GetInteger("ActState") == 2 && hit.transform.tag != "Player")
+                {
+                    Debug.DrawRay(transform.position, rayDir, Color.red);
+                    //animCtrl.SetInteger("ActState", 3);
+                    //animCtrl.SetBool("Patrolling", false);
+                    return false;
                 }
                 else
                 {
-                    Debug.DrawRay(transform.position, rayDir, Color.red);
-                    print(hit);
-                    animCtrl.SetInteger("ActState", 3);
-                    animCtrl.SetBool("Patrolling", false);
+                    //animCtrl.SetInteger("ActState", 1);
+                    //animCtrl.SetBool("Patrolling", true);
                     return false;
                 }
             }
@@ -93,6 +102,28 @@ public class AIBase : MonoBehaviour
         CanSeePlayer();
         HealthCheck();
 
+        if (CanSeePlayer() == true)
+        {
+            if (playerDist < attackRange)
+            {
+                animCtrl.SetBool("Attacking", true);
+            }
+            else
+            {
+                animCtrl.SetInteger("ActState", 2);
+            }
+        }
+        else
+        {
+            if (animCtrl.GetInteger("ActState") == 2)
+            {
+                animCtrl.SetInteger("ActState", 3);
+            }
+            else if (animCtrl.GetInteger("ActState") == 1)
+            {
+                animCtrl.SetBool("Patrolling", true);
+            }
+        }
 
     }
 
@@ -183,7 +214,6 @@ public class AIBase : MonoBehaviour
 
     public void Damage(int i)
     {
-        print(i + " damaging AI");
         health -= i;
         if (animCtrl.GetBool("Shot") == false || animCtrl.GetBool("Following") == false)
         {

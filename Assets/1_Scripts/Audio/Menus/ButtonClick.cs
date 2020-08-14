@@ -169,7 +169,8 @@ public class ButtonClick : MonoBehaviour
         if (val == 3)
         {
             QualitySettings.SetQualityLevel(5, true);
-        }
+        }
+
 
     }
 
@@ -195,15 +196,19 @@ public class ButtonClick : MonoBehaviour
     public void PauseUI()
     {
         if(pauseUI == true)
-        {
-            Cursor.lockState = CursorLockMode.Confined;
+        {
+
+            Cursor.lockState = CursorLockMode.Confined;
+
             Cursor.visible = true;
             pauseMenu.SetActive(true);
             //make time pause
         }
         if (pauseUI == false)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
+        {
+
+            Cursor.lockState = CursorLockMode.Locked;
+
             Cursor.visible = false;
             pauseMenu.SetActive(false);
 
@@ -229,13 +234,20 @@ public class ButtonClick : MonoBehaviour
         controls.SetActive(newValue);
 
     }
-    public void CloseControls()
-    {
-        controls.SetActive(false);
-    }
-    public void CloseOptions()
-    {
-        optionsPanel.SetActive(false);
+    public void CloseControls()
+
+    {
+
+        controls.SetActive(false);
+
+    }
+
+    public void CloseOptions()
+
+    {
+
+        optionsPanel.SetActive(false);
+
     }
 
 

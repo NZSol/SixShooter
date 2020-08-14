@@ -72,7 +72,7 @@ public class TrackBase : StateMachineBehaviour
         }
         else
         {
-            animator.SetBool("Idling", true);
+            animator.SetBool("Idling", false);
         }
     }
 

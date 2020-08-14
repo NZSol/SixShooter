@@ -71,10 +71,6 @@ public class HealthSystem : MonoBehaviour
         {
             EndGame();
         }
-
-
-        print(timer + "timer");
-       
     }
 
     public void healthReduce (int i)

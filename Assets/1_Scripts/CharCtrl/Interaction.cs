@@ -112,10 +112,6 @@ public class Interaction : MonoBehaviour
             plantTheBomb.gameObject.SetActive(false);
         }
 
-        print(slide.value + "slide.Value");
-        print(slideVal + "SlideVal");
-
-
 
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 2))
         {
