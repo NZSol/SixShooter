@@ -18,11 +18,12 @@ public class OutOfBounds : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "Player")
+        if (other.tag == "Player")
         {
-            SceneManager.LoadScene(2);
+            player.transform.position = respawn.transform.position;
         }
     }
+
 }
