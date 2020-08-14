@@ -26,7 +26,7 @@ public class ButtonClick : MonoBehaviour
     public GameObject credits;
     public static bool isPaused = false;
     bool pauseUI;
-
+    bool optionsOpen;
 
 
     public static float audioVolume;
@@ -46,6 +46,7 @@ public class ButtonClick : MonoBehaviour
         pauseMenu.SetActive(false);
         print("test");
         Cursor.visible = true;
+        optionsOpen = false;
 
     }
 
@@ -74,9 +75,13 @@ public class ButtonClick : MonoBehaviour
         {
             Cursor.visible = false;
         }
+        if (optionsOpen)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
         if (buildIndex == 2 && Input.GetKeyDown(KeyCode.Escape))
         {
-
             Cursor.lockState = CursorLockMode.Confined;
             TimeManager.GamePause = !TimeManager.GamePause;
             pauseMenu.SetActive(false);
@@ -86,6 +91,10 @@ public class ButtonClick : MonoBehaviour
             pauseUI = !pauseUI;
             isPaused = !isPaused;
             PauseUI();
+        }
+        if (isPaused)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
     public void playClip()
@@ -122,6 +131,7 @@ public class ButtonClick : MonoBehaviour
     public void OpenOptions(bool newValue)
     {
         Cursor.visible = true;
+        optionsOpen = true;
         optionsPanel.SetActive(newValue);
 
     }
@@ -229,6 +239,7 @@ public class ButtonClick : MonoBehaviour
 
     public void ResumeButton()
     {
+        optionsOpen = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         isPaused = !isPaused;
