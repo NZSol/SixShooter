@@ -3125,6 +3125,11 @@ PrefabInstance:
       propertyPath: baseSensitivity
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 5593437907256176008, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
 --- !u!1001 &1972338909
@@ -3896,6 +3901,14 @@ PrefabInstance:
     - target: {fileID: 1671182667, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714634127, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2063963587}
+    - target: {fileID: 1714634127, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: asyncBtnFunc
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
