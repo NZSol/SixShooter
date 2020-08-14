@@ -66,7 +66,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.047732692
+      - time: 0.011709602
         functionName: GunShoot
         data: 
         objectReferenceParameter: {instanceID: 0}
