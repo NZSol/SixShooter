@@ -47,7 +47,7 @@ public class EndScreen : MonoBehaviour
     void PlayExplosions()
     {
         explosion.Play();
-        Invoke("LoadMenu",4);
+        Invoke("LoadMenu",6);
 
         Invoke("FadeOutSound", 3);
     }
