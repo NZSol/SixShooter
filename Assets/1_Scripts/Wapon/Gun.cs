@@ -223,12 +223,12 @@ public class Gun : MonoBehaviour
     {
         if(hitObj.tag == "critPoint")
         {
-            hitObj.GetComponentInParent<AIBase>().Damage(i: 5);
+            hitObj.GetComponentInParent<AIBase>().Damage(i: 4);
             print("hitCrit");
         }
         else if(hitObj.tag == "regDamage")
         {
-            hitObj.GetComponentInParent<AIBase>().Damage(i: 3);
+            hitObj.GetComponentInParent<AIBase>().Damage(i: 2);
             print("hitBase");
         }
     }
