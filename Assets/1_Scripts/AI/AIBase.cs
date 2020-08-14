@@ -97,34 +97,37 @@ public class AIBase : MonoBehaviour
 
     private void Update()
     {
-        print(TrackBase.searchCount);
         playerDist = Vector3.Distance(player.transform.position, transform.position);
 
-        CanSeePlayer();
-        HealthCheck();
-
-        if (CanSeePlayer() == true)
+        if (animCtrl != null)
         {
-            if (playerDist < attackRange)
+            CanSeePlayer();
+
+            if (CanSeePlayer() == true)
             {
-                animCtrl.SetBool("Attacking", true);
+                if (playerDist < attackRange)
+                {
+                    animCtrl.SetBool("Attacking", true);
+                }
+                else
+                {
+                    animCtrl.SetInteger("ActState", 2);
+                }
             }
             else
             {
-                animCtrl.SetInteger("ActState", 2);
+                if (animCtrl.GetInteger("ActState") == 2)
+                {
+                    animCtrl.SetInteger("ActState", 3);
+                }
+                else if (animCtrl.GetInteger("ActState") == 1)
+                {
+                    animCtrl.SetBool("Patrolling", true);
+                }
             }
         }
-        else
-        {
-            if (animCtrl.GetInteger("ActState") == 2)
-            {
-                animCtrl.SetInteger("ActState", 3);
-            }
-            else if (animCtrl.GetInteger("ActState") == 1)
-            {
-                animCtrl.SetBool("Patrolling", true);
-            }
-        }
+        HealthCheck();
+
 
     }
 

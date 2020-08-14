@@ -50,10 +50,8 @@ public class HealthSystem : MonoBehaviour
             }
             else if (timer <= 0 && regenHealth == false)
             {
-                print("Checking");
                 if (canBeHit == true)
                 {
-                    print("checking");
                     regenHealth = true;
                 }
                 timer = 5;
