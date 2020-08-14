@@ -92,6 +92,7 @@ public class Interaction : MonoBehaviour
                     {
                         slideVal = 5;
                         bombRigged = true;
+                        FindObjectOfType<AudioManager>().Play("Bomb timer");
                     }
                 }
                 else
@@ -173,7 +174,6 @@ public class Interaction : MonoBehaviour
         timer.gameObject.SetActive(true);
         if (endgameTime > 0)
         {
-            FindObjectOfType<AudioManager>().Play("Bomb timer");
             endgameTime -= Time.deltaTime;
         }
         else
