@@ -20,6 +20,8 @@ public class GameStartAfterIntro : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene(2);
+            TimeManager.GamePause = false;
+            Time.timeScale = 1;
         }
     }
     IEnumerator StartGame()

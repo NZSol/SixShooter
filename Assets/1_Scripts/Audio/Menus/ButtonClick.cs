@@ -177,7 +177,15 @@ public class ButtonClick : MonoBehaviour
 
 
     }
+    public void RestartGame()
+    {
 
+
+        SceneManager.LoadScene(2);
+        isPaused = !isPaused;
+        TimeManager.GamePause = false;
+
+    }
     public void ResHandleInputData(int val)
     {
         if(val == 0)
@@ -293,11 +301,11 @@ public class ButtonClick : MonoBehaviour
     }
     public void QuitToMenu()
     {
-        ResumeButton();
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         pauseUI = false;
         SceneManager.LoadScene(0);
+        isPaused = !isPaused;
     }
 
    
