@@ -16,7 +16,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] Slider HealthMeter;
     public static bool GameOver;
 
-
+    bool playerDied;
     public static bool canBeHit = true;
     public bool onRegenHealth;
     bool regenHealth;
@@ -113,10 +113,10 @@ public class HealthSystem : MonoBehaviour
 
     public void EndGame()
     {
+        TimeManager.GamePause = true;
         EndGameUI.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-        TimeManager.GamePause = true;
         //SceneLoader.GetComponent<AsyncLoadFunc>().loadFunc();
     }
 

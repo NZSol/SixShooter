@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OutOfBounds : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class OutOfBounds : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            player.transform.position = respawn.transform.position;
+            SceneManager.LoadScene(2);
         }
     }
 }
