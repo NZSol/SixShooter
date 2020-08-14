@@ -57,6 +57,7 @@ public class EndScreen : MonoBehaviour
     }
     void LoadMenu()
     {
+        Cursor.lockState = CursorLockMode.Confined;
         SceneManager.LoadScene(0);
     }
 }
