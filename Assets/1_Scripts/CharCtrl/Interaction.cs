@@ -11,7 +11,7 @@ public class Interaction : MonoBehaviour
     [SerializeField] KeyCode Interact;
     Vector3 forward;
     public bool coroutineBool, endCoroutineBool;
-    bool inOil;
+    bool inOil = false;
     public bool hitBool;
     [SerializeField] float interCheckRange;
 
@@ -26,10 +26,12 @@ public class Interaction : MonoBehaviour
     [SerializeField] float bombRange;
 
 
-    
+
 
     public GameObject endGameTrigger;
     public Text endGameText;
+
+    bool CoroutineHalted = true;
 
     void Start()
     {
@@ -41,8 +43,10 @@ public class Interaction : MonoBehaviour
         slideVal = 0;
         timer.gameObject.SetActive(false);
         bombRigged = false;
-
+        inOil = false;
+        StopCoroutine(oilDamage());
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -116,34 +120,34 @@ public class Interaction : MonoBehaviour
         }
 
 
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 2))
+        if (Physics.Raycast(transform.position, Vector3.down * 1, out hit, 1 << 13))
         {
-            if (hit.transform.gameObject.layer == 13 && hitBool == false)
+            Debug.DrawRay(transform.position, Vector3.down * 1, Color.yellow);
+            print(hit.collider.gameObject.layer);
+            if (hit.collider.gameObject.layer == 13)
             {
-                hitBool = true;
-                coroutineBool = true;
-                endCoroutineBool = false;
                 inOil = true;
             }
             else
             {
                 inOil = false;
-                endCoroutineBool = true;
-                hitBool = false;
             }
-            //print(hit.transform.gameObject.layer);
         }
 
+        //print(hit.transform.gameObject.layer);
+        if (inOil == true && CoroutineHalted == true)
+        {
+            StartCoroutine(oilDamage());
+            CoroutineHalted = false;
+        }
+        if (inOil == false)
+        {
+            //StopCoroutine(oilDamage());
+            CoroutineHalted = true;
+        }
+        
 
-        if (coroutineBool == true && endCoroutineBool == false)
-        {
-            coroutineBool = false;
-            StartCoroutine(PlayerDamage());
-        }
-        else
-        {
-            StopCoroutine(PlayerDamage());
-        }
+
 
 
         if(bombRigged == true)
@@ -153,19 +157,12 @@ public class Interaction : MonoBehaviour
             
             endgameTimer();
         }
-    }
 
 
-    IEnumerator PlayerDamage()
-    {
-        print("checking");
-        do
-        {
-            gameObject.GetComponent<HealthSystem>().healthReduce(i: 5);
-            yield return new WaitForSeconds(2);
-        }
-        while (inOil);
+
+        print(inOil + " In Oil");
     }
+    
 
     public float endgameTime;
     [SerializeField] Text timer;
@@ -200,6 +197,16 @@ public class Interaction : MonoBehaviour
         timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+
+    IEnumerator oilDamage()
+    {
+        while(true)
+        {
+            GetComponent<HealthSystem>().healthReduce(i: 5);
+            yield return new WaitForSeconds(2f);
+            print("Checking");
+        }
+    }
 
 
 }
