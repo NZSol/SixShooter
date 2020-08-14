@@ -200,7 +200,7 @@ public class Interaction : MonoBehaviour
 
     IEnumerator oilDamage()
     {
-        while(true)
+        while(inOil == true)
         {
             GetComponent<HealthSystem>().healthReduce(i: 5);
             yield return new WaitForSeconds(2f);
