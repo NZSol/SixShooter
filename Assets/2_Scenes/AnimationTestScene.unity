@@ -14,12 +14,12 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
+  m_Fog: 1
+  m_FogColor: {r: 0.16126736, g: 0.17128938, b: 0.2264151, a: 1}
+  m_FogMode: 1
   m_FogDensity: 0.01
-  m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_LinearFogStart: 10
+  m_LinearFogEnd: 500
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
@@ -523,6 +523,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Creature_Mesh
       objectReference: {fileID: 0}
+    - target: {fileID: 2824035417775749019, guid: 8cbc8851220b4194ca8a2e6b2aa0de3d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5633937729175028657, guid: 3338ccc628e22884996c96761f2f4c3e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -576,11 +581,6 @@ PrefabInstance:
     - target: {fileID: 5633937729175028657, guid: 3338ccc628e22884996c96761f2f4c3e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2824035417775749019, guid: 8cbc8851220b4194ca8a2e6b2aa0de3d,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1217,18 +1217,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8127554079551704497, guid: b0b96510ad999a7449d1d17d1970e578,
+    - target: {fileID: 8127554080097122796, guid: b0b96510ad999a7449d1d17d1970e578,
         type: 3}
-      propertyPath: m_Enabled
+      propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 319797927, guid: b0b96510ad999a7449d1d17d1970e578, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8127554080097122796, guid: b0b96510ad999a7449d1d17d1970e578,
+    - target: {fileID: 8127554079551704497, guid: b0b96510ad999a7449d1d17d1970e578,
         type: 3}
-      propertyPath: m_Color.a
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8127554079008846351, guid: b0b96510ad999a7449d1d17d1970e578,

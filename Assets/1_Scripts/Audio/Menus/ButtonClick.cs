@@ -239,6 +239,12 @@ public class ButtonClick : MonoBehaviour
         controls.SetActive(newValue);
 
     }
+    public void OpenCredits(bool newValue)
+
+    {
+        credits.SetActive(newValue);
+
+    }
 
     public void CloseCredits()
 
@@ -263,13 +269,7 @@ public class ButtonClick : MonoBehaviour
 
     }
 
-    public void OpenCredits()
 
-    {
-
-        credits.SetActive(true);
-
-    }
 
 
 
