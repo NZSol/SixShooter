@@ -97,6 +97,7 @@ public class AIBase : MonoBehaviour
 
     private void Update()
     {
+        print(TrackBase.searchCount);
         playerDist = Vector3.Distance(player.transform.position, transform.position);
 
         CanSeePlayer();
@@ -143,6 +144,7 @@ public class AIBase : MonoBehaviour
                 val++;
             }
             Destroy(GetComponent<NavMeshAgent>());
+            Destroy(GetComponentInChildren<AudioSource>());
             Destroy(this);
         }
     }
@@ -220,6 +222,7 @@ public class AIBase : MonoBehaviour
             enemyDeathScript.DeathSound();
             animCtrl.SetBool("Shot", true);
         }
+        HealthCheck();
     }
 
     public void resetAtkRange()

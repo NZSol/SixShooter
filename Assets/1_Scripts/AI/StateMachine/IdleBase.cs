@@ -14,6 +14,11 @@ public class IdleBase : StateMachineBehaviour
     {
         Player = GameObject.FindWithTag("Player");
         ScriptMaster = animator.GetComponent<AIBase>();
+        if (TrackBase.searchCount == 3)
+        {
+            ScriptMaster.animCtrl.SetBool("Tracking", false);
+            ScriptMaster.animCtrl.SetBool("Patrolling", true);
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -36,6 +41,10 @@ public class IdleBase : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         ScriptMaster.animCtrl.SetBool("Idling", false);
+        if (ScriptMaster.animCtrl.GetInteger("ActState") == 3)
+        {
+            TrackBase.searchCount++;
+        }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

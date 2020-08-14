@@ -14,12 +14,14 @@ public class shotBase : StateMachineBehaviour
     NavMeshAgent agent;
     Animator anim;
 
-    float timer;
-    float curTimer;
+    float timer = 3;
+    float curTimer = 0;
+    AIBase masterScript;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        masterScript = animator.GetComponent<AIBase>();
         player = GameObject.FindGameObjectWithTag("Player");
         agent = animator.GetComponent<NavMeshAgent>();
 
@@ -27,20 +29,21 @@ public class shotBase : StateMachineBehaviour
         anim = animator;
         playerPos = player.transform.position;
         targDest = playerPos;
+        curTimer = 0;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.SetDestination(targDest);
-        float Dist = Vector3.Distance(playerPos, anim.transform.position);
-        if (Dist <= 1f)
+        float Dist = Vector3.Distance(targDest, anim.transform.position);
+        if (Dist <= 3f)
         {
             curTimer += Time.deltaTime;
             if (curTimer >= timer)
             {
                 curTimer -= timer;
-                anim.gameObject.GetComponent<Animator>().SetBool("Shot", false);
+                masterScript.animCtrl.SetBool("Shot", false);
             }
         }
 

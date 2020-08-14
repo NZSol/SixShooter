@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.048649628, g: 0.039772827, b: 0.023413721, a: 1}
+  m_IndirectSpecularColor: {r: 0.04864941, g: 0.039772723, b: 0.02341371, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1114,6 +1114,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797591038}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &836831888 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8127554080097122796, guid: b0b96510ad999a7449d1d17d1970e578,
+    type: 3}
+  m_PrefabInstance: {fileID: 8127554080073689809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &839033983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1543,7 +1555,7 @@ PrefabInstance:
     - target: {fileID: 8447029817958714631, guid: c9e0c5ef07527a143ab3ca2b3432dc97,
         type: 3}
       propertyPath: m_StoppingDistance
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9e0c5ef07527a143ab3ca2b3432dc97, type: 3}
@@ -2253,6 +2265,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490654541}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1506294569 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 180083227, guid: b0b96510ad999a7449d1d17d1970e578,
+    type: 3}
+  m_PrefabInstance: {fileID: 8127554080073689809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1558020292 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6263859214370271260, guid: b0b96510ad999a7449d1d17d1970e578,
@@ -2873,7 +2897,7 @@ PrefabInstance:
     - target: {fileID: 3476518271141552112, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -51.3
+      value: 14.51
       objectReference: {fileID: 0}
     - target: {fileID: 3476518271141552112, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
@@ -2883,7 +2907,7 @@ PrefabInstance:
     - target: {fileID: 3476518271141552112, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -50.7
+      value: 15.48
       objectReference: {fileID: 0}
     - target: {fileID: 3476518271141552112, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
@@ -2980,6 +3004,11 @@ PrefabInstance:
       propertyPath: ammoCountImg1
       value: 
       objectReference: {fileID: 20134583}
+    - target: {fileID: 8280404505200060898, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
+        type: 3}
+      propertyPath: crossHair
+      value: 
+      objectReference: {fileID: 836831888}
     - target: {fileID: 3476518271141552079, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: range
@@ -3022,6 +3051,14 @@ PrefabInstance:
       propertyPath: endgameTime
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 1173102720, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
+      propertyPath: reachThePlatform
+      value: 
+      objectReference: {fileID: 1506294569}
+    - target: {fileID: 1173102720, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
+      propertyPath: plantTheBomb
+      value: 
+      objectReference: {fileID: 2109765717}
     - target: {fileID: 3476518271725944924, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -3069,19 +3106,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1669195049, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 3e-45
+      value: 6.11e-43
       objectReference: {fileID: 0}
     - target: {fileID: 1669195049, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: -5.644884e-38
+      value: 4.9e-44
       objectReference: {fileID: 0}
     - target: {fileID: 1669195049, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: -4011.3003
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1669195049, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 2.4e-44
+      value: -5.3821294e-17
       objectReference: {fileID: 0}
     - target: {fileID: 3476518270706910873, guid: 0a92c611b8f68ef4994a98aeaaf6f1e7,
         type: 3}
@@ -3403,6 +3440,18 @@ MonoBehaviour:
   lightEnable: 0
   minFlickerSpeed: 0.1
   maxFlickerSpeed: 1
+--- !u!114 &2109765717 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1000152254, guid: b0b96510ad999a7449d1d17d1970e578,
+    type: 3}
+  m_PrefabInstance: {fileID: 8127554080073689809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2123367090
 GameObject:
   m_ObjectHideFlags: 0
