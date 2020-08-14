@@ -252,8 +252,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 0.003921569}
-      maxColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 0.007843138}
+      minColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 0.003921569}
+      maxColor: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 0.007843138}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -3585,7 +3585,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 3
     type: 1
     collisionMode: 0
