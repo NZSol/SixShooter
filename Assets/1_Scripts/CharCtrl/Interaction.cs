@@ -24,6 +24,8 @@ public class Interaction : MonoBehaviour
     float Dist;
     [SerializeField] float rangeFromBomb;
     [SerializeField] float bombRange;
+
+
     
 
     public GameObject endGameTrigger;
@@ -39,6 +41,7 @@ public class Interaction : MonoBehaviour
         slideVal = 0;
         timer.gameObject.SetActive(false);
         bombRigged = false;
+
     }
     // Update is called once per frame
     void Update()
@@ -147,6 +150,7 @@ public class Interaction : MonoBehaviour
         {
             endGameText.gameObject.SetActive(true);
             endGameTrigger.SetActive(true);
+            
             endgameTimer();
         }
     }
@@ -173,6 +177,7 @@ public class Interaction : MonoBehaviour
         timer.gameObject.SetActive(true);
         if (endgameTime > 0)
         {
+            FindObjectOfType<AudioManager>().Play("Bomb timer");
             endgameTime -= Time.deltaTime;
         }
         else
