@@ -146,30 +146,24 @@ public class ButtonClick : MonoBehaviour
     }
     public void HandleInputData(int val)
     {
-        if (val == 0)
-        {
-            QualitySettings.SetQualityLevel(0, true);
-        }
-        if(val == 1)
+        if(val == 0)
         {
             QualitySettings.SetQualityLevel(1, true);
         }
-        if (val == 2)
+        if (val == 1)
         {
             QualitySettings.SetQualityLevel(2, true);
         }
-        if (val == 3)
-        {
-            QualitySettings.SetQualityLevel(3, true);
-        }
-        if (val == 4)
+        if (val == 2)
         {
             QualitySettings.SetQualityLevel(4, true);
         }
-        if (val == 5)
+
+        if (val == 3)
         {
             QualitySettings.SetQualityLevel(5, true);
         }
+
     }
 
     public void ResHandleInputData(int val)
@@ -224,8 +218,14 @@ public class ButtonClick : MonoBehaviour
         controls.SetActive(newValue);
 
     }
-
-
+    public void CloseControls()
+    {
+        controls.SetActive(false);
+    }
+    public void CloseOptions()
+    {
+        optionsPanel.SetActive(false);
+    }
     IEnumerator ChromaticA()
     {
         cA.intensity.value = Mathf.Lerp(0, 3, 1);
