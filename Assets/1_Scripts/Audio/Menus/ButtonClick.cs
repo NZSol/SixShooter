@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using DigitalRuby.SimpleLUT;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.UI;
 
 public class ButtonClick : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class ButtonClick : MonoBehaviour
     public AudioMixer mixer;
     public AudioMixer gameMixer;
     public SimpleLUT simpleL;
+    public GameObject credits;
     public static bool isPaused = false;
     bool pauseUI;
 
@@ -31,6 +33,7 @@ public class ButtonClick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        credits.SetActive(false);
         PostProcessVolume volume = ppMainV.GetComponent<PostProcessVolume>();
         volume.profile.TryGetSettings(out ao);
         volume.profile.TryGetSettings(out bloom);
@@ -43,6 +46,7 @@ public class ButtonClick : MonoBehaviour
         pauseMenu.SetActive(false);
         print("test");
         Cursor.visible = true;
+
     }
 
     // Update is called once per frame
@@ -214,6 +218,7 @@ public class ButtonClick : MonoBehaviour
 
         }
     }
+
     public void ResumeButton()
     {
         Cursor.visible = false;
@@ -234,6 +239,14 @@ public class ButtonClick : MonoBehaviour
         controls.SetActive(newValue);
 
     }
+
+    public void CloseCredits()
+
+    {
+
+        credits.SetActive(false);
+
+    }
     public void CloseControls()
 
     {
@@ -249,6 +262,16 @@ public class ButtonClick : MonoBehaviour
         optionsPanel.SetActive(false);
 
     }
+
+    public void OpenCredits()
+
+    {
+
+        credits.SetActive(true);
+
+    }
+
+
 
 
     IEnumerator ChromaticA()
