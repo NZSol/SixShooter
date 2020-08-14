@@ -124,7 +124,7 @@ public class Interaction : MonoBehaviour
         {
             Debug.DrawRay(transform.position, Vector3.down * 1, Color.yellow);
             print(hit.collider.gameObject.layer);
-            if (hit.collider.gameObject.layer == 13)
+            if (hit.collider.gameObject.layer == 13 && this.gameObject.GetComponent<CharacterController>().isGrounded)
             {
                 inOil = true;
             }
