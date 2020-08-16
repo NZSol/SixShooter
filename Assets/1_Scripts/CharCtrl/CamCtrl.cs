@@ -132,8 +132,8 @@ public class CamCtrl : MonoBehaviour
     }
     public void SenseSldier(float sliderValue)
     {
-        baseSensitivity = sliderValue * 100;
-        mouseSensitivity = sliderValue * 100;
+        baseSensitivity = sliderValue * 8;
+        mouseSensitivity = sliderValue * 8;
     }
 
 }
