@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TimeManager : MonoBehaviour
 {
@@ -38,9 +39,17 @@ public class TimeManager : MonoBehaviour
         }
     }
 
+    IEnumerator SlowMoHaptics()
+    {
+        Gamepad.current.SetMotorSpeeds(.1f, .1f);
+        yield return new WaitForSeconds(3);
+        InputSystem.ResetHaptics();
+    }
+
     public void DoSlowmo()
     {
         Time.timeScale = slowFactor;
+        StartCoroutine(SlowMoHaptics());
         //Time.fixedDeltaTime = Time.timeScale * 0.2f;
     }
 

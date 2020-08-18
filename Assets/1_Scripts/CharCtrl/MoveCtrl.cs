@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MoveCtrl : MonoBehaviour
 {
@@ -55,9 +56,10 @@ public class MoveCtrl : MonoBehaviour
     public enum States{MoveState, LadderState}
     public States stateEnum;
 
-    
+
     void Start()
     {
+
         charCtrl = GetComponent<CharacterController>();
         heightY = viewManager.transform.position.y;
         offset = viewManager.transform.position.y - transform.position.y;
@@ -163,7 +165,7 @@ public class MoveCtrl : MonoBehaviour
 
     void CrouchTogg()
     {
-        if (Input.GetKeyDown(crouchKey))
+        if (Input.GetKeyDown(crouchKey) || Input.GetKeyDown(KeyCode.JoystickButton1))
         {
             crouching = !crouching;
         }
@@ -233,7 +235,7 @@ public class MoveCtrl : MonoBehaviour
             charCtrl.SimpleMove(Vector3.zero);
         }
 
-        if (Input.GetKeyDown(jumpKey) && !isJumping)
+        if (Input.GetKeyDown(jumpKey) || Input.GetKeyDown(KeyCode.JoystickButton0) && !isJumping)
         {
             
             playerAnimator.SetBool("Jumping", true);

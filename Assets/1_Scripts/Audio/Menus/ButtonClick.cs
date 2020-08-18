@@ -7,6 +7,7 @@ using TMPro;
 using DigitalRuby.SimpleLUT;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class ButtonClick : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class ButtonClick : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKey(KeyCode.Mouse1) && Input.GetKeyDown(KeyCode.LeftShift))
+        if(Input.GetKey(KeyCode.Mouse1) && Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.Joystick1Button3))
         {
             StartCoroutine(ChromaticA());
         }
@@ -80,7 +81,7 @@ public class ButtonClick : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }
-        if (buildIndex == 2 && Input.GetKeyDown(KeyCode.Escape))
+        if (buildIndex == 2 && Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
         {
             Cursor.lockState = CursorLockMode.Confined;
             TimeManager.GamePause = !TimeManager.GamePause;

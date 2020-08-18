@@ -14,6 +14,9 @@ public class PlayerAnimation : MonoBehaviour
     GameObject player;
     Gun gunScript;
 
+    private bool m_isAxisInUse = false;
+    private bool m_isAxisInUse2 = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +29,37 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(shoot) && !ButtonClick.isPaused && gunScript.canFire == true)
+        if(Input.GetAxisRaw("XboxFire") != 0)
+        {
+            if(m_isAxisInUse == false)
+            {
+                m_isAxisInUse = true;
+            }
+        }
+        if(Input.GetAxisRaw("XboxFire") == 0)
+        {
+            m_isAxisInUse = false;
+        }
+
+
+        if (Input.GetAxisRaw("XboxAim") != 0)
+        {
+            if (m_isAxisInUse2 == false)
+            {
+                m_isAxisInUse2 = true;
+            }
+        }
+        if (Input.GetAxisRaw("XboxAim") == 0)
+        {
+            m_isAxisInUse2 = false;
+        }
+
+
+
+
+
+
+        if (Input.GetKeyDown(shoot) || m_isAxisInUse && !ButtonClick.isPaused && gunScript.canFire == true)
         {
             playerAnim.SetTrigger("Firing");
             
@@ -43,7 +76,7 @@ public class PlayerAnimation : MonoBehaviour
 
         float vertMove = Input.GetAxis(VertInput);
 
-        if (Input.GetKey(ADS))
+        if (Input.GetKey(ADS) || m_isAxisInUse2)
         {
             playerAnim.SetBool("ADS", true);
         }

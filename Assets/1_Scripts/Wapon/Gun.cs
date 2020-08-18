@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using GameAnalyticsSDK;
+using UnityEngine.InputSystem;
 
 public class Gun : MonoBehaviour
 {
+    private bool m_isAxisInUse2 = false;
     //raycast Variables
     [SerializeField] float range = 50;
     GameObject gun;
@@ -38,8 +40,8 @@ public class Gun : MonoBehaviour
     [SerializeField] GameObject gunMesh;
 
     AudioManager audioManager;
-    
 
+    SixShooter controller;
 
     //ADS
     [SerializeField] TimeManager timeManager;
@@ -64,9 +66,11 @@ public class Gun : MonoBehaviour
     Animator anim;
     [SerializeField] AnimationClip shootClip;
 
+
     // Start is called before the first frame update
     void Start()
     {
+        controller = new SixShooter();
         bulletsFired = 0;
         gun = this.gameObject;
         canAim = true;
@@ -91,6 +95,20 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetAxisRaw("XboxAim") != 0)
+        {
+            if (m_isAxisInUse2 == false)
+            {
+                m_isAxisInUse2 = true;
+            }
+        }
+        if (Input.GetAxisRaw("XboxAim") == 0)
+        {
+            m_isAxisInUse2 = false;
+        }
+
+
+
         AccesoryFunction();
 
         if (aiming == true)
@@ -122,15 +140,24 @@ public class Gun : MonoBehaviour
             StopCoroutine(Reload());
         }
         //Manual
-        if (ammoCount < 6 && Input.GetKeyDown(KeyCode.R))
+        if (ammoCount < 6 && Input.GetKeyDown(KeyCode.R) || Input.GetKey(KeyCode.JoystickButton2))
         {
             startReload = true;
         }
 
     }
 
+    IEnumerator PlayHaptics()
+    {
+        Gamepad.current.SetMotorSpeeds(.25f, .25f);
+        yield return new WaitForSeconds(.5f);
+        InputSystem.ResetHaptics();
+        
+    }
+
     public void GunShoot()
     {
+        StartCoroutine(PlayHaptics());
         muzzFlash.SetActive(true);
         timeToFire = 0;
         ammoCount--;
@@ -191,6 +218,7 @@ public class Gun : MonoBehaviour
                     Destroy(hit.transform.gameObject);
                     Instantiate(barrelExplosion, hit.point, transform.rotation);
                     audioManager.Play("BarrelExplosion");
+                    StartCoroutine(PlayHaptics());
                     print("destoryObj");
                 }
                 else if (hit.collider.tag == "extendBridge" )
@@ -406,7 +434,7 @@ public class Gun : MonoBehaviour
 
     void ADSCheck()
     {
-        if (Input.GetKey(KeyCode.Mouse1) && canAim == true)
+        if (Input.GetKey(KeyCode.Mouse1) || m_isAxisInUse2 && canAim == true)
         {
             crossHair.enabled = false;
             aiming = true;
@@ -420,7 +448,7 @@ public class Gun : MonoBehaviour
             lerpFuncOut();
         }
 
-        if (aiming == true && Input.GetKeyDown(KeyCode.LeftShift) && lerpTime >= 1 && canSlow == true)
+        if (aiming == true && Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton3) && lerpTime >= 1 && canSlow == true)
         {
             timeSwitch = true;
             slowSfx.Play();

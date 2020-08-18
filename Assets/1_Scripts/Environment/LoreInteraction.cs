@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LoreInteraction : MonoBehaviour
 {
@@ -41,11 +42,11 @@ public class LoreInteraction : MonoBehaviour
     }
     public void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(Interact) && (other.CompareTag("getaway") || other.CompareTag("newspaper") || other.CompareTag("injury") || other.CompareTag("diary")))
+        if (Input.GetKeyDown(Interact) || Input.GetKeyDown(KeyCode.JoystickButton2) && (other.CompareTag("getaway") || other.CompareTag("newspaper") || other.CompareTag("injury") || other.CompareTag("diary")))
         {
             FindObjectOfType<AudioManager>().Play("Paper_Pickup");
         }
-        if (Input.GetKey(Interact) && other.CompareTag("getaway"))
+        if (Input.GetKey(Interact) || Input.GetKey(KeyCode.JoystickButton2) && other.CompareTag("getaway"))
         {
             GetawayActive = true;
         }
@@ -53,7 +54,7 @@ public class LoreInteraction : MonoBehaviour
         {
             GetawayActive = false;
         }
-        if (Input.GetKey(Interact) && other.CompareTag("newspaper"))
+        if (Input.GetKey(Interact) || Input.GetKey(KeyCode.JoystickButton2) && other.CompareTag("newspaper"))
         {
             newspaperActive = true;
         }
@@ -61,7 +62,7 @@ public class LoreInteraction : MonoBehaviour
         {
             newspaperActive = false;
         }
-        if (Input.GetKey(Interact) && other.CompareTag("injury"))
+        if (Input.GetKey(Interact) || Input.GetKey(KeyCode.JoystickButton2) && other.CompareTag("injury"))
         {
             InjuryActive = true;
         }
@@ -69,7 +70,7 @@ public class LoreInteraction : MonoBehaviour
         {
             InjuryActive = false;
         }
-        if (Input.GetKey(Interact) && other.CompareTag("diary"))
+        if (Input.GetKey(Interact) || Input.GetKey(KeyCode.JoystickButton2)  && other.CompareTag("diary"))
         {
             DiaryActive = true;
 

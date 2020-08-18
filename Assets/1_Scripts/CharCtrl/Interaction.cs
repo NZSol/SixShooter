@@ -69,7 +69,7 @@ public class Interaction : MonoBehaviour
 
         if (Physics.Raycast(transform.position, forward, out hit, interCheckRange, 1 << 9))
         {
-            if (Input.GetKeyDown(Interact))
+            if (Input.GetKeyDown(Interact) || Input.GetKeyDown(KeyCode.JoystickButton2))
             {
                 if (hit.transform.tag == "door")
                 {
@@ -82,7 +82,7 @@ public class Interaction : MonoBehaviour
         if (Physics.Raycast(transform.position, rayDir, out hit, 1 << 9))
         {
             Debug.DrawRay(transform.position, rayDir, Color.yellow);
-            if (Input.GetKey(Interact) && Dist <= bombRange)
+            if (Input.GetKey(Interact) || Input.GetKeyDown(KeyCode.JoystickButton2) && Dist <= bombRange)
             {
                 if (hit.transform.tag == "endGame" && slideVal <= 5)
                 {

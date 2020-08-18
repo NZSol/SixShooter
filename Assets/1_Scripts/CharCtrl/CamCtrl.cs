@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CamCtrl : MonoBehaviour
 {
+
     GameObject Player;
+
 
     //Camera rotate variables
     [SerializeField] string mouseXInputName, mouseYInputName;
@@ -69,8 +72,9 @@ public class CamCtrl : MonoBehaviour
         }
     }
 
-    void CameraRotation()
+    public void CameraRotation()
     {
+
         float mouseX = Input.GetAxis(mouseXInputName) * mouseSensitivity * timeMult;
         float mouseY;
 
