@@ -225,7 +225,7 @@ public class MoveCtrl : MonoBehaviour
             moveState = new Vector3((angularFwdMove.x + angularRgtMove.x) * aimSpeedModif, (angularFwdMove.y + angularRgtMove.y) * aimSpeedModif, (angularFwdMove.z + angularRgtMove.z) * aimSpeedModif) * angularMultiplier;
         }
 
-        if (isJumping == false && !Input.GetKeyDown(jumpKey))
+        if (isJumping == false && !Input.GetKeyDown(jumpKey) || !Input.GetKeyDown(KeyCode.JoystickButton0))
         {
             charCtrl.SimpleMove(moveState * timeSlowMult);
             

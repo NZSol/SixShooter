@@ -28,7 +28,7 @@ public class ButtonClick : MonoBehaviour
     public static bool isPaused = false;
     bool pauseUI;
     bool optionsOpen;
-
+    bool usingController;
 
     public static float audioVolume;
     // Start is called before the first frame update
@@ -81,19 +81,26 @@ public class ButtonClick : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }
-        if (buildIndex == 2 && Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
+        if (buildIndex == 2 && Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.lockState = CursorLockMode.Confined;
             TimeManager.GamePause = !TimeManager.GamePause;
             pauseMenu.SetActive(false);
-            //Debug.Log("Work");
-            //TimeManager.endSlow = false;
-            //Time.timeScale = 0;
             pauseUI = !pauseUI;
             isPaused = !isPaused;
             PauseUI();
         }
-        if (isPaused)
+        if (buildIndex == 2 && Input.GetKeyDown(KeyCode.JoystickButton7))
+        {
+            usingController = true;
+            Cursor.lockState = CursorLockMode.Locked;
+            TimeManager.GamePause = !TimeManager.GamePause;
+            pauseMenu.SetActive(false);
+            pauseUI = !pauseUI;
+            isPaused = !isPaused;
+            PauseUI();
+        }
+        if (isPaused && !usingController)
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
@@ -241,6 +248,7 @@ public class ButtonClick : MonoBehaviour
 
     public void ResumeButton()
     {
+        usingController = false;
         optionsOpen = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

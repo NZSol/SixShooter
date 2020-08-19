@@ -378,7 +378,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '''Space to Skip'''
+  m_Text: '''Space/A to Skip''
+
+'
 --- !u!222 &1112221114
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -552,6 +554,7 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: b3c240097dfda084da936b89950f9eb7, type: 2}
   gameMixer: {fileID: 0}
   simpleL: {fileID: 0}
+  credits: {fileID: 0}
 --- !u!82 &1146828123
 AudioSource:
   m_ObjectHideFlags: 0

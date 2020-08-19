@@ -95,14 +95,14 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxisRaw("XboxAim") != 0)
+        if (Input.GetAxis("XboxAim") != 0)
         {
             if (m_isAxisInUse2 == false)
             {
                 m_isAxisInUse2 = true;
             }
         }
-        if (Input.GetAxisRaw("XboxAim") == 0)
+        if (Input.GetAxis("XboxAim") == 0)
         {
             m_isAxisInUse2 = false;
         }
@@ -140,7 +140,7 @@ public class Gun : MonoBehaviour
             StopCoroutine(Reload());
         }
         //Manual
-        if (ammoCount < 6 && Input.GetKeyDown(KeyCode.R) || Input.GetKey(KeyCode.JoystickButton2))
+        if (ammoCount < 6 && Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton2))
         {
             startReload = true;
         }

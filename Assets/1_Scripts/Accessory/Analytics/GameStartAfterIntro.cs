@@ -17,7 +17,7 @@ public class GameStartAfterIntro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
         {
             SceneManager.LoadScene(2);
             TimeManager.GamePause = false;

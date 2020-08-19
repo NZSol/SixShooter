@@ -29,27 +29,27 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetAxisRaw("XboxFire") != 0)
+        if(Input.GetAxis("XboxFire") != 0)
         {
             if(m_isAxisInUse == false)
             {
                 m_isAxisInUse = true;
             }
         }
-        if(Input.GetAxisRaw("XboxFire") == 0)
+        if(Input.GetAxis("XboxFire") == 0)
         {
             m_isAxisInUse = false;
         }
 
 
-        if (Input.GetAxisRaw("XboxAim") != 0)
+        if (Input.GetAxis("XboxAim") != 0)
         {
             if (m_isAxisInUse2 == false)
             {
                 m_isAxisInUse2 = true;
             }
         }
-        if (Input.GetAxisRaw("XboxAim") == 0)
+        if (Input.GetAxis("XboxAim") == 0)
         {
             m_isAxisInUse2 = false;
         }
@@ -97,7 +97,7 @@ public class PlayerAnimation : MonoBehaviour
         }
         //else if ()
 
-        if (playerAnim.GetBool("Reloading") == true && Input.GetKeyDown(shoot) && gunScript.cancelReload == false)
+        if (playerAnim.GetBool("Reloading") == true && Input.GetKeyDown(shoot) || !m_isAxisInUse && gunScript.cancelReload == false)
         {
             gunScript.cancelReload = true;
             playerAnim.SetBool("Reloading", false);
