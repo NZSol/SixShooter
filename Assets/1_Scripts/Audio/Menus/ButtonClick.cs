@@ -34,6 +34,7 @@ public class ButtonClick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        usingController = false;
         credits.SetActive(false);
         PostProcessVolume volume = ppMainV.GetComponent<PostProcessVolume>();
         volume.profile.TryGetSettings(out ao);
